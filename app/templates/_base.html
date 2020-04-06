@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="author" content="Benjamin Okkema">
+		<meta name="description" content="Ben Okkema's blog">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+		<title>{% block title %}{% endblock %} - ben.okkema.org</title>
+		<script>
+			let fn = () => {
+				document.getElementById('subscribe-form').addEventListener('submit', submitForm);
+			}
+			documentReady(fn);
+		</script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+		<nav>
+			<div id="nav-buttons">
+				<a href="{{ url_for('home') }}">
+					<img id="nav-logo" src="{{ url_for('static', filename='img/logo.png') }}">
+				</a>
+				<i id="nav-button" class="fa fa-bars" onclick="toggleDropdown('nav-links')"></i>
+			</div>
+			<div id="nav-links">
+				<a class="nav-link {% if request.path.startswith('/blog/') %}active{% endif %}" href="{{ url_for('table_of_contents') }}">Blog</a>
+				<div class="dropdown">
+					<button class="dropdown-button nav-link" onclick="toggleDropdown('projects')">
+						<span class="dropdown-button-text">Projects</span>
+						<i class="dropdown-button-icon fas fa-caret-down"></i>
+					</button>
+					<div id="projects" class="dropdown-content">
+						{% if data['projects'] %}
+							{% for project in data['projects'] %}
+							<a class="nav-link project" href="{{ project['url'] }}">
+								<span class="project-name">{{ project['name'] }}</span>
+								<i class="project-icon fas fa-external-link-alt"></i>
+							</a>
+							{% endfor %}
+						{% else %}
+							<div class="nav-link">Coming soon!</div>
+						{% endif %}
+					</div>
+				</div>
+				<a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+			</div>
+		</nav>
+		<div id="content">
+			<div class="box" id="main-content">{% block body %}{% endblock %}</div>
+			<div class="box" id="sidebar">
+				<div id="picture-frame">
+					<img src="{{ url_for('static', filename='img/me.jpg') }}">
+				</div>
+				<hr>
+				<h2 id="name">Benjamin Okkema</h2>
+				<ul id="contact">
+					{% for contact in data['contact'] %}
+					<li class="contact-item">
+						<a class="contact-link" href="{{ contact['url'] }}" title="{{ contact['text'] }}">
+							<i class="contact-icon {{ contact['icon'] }}"></i>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+				<hr>
+				<ul id="bio">
+					{% for bio in data['bio'] %}
+					<li class="bio-item">
+						<span class="bio-icon">
+							<i class="{{ bio['icon'] }}"></i>
+						</span>
+						<span class="bio-text">{{ bio['text'] | safe }}</span>
+					</li>
+					{% endfor %}
+				</ul>
+				<hr>
+				<form id="subscribe-form" method="POST" action="{{ url_for('subscribe') }}">
+					{{ subscribe.email.label }}
+					<div id="subscribe-form-field">
+						{{ subscribe.email }}
+						<button type="submit" class="form-button">
+							<i class="fas fa-paper-plane button-icon"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="footer">&copy; 2020 by Benjamin Okkema</div>
+		<div id="toast">
+			<i id="toast-icon" class="fas fa-check"></i>
+			<span id="toast-text"></span>
+		</div>
+	</body>
+</html>

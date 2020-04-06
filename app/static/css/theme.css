@@ -1,0 +1,311 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: lightgray;
+	margin: 0;
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+}
+
+input {
+	padding: 10px;
+}
+
+.nav-link:hover, .nav-link:focus {
+	color: white !important;
+	background-color: darkslategray !important;
+}
+
+.nav-link {
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+}
+
+.project {
+	justify-content: space-between;
+}
+
+.dropdown-button {
+	box-sizing: border-box;
+	height: 100%;
+	border: none;
+	font-size: 1rem;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+}
+
+.dropdown-button-icon {
+	margin-left: 10px;
+}
+
+.dropdown-content {
+	display: none;
+	background-color: black;
+	flex-direction: column;
+	position: absolute;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.box {
+	padding: 10px;
+	margin: 10px;
+	background-color: white;
+	height: min-content;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#nav-links.show, #projects.show {
+	display: flex !important;
+}
+
+.active {
+	background-color: lightslategray;
+}
+
+@media screen and (max-width: 768px){
+	nav, #content, #nav-links {
+		flex-direction: column !important;
+	}
+
+	#main-content, #sidebar {
+		width: unset !important;
+	}
+
+	#sidebar {
+		margin-top: 0 !important;
+		margin-left: 10px !important;
+	}
+
+	#nav-button {
+		display: unset !important;
+	}
+
+	#nav-links {
+		display: none !important;
+	}
+
+	#nav-links .dropdown .dropdown-content {
+		position: relative !important;
+	}
+
+	.dropdown-button.nav-link {
+		height: unset !important;
+		width: 100%;
+	}
+
+	.dropdown-button {
+		justify-content: space-between;
+	}
+}
+
+#nav-logo {
+	margin: 5px;
+}
+
+nav, #content {
+	display: flex;
+	flex-direction: row;
+}
+
+nav, #footer {
+	flex-shrink: 0;
+	background-color: black;
+	color: white;
+}
+
+nav {
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#nav-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#nav-links {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+}
+
+#projects {
+	background-color: white;
+}
+
+#projects .nav-link {
+	color: black;
+}
+
+#footer {
+	padding: 10px;
+}
+
+#content {
+	flex-grow: 1;
+}
+
+#main-content {
+	width: 70%;
+}
+
+#sidebar {
+	width: 30%;
+	margin-left: 0;
+}
+
+#nav-button {
+	display: none;
+	cursor: pointer;
+	margin: 10px;
+}
+
+.dropdown-button.nav-link {
+	background-color: black;
+}
+
+#contact {
+	margin: 0;
+	list-style: none;
+	padding-left: 0;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 5px;
+}
+
+.contact-item {
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+.contact-link {
+	text-decoration: none;
+	color: black;
+}
+
+.contact-link:hover, .contact-link:active {
+	color: darkslategray;
+}
+
+.bio-item {
+	display: flex;
+	flex-direction: row;
+}
+
+.bio-icon {
+	width: 25px;
+	text-align: center;
+}
+
+.bio-text {
+	margin-left: 10px;
+}
+
+#picture-frame {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#name {
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+#bio {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+
+#subscribe-form-field {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.form-button {
+	background-color: black;
+	border: none;
+	padding: 5px;
+	margin-left: 10px;
+	cursor: pointer; 
+}
+
+.form-button:hover {
+	background-color: darkslategray;
+}
+
+.button-icon {
+	font-size: 20px;
+	color: white;
+}
+
+#subscribe-email {
+	flex-grow: 2;
+}
+
+#toast {
+	visibility: hidden;
+	min-width: 250px;
+	margin-left: -125px;
+	background-color: darkslategray;
+	color: white;
+	text-align: center;
+	border-radius: 2px;
+	padding: 16px;
+	position: fixed;
+	z-index: 1;
+	left: 50%;
+	bottom: 30px;
+	font-size: 17px;
+  }
+  
+#toast.flash {
+	visibility: visible;
+	-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#toast-icon {
+	margin-right: 5px;
+}
+
+@-webkit-keyframes fadein {
+	from {bottom: 0; opacity: 0;} 
+	to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+	from {bottom: 0; opacity: 0;}
+	to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+	from {bottom: 30px; opacity: 1;} 
+	to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+	from {bottom: 30px; opacity: 1;}
+	to {bottom: 0; opacity: 0;}
+}
+
+#post-title {
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+#post-date {
+	margin: 0;
+}

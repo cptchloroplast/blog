@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+
+{% block title %}
+{% if request.path == '/' %}
+	Home
+{% else %}
+	{{ post.title }}
+{% endif %}
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<article>
+	<header>
+		<h2 id="post-title">{{ post.title }}</h2>
+		<h5 id="post-date">
+			<time>{{ post.published_on }}</time>
+		</h5>
+	</header>
+	<hr>
+	<section id="post-body">{{ post.body | safe }}</section>
+</article>
+{% endblock %}
