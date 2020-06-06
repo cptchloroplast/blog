@@ -2,6 +2,29 @@
 
 {% block title %}Contact{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+<script>
+    let fn = () => {
+        document.getElementById('contact-form').addEventListener('submit', submitForm);
+    }
+    documentReady(fn);
+</script>
+{% endblock %}
 
-{% block body %}CONTACT{% endblock %}
+{% block body %}
+<form id="contact-form" method="POST" action="{{ url_for('send') }}">
+    <div class="form-item">Leave a message and I'll get back to you as soon as I can!</div>
+    <div class="form-item">
+        {{ contact.sender }}
+    </div>
+    <div class="form-item">
+        {{ contact.body }}
+    </div>
+    <div class="form-item">
+        {{ contact.captcha }}
+    </div>
+    <button type="submit" class="form-button" title="Send">
+        <i class="icon-send button-icon"></i>
+    </button>
+</form>
+{% endblock %}

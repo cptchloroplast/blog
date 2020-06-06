@@ -2,37 +2,37 @@
 	"projects": [],
 	"bio": [
 		{
-			"icon": "fas fa-code",
+			"icon": "icon-code",
 			"text": "Software Engineer @ <small><a href='https://www.innobyte.net'>Innobyte</a></small>"
 		},
 		{
-			"icon": "fas fa-wrench",
+			"icon": "icon-wrench",
 			"text": "Freelance Bicycle Mechanic"
 		},
 		{
-			"icon": "fas fa-seedling",
+			"icon": "icon-leaf",
 			"text": "Amateur Botanist"
 		}
 	],
 	"contact": [
 		{
 			"text": "@cptchloroplast",
-			"icon": "fab fa-github-square",
+			"icon": "icon-github",
 			"url": "https://github.com/cptchloroplast"
 		},
 		{
 			"text": "Benjamin Okkema",
-			"icon": "fab fa-linkedin",
+			"icon": "icon-linkedin",
 			"url": "https://www.linkedin.com/in/benokkema"
 		},
 		{
 			"text": "ben@okkema.org",
-			"icon": "fas fa-envelope-square",
+			"icon": "icon-envelope",
 			"url": "mailto:ben@okkema.org"
 		},
 		{
 			"text": "+56 9 5650 8763",
-			"icon": "fas fa-phone-square",
+			"icon": "icon-phone",
 			"url": "tel:+56956508763"
 		}
 	]

@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms.fields import TextAreaField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
@@ -17,11 +17,15 @@ class ContactForm(FlaskForm):
         'Email',
         validators=[DataRequired(), Email()],
         id='contact-sender',
-        render_kw={'placeholder': 'Email'}    
+        render_kw={'placeholder': 'Email'}
     )
     body = TextAreaField(
         'Message',
         validators=[DataRequired()],
         id='contact-body',
-        render_kw={'placeholder': 'Message'}
+        render_kw={
+            'placeholder': 'Message',
+            'rows': '5'
+        }
     )
+    captcha = RecaptchaField()

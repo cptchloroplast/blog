@@ -8,7 +8,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/icons.css') }}">
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 		<title>{% block title %}{% endblock %} - ben.okkema.org</title>
 		<script>
@@ -83,8 +83,8 @@
 					{{ subscribe.email.label }}
 					<div id="subscribe-form-field">
 						{{ subscribe.email }}
-						<button type="submit" class="form-button">
-							<i class="fas fa-paper-plane button-icon"></i>
+						<button type="submit" class="form-button" title="Subscribe">
+							<i class="icon-send button-icon"></i>
 						</button>
 					</div>
 				</form>
