@@ -19,4 +19,4 @@ COPY .env ./
 COPY data.json ./
 RUN chown -R blog:blog ./
 USER blog
-CMD ["exec", "gunicorn", "-b", ":$PORT", "app:app"]
+CMD exec gunicorn -b :$PORT app:app
