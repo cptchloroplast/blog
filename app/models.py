@@ -1,10 +1,12 @@
 from datetime import datetime
 
+from flask_sqlalchemy import SQLAlchemy
 from slugify import slugify
 from markdown import markdown
 
-from app import db
 from app.utils import permalink
+
+db = SQLAlchemy()
 
 class Post(db.Model):
     __tablename__ = 'pos_post'
@@ -29,12 +31,13 @@ class Post(db.Model):
 
     @permalink
     def url(self):
-        return 'post', {'post_id': self.id, 'slug': self.slug}
+        return 'root.post', {'post_id': self.id, 'slug': self.slug}
 
 class Subscriber(db.Model):
     __tablename__ = 'sub_subscriber'
 
     email = db.Column('sub_email', db.String, primary_key=True)
+    subscribed = db.Column('sub_dt_subscribed', db.DateTime, default=datetime.utcnow())
 
 class Message(db.Model):
     __tablename__ = 'mes_message'

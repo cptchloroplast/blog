@@ -22,24 +22,24 @@
     <body>
 		<nav>
 			<div id="nav-buttons">
-				<a href="{{ url_for('home') }}">
+				<a href="{{ url_for('root.home') }}">
 					<img id="nav-logo" src="{{ url_for('static', filename='img/logo.png') }}">
 				</a>
-				<i id="nav-button" class="fa fa-bars" onclick="toggleDropdown('nav-links')"></i>
+				<i id="nav-button" class="i-menu" onclick="toggleDropdown('nav-links')"></i>
 			</div>
 			<div id="nav-links">
-				<a class="nav-link {% if request.path.startswith('/blog/') %}active{% endif %}" href="{{ url_for('table_of_contents') }}">Blog</a>
+				<a class="nav-link {% if request.path.startswith('/blog/') %}active{% endif %}" href="{{ url_for('root.table_of_contents') }}">Blog</a>
 				<div class="dropdown">
 					<button class="dropdown-button nav-link" onclick="toggleDropdown('projects')">
 						<span class="dropdown-button-text">Projects</span>
-						<i class="dropdown-button-icon fas fa-caret-down"></i>
+						<i class="dropdown-button-icon i-dropdown"></i>
 					</button>
 					<div id="projects" class="dropdown-content">
 						{% if data['projects'] %}
 							{% for project in data['projects'] %}
 							<a class="nav-link project" href="{{ project['url'] }}">
 								<span class="project-name">{{ project['name'] }}</span>
-								<i class="project-icon fas fa-external-link-alt"></i>
+								<i class="project-icon i-dropdown"></i>
 							</a>
 							{% endfor %}
 						{% else %}
@@ -47,7 +47,7 @@
 						{% endif %}
 					</div>
 				</div>
-				<a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+				<a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{{ url_for('root.contact') }}">Contact</a>
 			</div>
 		</nav>
 		<div id="content">
@@ -79,12 +79,12 @@
 					{% endfor %}
 				</ul>
 				<hr>
-				<form id="subscribe-form" method="POST" action="{{ url_for('subscribe') }}">
+				<form id="subscribe-form" method="POST" action="{{ url_for('root.subscribe') }}">
 					{{ subscribe.email.label }}
 					<div id="subscribe-form-field">
 						{{ subscribe.email }}
 						<button type="submit" class="form-button" title="Subscribe">
-							<i class="icon-send button-icon"></i>
+							<i class="i-send button-icon"></i>
 						</button>
 					</div>
 				</form>
@@ -92,7 +92,7 @@
 		</div>
 		<div id="footer">&copy; 2020 by Benjamin Okkema</div>
 		<div id="toast">
-			<i id="toast-icon" class="fas fa-check"></i>
+			<i id="toast-icon"></i>
 			<span id="toast-text"></span>
 		</div>
 	</body>

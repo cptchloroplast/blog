@@ -35,12 +35,12 @@ function submitForm(evt) {
 		body: JSON.stringify(data),
 	}).then(resp => resp.json()).then(resp => {
 		if (resp.ok) { // success
-			showToast(resp.msg, 'fas fa-check-square');
+			showToast(resp.msg, 'i-success');
 		} else {
 			if (resp.err) { // error
-				showToast(resp.msg, 'fas fa-times-circle')
+				showToast(resp.msg, 'i-error')
 			} else { // reject
-				showToast(resp.msg, 'fas fa-exclamation-triangle')
+				showToast(resp.msg, 'i-reject')
 			}
 		}
 	}).catch(err => {

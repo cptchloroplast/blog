@@ -12,4 +12,4 @@ ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /home
 COPY app ./app
 COPY .env ./
-CMD exec gunicorn -b :$PORT app:app
+CMD gunicorn -b :$PORT "app:create_app('prod')"

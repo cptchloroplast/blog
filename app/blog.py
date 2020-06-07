@@ -1,10 +1,9 @@
 from sqlalchemy.exc import IntegrityError
 
-from app import db
-from app.models import Post, Subscriber, Message
+from app.models import db, Post, Subscriber, Message
 from app.forms import SubscribeForm, ContactForm
 
-class Blog():
+class Blog:
 
     def get_latest_post(self):
         return db.session.query(Post).filter(Post.published.isnot(None)) \
@@ -14,7 +13,7 @@ class Blog():
         return db.session.query(Post).filter(Post.published.isnot(None)) \
             .order_by(Post.published.desc()).all()
 
-    def get_published_post_by_id(self, post_id):
+    def get_published_post_by_id(self, post_id: int):
         return db.session.query(Post) \
             .filter(Post.id == post_id, Post.published.isnot(None)).first()
 

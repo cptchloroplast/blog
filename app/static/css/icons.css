@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fonts';
-  src:  url('../fonts/fonts.eot?qzd8x8');
-  src:  url('../fonts/fonts.eot?qzd8x8#iefix') format('embedded-opentype'),
-    url('../fonts/fonts.ttf?qzd8x8') format('truetype'),
-    url('../fonts/fonts.woff?qzd8x8') format('woff'),
-    url('../fonts/fonts.svg?qzd8x8#fonts') format('svg');
+  src:  url('../fonts/fonts.eot?5a2dy1');
+  src:  url('../fonts/fonts.eot?5a2dy1#iefix') format('embedded-opentype'),
+    url('../fonts/fonts.ttf?5a2dy1') format('truetype'),
+    url('../fonts/fonts.woff?5a2dy1') format('woff'),
+    url('../fonts/fonts.svg?5a2dy1#fonts') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,27 +25,45 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-leaf:before {
+.i-error:before {
+  content: "\f057";
+}
+.i-leaf:before {
   content: "\f06c";
 }
-.icon-linkedin:before {
+.i-reject:before {
+  content: "\f071";
+}
+.i-linkedin:before {
   content: "\f08c";
 }
-.icon-github:before {
+.i-external:before {
+  content: "\f08e";
+}
+.i-github:before {
   content: "\f092";
 }
-.icon-phone:before {
+.i-phone:before {
   content: "\f098";
 }
-.icon-wrench:before {
+.i-wrench:before {
   content: "\f0ad";
 }
-.icon-code:before {
+.i-menu:before {
+  content: "\f0c9";
+}
+.i-dropdown:before {
+  content: "\f0d7";
+}
+.i-code:before {
   content: "\f121";
 }
-.icon-envelope:before {
+.i-success:before {
+  content: "\f14a";
+}
+.i-mail:before {
   content: "\f199";
 }
-.icon-send:before {
+.i-send:before {
   content: "\f1d8";
 }

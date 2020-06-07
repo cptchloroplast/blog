@@ -1,8 +1,9 @@
-from flask_wtf import FlaskForm, RecaptchaField
+from flask_wtf import CSRFProtect, FlaskForm, RecaptchaField
 from wtforms.fields import TextAreaField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
-from markupsafe import Markup
+
+csrf = CSRFProtect()
 
 class SubscribeForm(FlaskForm):
     email = EmailField(
@@ -28,4 +29,8 @@ class ContactForm(FlaskForm):
             'rows': '5'
         }
     )
-    captcha = RecaptchaField()
+    captcha = RecaptchaField(
+        'Recaptcha',
+        validators=[DataRequired()],
+        id='contact-captcha'
+    )
