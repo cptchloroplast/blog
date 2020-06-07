@@ -12,10 +12,10 @@
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 		<title>{% block title %}{% endblock %} - ben.okkema.org</title>
 		<script>
-			let fn = () => {
+			let subscribe = () => {
 				document.getElementById('subscribe-form').addEventListener('submit', submitForm);
 			}
-			documentReady(fn);
+			documentReady(subscribe);
 		</script>
         {% block head %}{% endblock %}
     </head>

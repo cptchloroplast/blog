@@ -4,10 +4,10 @@
 
 {% block head %}
 <script>
-    let fn = () => {
+    let send = () => {
         document.getElementById('contact-form').addEventListener('submit', submitForm);
     }
-    documentReady(fn);
+    documentReady(send);
 </script>
 {% endblock %}
 
