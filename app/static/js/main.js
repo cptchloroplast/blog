@@ -26,6 +26,8 @@ function submitForm(evt) {
 		}
 		return obj;
 	}, {});
+	let button = this.querySelector('button[type="submit"]');
+	button.setAttribute('disabled', 'disabled');
 	fetch(`${this.getAttribute('action')}`, {
 		method: this.getAttribute('method'),
 		headers: {
@@ -34,14 +36,13 @@ function submitForm(evt) {
 		},
 		body: JSON.stringify(data),
 	}).then(resp => resp.json()).then(resp => {
-		if (resp.ok) { // success
+		button.removeAttribute('disabled');
+		if (resp.err) { // error
+			showToast(resp.msg, 'i-error')
+		} else if (resp.ok) { // success
 			showToast(resp.msg, 'i-success');
-		} else {
-			if (resp.err) { // error
-				showToast(resp.msg, 'i-error')
-			} else { // reject
-				showToast(resp.msg, 'i-reject')
-			}
+		} else { // reject
+			showToast(resp.msg, 'i-reject')
 		}
 	}).catch(err => {
 		console.error(err);

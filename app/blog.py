@@ -21,7 +21,6 @@ class Blog:
         form = SubscribeForm()
         if not form.validate_on_submit():
             return {
-                'ok': False,
                 'err': True,
                 'msg': "Oops, something doesn't look right here..."
             }
@@ -42,8 +41,12 @@ class Blog:
     def send_message(self):
         form = ContactForm()
         if not form.validate_on_submit():
+            if form.errors.get('captcha'):
+                return {
+                    'ok': False,
+                    'msg': 'No robots, please!'
+                }
             return {
-                'ok': False,
                 'err': True,
                 'msg': "Oops, something doesn't look right here..."
             }
