@@ -1,3 +1,5 @@
+from typing import List, Dict, Union
+
 from sqlalchemy.exc import IntegrityError
 
 from app.models import db, Post, Subscriber, Message
@@ -5,22 +7,25 @@ from app.forms import SubscribeForm, ContactForm
 
 class Blog:
 
-    def get_latest_post(self):
+    @staticmethod
+    def get_latest_published_post() -> Post:
         return db.session.query(Post).filter(Post.published.isnot(None)) \
             .order_by(Post.published.desc()).first()
 
-    def get_all_published_posts(self):
+    @staticmethod
+    def get_all_published_posts() -> List[Post]:
         return db.session.query(Post).filter(Post.published.isnot(None)) \
             .order_by(Post.published.desc()).all()
 
-    def get_published_post_by_id(self, post_id: int):
+    @staticmethod
+    def get_published_post_by_id(post_id: int) -> Post:
         return db.session.query(Post) \
             .filter(Post.id == post_id, Post.published.isnot(None)).first()
 
-    def add_subscriber(self):
-        form = SubscribeForm()
+    @staticmethod
+    def add_subscriber(form: SubscribeForm) -> Dict[str, Union[str, bool]]:
         if not form.validate_on_submit():
-            return {
+            return {  # error
                 'err': True,
                 'msg': "Oops, something doesn't look right here..."
             }
@@ -29,31 +34,31 @@ class Blog:
         try:
             db.session.commit()
         except IntegrityError:
-            return {
+            return {  # reject
                 'ok': False,
                 'msg': "You're already subscribed!"
             }
-        return {
+        return {  # success
             'ok': True,
             'msg': "Thanks for subscribing!"
         }
 
-    def send_message(self):
-        form = ContactForm()
+    @staticmethod
+    def send_message(form: ContactForm) -> Dict[str, Union[str, bool]]:
         if not form.validate_on_submit():
             if form.errors.get('captcha'):
-                return {
+                return {  # reject
                     'ok': False,
                     'msg': 'No robots, please!'
                 }
-            return {
+            return {  # error
                 'err': True,
                 'msg': "Oops, something doesn't look right here..."
             }
         message = Message(sender=form.sender.data, body=form.body.data)
         db.session.add(message)
         db.session.commit()
-        return {
+        return {  # success
             'ok': True,
             'msg': "Message received. We'll get back to you soon!"
         }

@@ -1,13 +1,13 @@
-import os
 import json
+from typing import Callable
 
 from flask import url_for, render_template, current_app
 from werkzeug.routing import BuildError
 
 from app.forms import SubscribeForm
 
-def render_view(template, **kwargs):
-    with open(os.path.abspath(current_app.config['DATA_PATH'])) as data_file:
+def render_view(template: str, **kwargs):
+    with open(current_app.config['TEMPLATE_DATA']) as data_file:
         data = json.load(data_file)
         subscribe_form = SubscribeForm()
         return render_template(
@@ -17,7 +17,7 @@ def render_view(template, **kwargs):
             **kwargs
         )
 
-def permalink(function):
+def permalink(function: Callable):
     def inner(*args, **kwargs):
         endpoint, values = function(*args, **kwargs)
         try:

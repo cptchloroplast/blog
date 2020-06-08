@@ -47,3 +47,8 @@ class Message(db.Model):
     body = db.Column('mes_body', db.String)
     sent = db.Column('mes_dt_sent', db.DateTime, default=datetime.utcnow())
     read = db.Column('mes_dt_read', db.DateTime)
+
+class Metrics(db.Model):
+    __tablename__ = 'met_metrics'
+
+    id = db.Column('met_id', db.Integer, primary_key=True)
