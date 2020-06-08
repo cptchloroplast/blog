@@ -11,5 +11,6 @@ COPY --from=build /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /home
 COPY app ./app
+COPY data.json ./
 COPY .env ./
 CMD gunicorn -b :$PORT "app:create_app('prod')"
