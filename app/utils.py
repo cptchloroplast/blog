@@ -10,10 +10,12 @@ def render_view(template: str, **kwargs):
     with open(current_app.config['TEMPLATE_DATA']) as data_file:
         data = json.load(data_file)
         subscribe_form = SubscribeForm()
+        build = current_app.config.get('COMMIT_SHA')
         return render_template(
             template,
             data=data,
             subscribe=subscribe_form,
+            build=build,
             **kwargs
         )
 

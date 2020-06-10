@@ -328,3 +328,10 @@ textarea {
 	padding: 10px;
 	font-family: sans-serif;
 }
+
+#footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}

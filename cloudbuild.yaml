@@ -30,5 +30,7 @@ steps:
   - '--platform'
   - 'managed'
   - '--allow-unauthenticated'
+  - '--set-env-vars'
+  - 'COMMIT_SHA=$COMMIT_SHA'
 images:
 - 'gcr.io/$PROJECT_ID/blog'

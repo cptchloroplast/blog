@@ -42,6 +42,7 @@ class ProductionConfig(Config):
             }
         }
     }
+    COMMIT_SHA = os.getenv('COMMIT_SHA')
 
 class TestingConfig(Config):
     FLASK_ENV = 'testing'

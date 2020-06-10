@@ -90,7 +90,15 @@
 				</form>
 			</div>
 		</div>
-		<div id="footer">&copy; 2020 by Benjamin Okkema</div>
+		<div id="footer">
+			<div id="copyright">&copy; 2020 by Benjamin Okkema</div>
+			{% if build %}
+			<small id="build">
+				<span>Build: </span>
+				<a href="{{ data['repo'] + build }}" target="_blank">{{ build[:7] }}</a>
+			</small>
+			{% endif %}
+		</div>
 		<div id="toast">
 			<i id="toast-icon"></i>
 			<span id="toast-text"></span>
