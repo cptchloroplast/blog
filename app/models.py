@@ -10,6 +10,7 @@ db = SQLAlchemy()
 
 class Post(db.Model):
     __tablename__ = 'pos_post'
+    __table_args__ = {'schema': 'schema'}
 
     id = db.Column('pos_id', db.Integer, primary_key=True)
     title = db.Column('pos_title', db.String)
@@ -35,12 +36,14 @@ class Post(db.Model):
 
 class Subscriber(db.Model):
     __tablename__ = 'sub_subscriber'
+    __table_args__ = {'schema': 'schema'}
 
     email = db.Column('sub_email', db.String, primary_key=True)
     subscribed = db.Column('sub_dt_subscribed', db.DateTime, default=datetime.utcnow())
 
 class Message(db.Model):
     __tablename__ = 'mes_message'
+    __table_args__ = {'schema': 'schema'}
 
     id = db.Column('mes_id', db.Integer, primary_key=True)
     sender = db.Column('mes_sender', db.String)
@@ -50,5 +53,6 @@ class Message(db.Model):
 
 class Metrics(db.Model):
     __tablename__ = 'met_metrics'
+    __table_args__ = {'schema': 'schema'}
 
     id = db.Column('met_id', db.Integer, primary_key=True)

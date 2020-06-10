@@ -17,10 +17,17 @@ class Config:
 
 class DevelopmentConfig(Config):
     ENV = 'development'
-    RECAPTCHA_PUBLIC_KEY = 'recaptcha-private-key'
-    RECAPTCHA_PRIVATE_KEY = 'recaptcha-private-key'
+    RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+    RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(Config.ROOT_DIRECTORY, 'dev.sqlite')
     SECRET_KEY = 'secret-key'
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'execution_options': {
+            'schema_translate_map': {
+                'schema': 'main'
+            }
+        }
+    }
 
 class ProductionConfig(Config):
     ENV = 'production'
@@ -28,9 +35,23 @@ class ProductionConfig(Config):
     RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
     SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
     SECRET_KEY = os.getenv('SECRET_KEY')
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'execution_options': {
+            'schema_translate_map': {
+                'schema': os.getenv('DATABASE_SCHEMA')
+            }
+        }
+    }
 
 class TestingConfig(Config):
     FLASK_ENV = 'testing'
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(Config.ROOT_DIRECTORY, 'test.sqlite')
     WTF_CSRF_ENABLED = False
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        'execution_options': {
+            'schema_translate_map': {
+                'schema': 'main'
+            }
+        }
+    }
