@@ -5,5 +5,11 @@
 {% block head %}{% endblock %}
 
 {% block body %}
-
+<h2 class="box-title">Server Error</h2>
+<h5 class="box-subtitle">Oops, something doesn't look right here...</h5>
+<hr>
+<p>
+    Try filing an <a href="{{ '{}/issues'.format(data['repo']) }}">issue</a> 
+    or <a href="{{ url_for('root.contact') }}">let me know</a> what went wrong.
+</p>
 {% endblock %}

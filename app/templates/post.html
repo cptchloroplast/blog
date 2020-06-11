@@ -14,9 +14,12 @@
 {% block body %}
 <article>
 	<header>
-		<h2 id="post-title">{{ post.title }}</h2>
-		<h5 id="post-date">
-			<time>{{ post.published_on }}</time>
+		<h2 id="post-title" class="box-title">{{ post.title }}</h2>
+		<h5 id="post-date" class="box-subtitle">
+			<time>{{ post.published_long }}</time>
+			{% if post.updated %}
+			<time>Updated: {{ post.updated_long }}</time>
+			{% endif %}
 		</h5>
 	</header>
 	<hr>

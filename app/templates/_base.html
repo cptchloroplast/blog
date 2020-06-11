@@ -95,7 +95,7 @@
 			{% if build %}
 			<small id="build">
 				<span>Build: </span>
-				<a href="{{ data['repo'] + build }}" target="_blank">{{ build[:7] }}</a>
+				<a href="{{ '{}/commit/{}'.format(data['repo'], build) }}" target="_blank">{{ build[:7] }}</a>
 			</small>
 			{% endif %}
 		</div>

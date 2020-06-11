@@ -40,12 +40,3 @@ def send():
     form = ContactForm()
     resp = Blog.send_message(form)
     return jsonify(resp)
-
-@root.errorhandler(404)
-def page_not_found(e):
-    return render_view('errors/404.html'), 404
-
-@root.errorhandler(500)
-def server_error(e):
-    # TODO: log error
-    return render_view('errors/500.html'), 500

@@ -23,8 +23,16 @@ class Post(db.Model):
         return slugify(self.title)
 
     @property
-    def published_on(self):
+    def published_long(self):
         return self.published.strftime('%A, %d %B %Y @ %H:%M UTC')
+
+    @property
+    def updated_long(self):
+        return self.updated.strftime('%A, %d %B %Y @ %H:%M UTC')
+
+    @property
+    def published_short(self):
+        return self.published.strftime('%Y-%m-%d')
 
     @property
     def body(self):

@@ -4,4 +4,9 @@
 
 {% block head %}{% endblock %}
 
-{% block body %}404{% endblock %}
+{% block body %}
+<h2 class="box-title">Page Not Found</h2>
+<h5 class="box-subtitle">Whatever you're searching for doesn't seem to exist...</h5>
+<hr>
+<p>Try checking out one of the other <a href="{{ url_for('root.table_of_contents') }}">posts</a>.</p>
+{% endblock %}

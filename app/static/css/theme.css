@@ -233,6 +233,7 @@ nav {
 	flex-direction: row;
 	align-items: center;
 	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .form-button {
@@ -302,13 +303,19 @@ nav {
 	to {bottom: 0; opacity: 0;}
 }
 
-#post-title {
+.box-title {
 	margin: 0;
 	margin-bottom: 5px;
 }
 
-#post-date {
+.box-subtitle {
 	margin: 0;
+}
+
+#post-date {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .form-item {
@@ -334,4 +341,18 @@ textarea {
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
+}
+
+.post-item {
+	list-style: none;
+	margin-bottom: 5px;
+}
+
+.post-link {
+	display: flex;
+	justify-content: space-between;
+}
+
+#table-of-contents {
+	padding-left: 0;
 }

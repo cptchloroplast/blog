@@ -12,8 +12,10 @@
 {% endblock %}
 
 {% block body %}
+<h2 class="box-title">Contact me!</h2>
+<h5 class="box-subtitle">Leave a message and I'll get back to you as soon as I can!</h5>
+<hr>
 <form id="contact-form" method="POST" action="{{ url_for('root.send') }}">
-    <div class="form-item">Leave a message and I'll get back to you as soon as I can!</div>
     <div class="form-item">
         {{ contact.sender }}
     </div>
