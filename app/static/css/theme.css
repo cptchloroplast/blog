@@ -232,7 +232,6 @@ nav {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 10px;
 	flex-wrap: wrap;
 }
 
@@ -255,6 +254,7 @@ nav {
 
 #subscribe-email {
 	flex-grow: 2;
+	margin-right: 10px;
 }
 
 #toast {
@@ -327,7 +327,7 @@ nav {
 	flex-grow: 1;
 }
 
-textarea {
+textarea, input[type=text], input[type=email] {
 	font-size: 0.9rem;
 	line-height: 1.5;
 	border-radius: 3px;
@@ -355,4 +355,8 @@ textarea {
 
 #table-of-contents {
 	padding-left: 0;
+}
+
+#picture-frame img {
+	width: 100%;
 }
