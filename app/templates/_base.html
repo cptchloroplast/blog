@@ -28,26 +28,18 @@
 				<i id="nav-button" class="i-menu" onclick="toggleDropdown('nav-links')"></i>
 			</div>
 			<div id="nav-links">
-				<a class="nav-link {% if request.path.startswith('/blog/') %}active{% endif %}" href="{{ url_for('root.table_of_contents') }}">Blog</a>
-				<div class="dropdown">
-					<button class="dropdown-button nav-link" onclick="toggleDropdown('projects')">
-						<span class="dropdown-button-text">Projects</span>
-						<i class="dropdown-button-icon i-dropdown"></i>
-					</button>
-					<div id="projects" class="dropdown-content">
-						{% if data['projects'] %}
-							{% for project in data['projects'] %}
-							<a class="nav-link project" href="{{ project['url'] }}">
-								<span class="project-name">{{ project['name'] }}</span>
-								<i class="project-icon i-dropdown"></i>
-							</a>
-							{% endfor %}
-						{% else %}
-							<div class="nav-link">Coming soon!</div>
-						{% endif %}
-					</div>
-				</div>
-				<a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{{ url_for('root.contact') }}">Contact</a>
+				{% import 'nav.html' as nav %}
+				{% for item in data['nav'] %}
+					{% if item['type'] == 'placeholder' %}
+						{{ nav.placeholder(item['text']) }}
+					{% elif item['type'] == 'external_link' %}
+						{{ nav.external_link(item['text'], item['url']) }}
+					{% elif item['type'] == 'link' %}
+						{{ nav.link(item['text'], item['route'], item['active']) }}
+					{% elif item['type'] == 'dropdown' %}
+						{{ nav.dropdown(item['id'], item['text'], item['children']) }}
+					{% endif %}
+				{% endfor %}
 			</div>
 		</nav>
 		<div id="content">

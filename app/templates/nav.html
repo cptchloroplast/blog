@@ -1,0 +1,38 @@
+{% macro link(text, route, active) %}
+{% if request.path.startswith(active) %}
+    <a class="nav-link active" href="{{ url_for(route) }}">{{ text }}</a>
+{% else %}
+    <a class="nav-link" href="{{ url_for(route) }}">{{ text }}</a>
+{% endif %}
+{% endmacro %}
+
+{% macro  external_link(text, url) %}
+<a class="nav-link external-link" href="{{ url }}" target="_blank">
+    <span>{{ text }}</span>
+    <i class="i-external"></i>
+</a>
+{% endmacro %}
+
+{% macro placeholder(text) %}
+<div class="nav-link">{{ text }}</div>
+{% endmacro %}
+
+{% macro dropdown(id, text, children) %}
+<div class="dropdown">
+    <button class="dropdown-button nav-link" onclick="toggleDropdown('{{ id }}')">
+        <span class="dropdown-button-text">{{ text }}</span>
+        <i class="dropdown-button-icon i-dropdown"></i>
+    </button>
+    <div id="{{ id }}" class="dropdown-content">
+        {% for child in children %}
+            {% if child['type'] == 'text' %}
+                {{ placeholder(child['text']) }}
+            {% elif child['type'] == 'link' %}
+                {{ link(child['text'], child['route'], child['active']) }}
+            {% elif child['type'] == 'external_link' %}
+                {{ external_link(child['text'], child['url']) }}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}

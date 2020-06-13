@@ -1,6 +1,30 @@
 {
 	"repo": "https://github.com/cptchloroplast/blog",
-	"projects": [],
+	"nav": [
+		{
+			"type": "link",
+			"text": "Blog",
+			"active": "/blog/",
+			"route": "root.table_of_contents"
+		},
+		{
+			"type": "dropdown",
+			"text": "Projects",
+			"id": "projects",
+			"children": [
+				{
+					"type": "text",
+					"text": "Coming soon!"
+				}
+			] 
+		},
+		{
+			"type": "link",
+			"text": "Contact",
+			"active": "/contact/",
+			"route": "root.contact"
+		}
+	],
 	"bio": [
 		{
 			"icon": "i-code",

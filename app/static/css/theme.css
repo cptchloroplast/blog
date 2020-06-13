@@ -29,7 +29,7 @@ input {
 	flex-direction: row;
 }
 
-.project {
+.external-link {
 	justify-content: space-between;
 }
 
@@ -63,8 +63,12 @@ input {
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-#nav-links.show, #projects.show {
+.dropdown-content.show {
 	display: flex !important;
+}
+
+.dropdown-content .nav-link.active {
+	color: white;
 }
 
 .active {
@@ -139,11 +143,11 @@ nav {
 	align-items: stretch;
 }
 
-#projects {
+.dropdown-content {
 	background-color: white;
 }
 
-#projects .nav-link {
+.dropdown-content .nav-link {
 	color: black;
 }
 
