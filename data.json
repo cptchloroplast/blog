@@ -28,11 +28,11 @@
 	"bio": [
 		{
 			"icon": "i-code",
-			"text": "Software Engineer @ <small><a href='https://www.innobyte.net'>Innobyte</a></small>"
+			"text": "Software Engineer <small>@ <a href='https://www.innobyte.net'>Innobyte</a></small>"
 		},
 		{
 			"icon": "i-wrench",
-			"text": "Freelance Bicycle Mechanic"
+			"text": "Guerrilla Bicycle Mechanic"
 		},
 		{
 			"icon": "i-leaf",
@@ -49,6 +49,11 @@
 			"text": "Benjamin Okkema",
 			"icon": "i-linkedin",
 			"url": "https://www.linkedin.com/in/benokkema"
+		},
+		{
+			"text": "@cptchloroplast",
+			"icon": "i-twitter",
+			"url": "https://twitter.com/cptchloroplast"
 		},
 		{
 			"text": "ben@okkema.org",
