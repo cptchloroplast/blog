@@ -1,7 +1,4 @@
 [flake8]
 ignore = 
-    E302,
-    E401,
-    E402,
-    E501,  # line length
-    F401,
+    E302, # line spacing
+    E501, # line length

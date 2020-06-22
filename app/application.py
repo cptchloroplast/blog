@@ -16,6 +16,5 @@ def create_app(config: str = None) -> Flask:
     app.register_blueprint(root)
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, server_error)
-    logger = Logger()
-    logger.init_app(app)
+    Logger(app)
     return app
