@@ -97,6 +97,10 @@ input {
 		display: none !important;
 	}
 
+	#nav-links.show {
+		display: flex !important;
+	}
+
 	#nav-links .dropdown .dropdown-content {
 		position: relative !important;
 	}
