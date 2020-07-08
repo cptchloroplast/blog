@@ -13,8 +13,9 @@
 			"id": "projects",
 			"children": [
 				{
-					"type": "text",
-					"text": "Coming soon!"
+					"type": "external_link",
+					"text": "Crank Tools",
+					"url": "https://crank.tools"
 				}
 			] 
 		},

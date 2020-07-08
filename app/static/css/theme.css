@@ -47,6 +47,10 @@ input {
 	margin-left: 10px;
 }
 
+.external-icon {
+	margin-left: 10px;
+}
+
 .dropdown-content {
 	display: none;
 	background-color: black;
