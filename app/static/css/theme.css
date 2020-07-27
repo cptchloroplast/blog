@@ -209,6 +209,7 @@ nav {
 .bio-item {
 	display: flex;
 	flex-direction: row;
+	line-height: 1.5;
 }
 
 .bio-icon {
@@ -242,6 +243,7 @@ nav {
 	flex-direction: row;
 	align-items: center;
 	flex-wrap: wrap;
+	margin-top: 10px;
 }
 
 .form-button {
@@ -357,6 +359,7 @@ textarea, input[type=text], input[type=email] {
 .post-item {
 	list-style: none;
 	margin-bottom: 5px;
+	line-height: 1.5;
 }
 
 .post-link {
