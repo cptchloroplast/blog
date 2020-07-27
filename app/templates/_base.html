@@ -22,7 +22,7 @@
     <body>
 		<nav>
 			<div id="nav-buttons">
-				<a href="{{ url_for('root.latest') }}">
+				<a href="{{ url_for('root.latest') }}" title="ben.okkema.org">
 					<img id="nav-logo" src="{{ url_for('static', filename='img/logo.png') }}">
 				</a>
 				<i id="nav-button" class="i-menu" onclick="toggleDropdown('nav-links')"></i>
@@ -83,7 +83,7 @@
 			</div>
 		</div>
 		<div id="footer">
-			<div id="copyright">&copy; 2020 by Benjamin Okkema</div>
+			<small id="copyright">&copy; 2020 by Benjamin Okkema</small>
 			{% if build %}
 			<small id="build">
 				<span>Build: </span>

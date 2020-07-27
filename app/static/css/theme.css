@@ -60,6 +60,7 @@ input {
 }
 
 .box {
+	border-radius: 2px;
 	padding: 10px;
 	margin: 10px;
 	background-color: white;
@@ -159,10 +160,6 @@ nav {
 	color: black;
 }
 
-#footer {
-	padding: 10px;
-}
-
 #content {
 	flex-grow: 1;
 }
@@ -250,7 +247,7 @@ nav {
 .form-button {
 	background-color: black;
 	border: none;
-	padding: 5px 10px;
+	padding: 10px 20px;
 	cursor: pointer; 
 	border-radius: 3px;
 }
@@ -354,6 +351,7 @@ textarea, input[type=text], input[type=email] {
 	justify-content: space-between;
 	align-items: center;
 	flex-wrap: wrap;
+	padding: 10px;
 }
 
 .post-item {
@@ -368,8 +366,36 @@ textarea, input[type=text], input[type=email] {
 
 #table-of-contents {
 	padding-left: 0;
+	margin-bottom: 0;
 }
 
 #picture-frame img {
 	width: 100%;
 }
+
+#post-body {
+	line-height: 1.5;
+}
+
+#post-body a,
+.bio-text a,
+#build a,
+.post-link {
+	color: steelblue;
+}
+
+#post-body a:hover,
+.bio-text a:hover,
+#build a:hover,
+.post-link:hover {
+	color: lightsteelblue;
+}
+
+#post-body p:last-child {
+	margin-bottom: 0;
+}
+
+.post-item:last-child {
+	margin-bottom: 0;
+}
+
