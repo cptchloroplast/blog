@@ -373,6 +373,7 @@ textarea, input[type=text], input[type=email] {
 }
 
 #picture-frame img {
+	border-radius: 2px;
 	width: 100%;
 }
 
