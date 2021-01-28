@@ -14,23 +14,27 @@ class Post:
     updated: datetime
 
     @property
-    def slug(self):
+    def slug(self) -> str:
         return slugify(self.title)
 
     @property
-    def published_long(self):
+    def published_long(self) -> str:
         return self.published.strftime('%A, %d %B %Y @ %H:%M UTC')
 
     @property
-    def updated_long(self):
-        return self.updated.strftime('%A, %d %B %Y @ %H:%M UTC')
-
-    @property
-    def published_short(self):
+    def published_short(self) -> str:
         return self.published.strftime('%Y-%m-%d')
 
     @property
-    def markdown(self):
+    def published_iso(self) -> str:
+        return self.published.strftime('%Y-%m-%dT%H:%M:%SZ')
+
+    @property
+    def updated_long(self) -> str:
+        return self.updated.strftime('%A, %d %B %Y @ %H:%M UTC')
+
+    @property
+    def markdown(self) -> str:
         return markdown(self.body)
 
     @permalink

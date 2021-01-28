@@ -1,4 +1,5 @@
-from flask import abort, Blueprint, jsonify, current_app
+from flask import abort, Blueprint, jsonify, current_app, make_response, request, render_template
+from urllib.parse import urlparse
 
 from app.utils import render_view
 from app.forms import ContactForm, SubscribeForm
@@ -76,3 +77,29 @@ def send():
         'ok': True,
         'msg': "Message received. We'll get back to you soon!"
     })
+
+@root.route('/sitemap')
+def sitemap():
+    """Render the sitemap."""
+    components = urlparse(request.host_url)
+    host = f'{components.scheme}://{components.netloc}'
+    static = []
+    for rule in current_app.url_map.iter_rules():
+        if 'GET' in rule.methods and len(rule.arguments) == 0:
+            url = {
+                'loc': f'{host}{str(rule)}'
+            }
+            static.append(url)
+    dynamic = []
+    blog: Blog = current_app.config['BLOG']
+    posts = blog.get_all_published_posts()
+    for post in posts:
+        url = {
+            'loc': f'{host}/blog/{post.id}/{post.slug}',
+            'lastmod': post.published_iso
+        }
+        dynamic.append(url)
+    sitemap = render_template('sitemap.xml', static=static, dynamic=dynamic)
+    response = make_response(sitemap)
+    response.headers['Content-Type'] = 'application/xml'
+    return response
