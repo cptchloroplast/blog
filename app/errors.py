@@ -1,5 +1,6 @@
+import logging
+
 from app.utils import render_view
-from app.blog import Blog
 
 def page_not_found(e):
     """Render not found view."""
@@ -7,5 +8,5 @@ def page_not_found(e):
 
 def server_error(e):
     """Log error and render server error view."""
-    Blog.add_log(str(e.original_exception))
+    logging.error(f'Unknown error: {str(e)}')
     return render_view('errors/500.html'), 500

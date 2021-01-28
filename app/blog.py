@@ -1,68 +1,61 @@
+import os
+import re
 from typing import List
+from datetime import datetime
+import logging
 
-from app.models import db, Post, Subscriber, Message, Log, Metric
+from app.models import Post  # , Subscriber, Message
 
 class Blog:
+    posts: List[Post]
 
-    @staticmethod
-    def get_latest_published_post() -> Post:
+    def __init__(self, path: str) -> None:
+        self.posts = []
+        self.parse_content(path)
+
+    def parse_content(self, path: str) -> None:
+        """Parse blog posts from files."""
+        for filename in os.listdir(path):
+            post = Post()
+            post.id = int(filename.split('.')[0])
+            with open(os.path.join(path, filename), 'r') as file:
+                post.body = file.read()
+            for match in re.finditer(r'\[[a-z]+\]:#\(.*\)', post.body):
+                metadata = match.group()
+                key, value = [x[1:-1] for x in metadata.split(":#")]
+                if key == 'title':
+                    post.title = value
+                elif key == 'published':
+                    post.published = datetime.fromisoformat(value.replace('Z', '+00:00')) if value else None
+                elif key == 'updated':
+                    post.updated = datetime.fromisoformat(value.replace('Z', '+00:00')) if value else None
+                else:
+                    logging.error(f'Unknown key found in metadata of {filename}: {key}')
+                    pass
+            self.posts.append(post)
+
+    def get_latest_published_post(self) -> Post:
         """Returns the latest published post."""
-        return db.session.query(Post).filter(Post.published.isnot(None)) \
-            .order_by(Post.published.desc()).first()
+        try:
+            return sorted(self.posts, key=lambda x: x.published, reverse=True)[0]
+        except IndexError:
+            return None
 
-    @staticmethod
-    def get_all_published_posts() -> List[Post]:
-        """Returns all published posts in chronological order."""
-        return db.session.query(Post).filter(Post.published.isnot(None)) \
-            .order_by(Post.published.desc()).all()
+    def get_all_published_posts(self) -> List[Post]:
+        """Returns all published posts in reverse chronological order."""
+        return sorted(list(filter(lambda x: x.published, self.posts)), key=lambda x: x.published, reverse=True)
 
-    @staticmethod
-    def get_published_post_by_id(post_id: int) -> Post:
+    def get_published_post_by_id(self, post_id: int) -> Post:
         """Returns a published post or none."""
-        return db.session.query(Post) \
-            .filter(Post.id == post_id, Post.published.isnot(None)).first()
+        try:
+            return list(filter(lambda x: x.id == post_id, self.posts))[0]
+        except IndexError:
+            return None
 
-    @staticmethod
-    def add_subscriber(email: str) -> bool:
+    def add_subscriber(self, email: str) -> bool:
         """Returns true if new subscriber added or false if email already subscribed."""
-        subscriber = Subscriber(email=email)
-        if db.session.query(Subscriber).filter_by(email=email).scalar() is not None:
-            return False
-        db.session.add(subscriber)
-        db.session.commit()
         return True
 
-    @staticmethod
-    def add_message(sender: str, body: str) -> None:
-        """Adds a new message."""
-        message = Message(sender=sender, body=body)
-        db.session.add(message)
-        db.session.commit()
-
-    @staticmethod
-    def add_log(body: str) -> None:
-        """Adds a new log."""
-        log = Log(body=body)
-        db.session.add(log)
-        db.session.commit()
-
-    @staticmethod
-    def add_metric(status_code: int, duration: int, url: str, method: str, mimetype: str,
-                   remote_addr: str, xforwardedfor: str, ua_browser: str, ua_language: str,
-                   ua_platform: str, ua_version: str) -> None:
-        """Adds a new metric."""
-        metric = Metric(
-            status_code=status_code,
-            duration=duration,
-            url=url,
-            method=method,
-            mimetype=mimetype,
-            remote_addr=remote_addr,
-            xforwardedfor=xforwardedfor,
-            ua_browser=ua_browser,
-            ua_language=ua_language,
-            ua_platform=ua_platform,
-            ua_version=ua_version
-        )
-        db.session.add(metric)
-        db.session.commit()
+    def send_message(self, sender: str, body: str) -> None:
+        """Sends a new message."""
+        pass

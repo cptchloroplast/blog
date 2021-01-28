@@ -1,28 +1,31 @@
-from flask import abort, Blueprint, jsonify
+from flask import abort, Blueprint, jsonify, current_app
 
-from app.blog import Blog
 from app.utils import render_view
 from app.forms import ContactForm, SubscribeForm
+from app.blog import Blog
 
 root = Blueprint('root', __name__)
 
 @root.route('/')
 def latest():
     """Render the latest post."""
-    post = Blog.get_latest_published_post()
+    blog: Blog = current_app.config['BLOG']
+    post = blog.get_latest_published_post()
     return render_view('post.html', post=post)
 
 @root.route('/blog/')
 def table_of_contents():
     """Render the table of contents."""
-    posts = Blog.get_all_published_posts()
+    blog: Blog = current_app.config['BLOG']
+    posts = blog.get_all_published_posts()
     return render_view('table_of_contents.html', posts=posts)
 
-@root.route('/blog/<post_id>/')
-@root.route('/blog/<post_id>/<slug>')
+@root.route('/blog/<int:post_id>/')
+@root.route('/blog/<int:post_id>/<slug>')
 def post(post_id: int, slug: str = None):
     """Render a post or raise not found exception."""
-    post = Blog.get_published_post_by_id(post_id)
+    blog: Blog = current_app.config['BLOG']
+    post = blog.get_published_post_by_id(int(post_id))
     if not post:
         abort(404)
     return render_view('post.html', post=post)
@@ -42,7 +45,8 @@ def subscribe():
             'err': True,
             'msg': "Oops, something doesn't look right here..."
         })
-    if Blog.add_subscriber(email=form.email.data):
+    blog: Blog = current_app.config['BLOG']
+    if blog.add_subscriber(email=form.email.data):
         return jsonify({  # success
             'ok': True,
             'msg': "Thanks for subscribing!"
@@ -66,7 +70,8 @@ def send():
             'err': True,
             'msg': "Oops, something doesn't look right here..."
         })
-    Blog.add_message(sender=form.sender.data, body=form.body.data)
+    blog: Blog = current_app.config['BLOG']
+    blog.send_message(sender=form.sender.data, body=form.body.data)
     return jsonify({  # success
         'ok': True,
         'msg': "Message received. We'll get back to you soon!"
