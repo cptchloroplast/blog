@@ -1,9 +1,11 @@
-from flask import abort, Blueprint, jsonify, current_app, make_response, request, render_template
+from app.api import API
+from flask import abort, Blueprint, current_app, make_response, request, render_template
 from urllib.parse import urlparse
 
 from app.utils import render_view
 from app.forms import ContactForm, SubscribeForm
 from app.blog import Blog
+from app.responses import success, reject, error
 
 root = Blueprint('root', __name__)
 
@@ -42,20 +44,14 @@ def subscribe():
     """Subscribe to the blog."""
     form = SubscribeForm()
     if not form.validate_on_submit():
-        return jsonify({  # error
-            'err': True,
-            'msg': "Oops, something doesn't look right here..."
-        })
-    blog: Blog = current_app.config['BLOG']
-    if blog.add_subscriber(email=form.email.data):
-        return jsonify({  # success
-            'ok': True,
-            'msg': "Thanks for subscribing!"
-        })
-    return jsonify({  # reject
-        'ok': False,
-        'msg': "You're already subscribed!"
-    })
+        return error("Oops, something doesn't look right here...")
+    api: API = current_app.config['API']
+    try:
+        if api.add_subscriber(email=form.email.data):
+            return success("Thanks for subscribing!")
+        return reject("You're already subscribed!")
+    except Exception:
+        return error("Oops, something doesn't seem to be working...")
 
 @root.route('/send/', methods=['POST'])
 def send():
@@ -63,20 +59,15 @@ def send():
     form = ContactForm()
     if not form.validate_on_submit():
         if form.errors.get('captcha'):
-            return jsonify({  # reject
-                'ok': False,
-                'msg': 'No robots, please!'
-            })
-        return jsonify({  # error
-            'err': True,
-            'msg': "Oops, something doesn't look right here..."
-        })
-    blog: Blog = current_app.config['BLOG']
-    blog.send_message(sender=form.sender.data, body=form.body.data)
-    return jsonify({  # success
-        'ok': True,
-        'msg': "Message received. We'll get back to you soon!"
-    })
+            return reject("No robots, please!")
+        return error("Oops, something doesn't look right here...")
+    api: API = current_app.config['API']
+    try:
+        if api.send_message(sender=form.sender.data, body=form.body.data):
+            return success("Message received. We'll get back to you soon!")
+        return error("Oops, something doesn't look right here...")
+    except Exception:
+        return error("Oops, something doesn't seem to be working...")
 
 @root.route('/sitemap')
 def sitemap():

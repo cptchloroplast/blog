@@ -27,6 +27,11 @@ class ProductionConfig(Config):
     RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
     SECRET_KEY = os.getenv('SECRET_KEY')
     COMMIT_SHA = os.getenv('COMMIT_SHA')
+    AUTH0_CLIENT_ID = os.getenv('AUTH0_CLIENT_ID')
+    AUTH0_CLIENT_SECRET = os.getenv('AUTH0_CLIENT_SECRET')
+    AUTH0_API_BASE_URL = os.getenv('AUTH0_API_BASE_URL')
+    AUTH0_ACCESS_TOKEN_URL = os.getenv('AUTH0_ACCESS_TOKEN_URL')
+    AUTH0_API_AUDIENCE = os.getenv('AUTH0_API_AUDIENCE')
 
 class TestingConfig(Config):
     FLASK_ENV = 'testing'

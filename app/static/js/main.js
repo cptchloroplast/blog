@@ -56,5 +56,5 @@ function showToast(msg, icon) {
 	snackbar.classList.add('flash');
 	setTimeout(() => {
 		snackbar.classList.remove('flash');
-	}, 3000);
+	}, 5000);
 }

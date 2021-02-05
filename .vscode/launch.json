@@ -17,7 +17,8 @@
                 "run",
                 "--no-debugger"
             ],
-            "jinja": true
+            "jinja": true,
+            "cwd": "${workspaceFolder}"
         },
         {
             "name": "Production",
@@ -33,6 +34,7 @@
                 "--no-reload"
             ],
             "jinja": true,
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

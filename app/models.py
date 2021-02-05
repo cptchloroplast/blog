@@ -40,10 +40,3 @@ class Post:
     @permalink
     def url(self):
         return 'root.post', {'post_id': self.id, 'slug': self.slug}
-
-class Subscriber:
-    email: str
-
-class Message:
-    sender: str
-    body: str

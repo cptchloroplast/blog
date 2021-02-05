@@ -4,12 +4,13 @@ from typing import List
 from datetime import datetime
 import logging
 
-from app.models import Post  # , Subscriber, Message
+from app.models import Post
 
 class Blog:
     posts: List[Post]
 
     def __init__(self, path: str) -> None:
+        """Initializes the blog by parsing the contents."""
         self.posts = []
         self.parse_content(path)
 
@@ -51,11 +52,3 @@ class Blog:
             return list(filter(lambda x: x.id == post_id, self.posts))[0]
         except IndexError:
             return None
-
-    def add_subscriber(self, email: str) -> bool:
-        """Returns true if new subscriber added or false if email already subscribed."""
-        return True
-
-    def send_message(self, sender: str, body: str) -> None:
-        """Sends a new message."""
-        pass
