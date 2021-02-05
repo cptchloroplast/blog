@@ -1,5 +1,5 @@
 FROM python:3.7-alpine as build
-RUN apk add gcc musl-dev libffi-dev libssl-dev
+RUN apk add gcc musl-dev libffi-dev openssl-dev
 COPY requirements/* requirements/
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
