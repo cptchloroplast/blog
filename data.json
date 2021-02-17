@@ -38,6 +38,10 @@
 		{
 			"icon": "i-leaf",
 			"text": "Amateur Botanist"
+		},
+		{
+			"icon": "i-space",
+			"text": "Astronomy Enthusiast"
 		}
 	],
 	"contact": [
