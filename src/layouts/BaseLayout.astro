@@ -1,0 +1,41 @@
+---
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+
+export interface Props {
+  title: string
+}
+
+const {title} = Astro.props
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{title} - ben.okkema.org</title>
+    <style>
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        background-color: lightgray;
+        margin: 0;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      main {
+        flex-grow: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+	</body>
+</html>

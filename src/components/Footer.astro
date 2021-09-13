@@ -1,0 +1,31 @@
+---
+const build = process.env.CF_PAGES_COMMIT_SHA
+const href = `https://github.com/cptchloroplast/blog/commit/${build}`
+const year = new Date().getUTCFullYear()
+---
+<footer>
+  <small>&copy; {year} - 2018 by Benjamin Okkema</small>
+  {build && 
+    <small id="build">
+      <span>Build: </span>
+      <a href={href} target="_blank">{build.slice(0,7)}</a>
+    </small>
+  }
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex-shrink: 0;
+    background-color: black;
+    color: white;
+  }
+
+  a {
+    color: steelblue;
+  }
+</style>
