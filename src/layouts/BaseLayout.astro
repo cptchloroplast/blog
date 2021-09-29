@@ -12,24 +12,6 @@ const {title} = Astro.props
 <html lang="en">
   <head>
     <title>{title} - ben.okkema.org</title>
-    <style>
-      html, body {
-        height: 100%;
-      }
-
-      body {
-        background-color: lightgray;
-        margin: 0;
-        font-family: sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      main {
-        flex-grow: 1;
-      }
-    </style>
   </head>
   <body>
     <Header />
@@ -39,3 +21,22 @@ const {title} = Astro.props
     <Footer />
 	</body>
 </html>
+
+<style>
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    background-color: lightgray;
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  main {
+    flex-grow: 1;
+  }
+</style>
