@@ -1,16 +1,3 @@
-html, body {
-	height: 100%;
-}
-
-body {
-	background-color: lightgray;
-	margin: 0;
-	font-family: sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: stretch;
-}
-
 input {
 	padding: 10px;
 }
@@ -56,15 +43,6 @@ input {
 	background-color: black;
 	flex-direction: column;
 	position: absolute;
-	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-.box {
-	border-radius: 2px;
-	padding: 10px;
-	margin: 10px;
-	background-color: white;
-	height: min-content;
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
