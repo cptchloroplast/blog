@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'fonts';
+  src:  url('../fonts/fonts.eot?wa97ms');
+  src:  url('../fonts/fonts.eot?wa97ms#iefix') format('embedded-opentype'),
+    url('../fonts/fonts.ttf?wa97ms') format('truetype'),
+    url('../fonts/fonts.woff?wa97ms') format('woff'),
+    url('../fonts/fonts.svg?wa97ms#fonts') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="i-"], [class*=" i-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'fonts' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.i-error:before {
+  content: "\f057";
+}
+.i-leaf:before {
+  content: "\f06c";
+}
+.i-reject:before {
+  content: "\f071";
+}
+.i-twitter:before {
+  content: "\f081";
+}
+.i-linkedin:before {
+  content: "\f08c";
+}
+.i-external:before {
+  content: "\f08e";
+}
+.i-github:before {
+  content: "\f092";
+}
+.i-phone:before {
+  content: "\f098";
+}
+.i-space:before {
+  content: "\f0ac";
+}
+.i-wrench:before {
+  content: "\f0ad";
+}
+.i-menu:before {
+  content: "\f0c9";
+}
+.i-dropdown:before {
+  content: "\f0d7";
+}
+.i-code:before {
+  content: "\f120";
+}
+.i-success:before {
+  content: "\f14a";
+}
+.i-mail:before {
+  content: "\f199";
+}
+.i-send:before {
+  content: "\f1d8";
+}

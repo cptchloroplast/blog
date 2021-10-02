@@ -1,0 +1,17 @@
+---
+export interface Props {
+  text: string
+  children: NavItem[]
+}
+
+const {text,children} = Astro.props as Props
+---
+<div class="dropdown">
+  <button type="button" class="dropdown-button nav-link">
+    <span class="dropdown-button-text">{text}</span>
+    <i class="dropdown-button-icon i-dropdown"></i>
+  </button>
+  <div class="dropdown-content">
+    {children.map(mapNav)}
+  </div>
+</div>
