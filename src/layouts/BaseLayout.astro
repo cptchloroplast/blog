@@ -1,6 +1,7 @@
 ---
-import Header from "../components/Navigation/Header.astro"
+import Header from "../components/navigation/Header.astro"
 import Footer from "../components/Footer.astro"
+import Toast from "../components/Toast.svelte"
 
 export interface Props {
   title: string
@@ -19,6 +20,7 @@ const {title} = Astro.props
     <main>
       <slot />
     </main>
+    <Toast client:load />
     <Footer />
 	</body>
 </html>
