@@ -140,61 +140,6 @@ nav {
 	background-color: black;
 }
 
-#contact {
-	margin: 0;
-	list-style: none;
-	padding-left: 0;
-	display: flex;
-	flex-direction: row;
-	margin-bottom: 5px;
-}
-
-.contact-item {
-	font-size: 30px;
-	margin-right: 10px;
-}
-
-.contact-link {
-	text-decoration: none;
-	color: black;
-}
-
-.contact-link:hover, .contact-link:active {
-	color: darkslategray;
-}
-
-.bio-item {
-	display: flex;
-	flex-direction: row;
-	line-height: 1.5;
-}
-
-.bio-icon {
-	width: 25px;
-	text-align: center;
-}
-
-.bio-text {
-	margin-left: 10px;
-}
-
-#picture-frame {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-#name {
-	margin-top: 0;
-	margin-bottom: 5px;
-}
-
-#bio {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
 #subscribe-form-field {
 	display: flex;
 	flex-direction: row;
@@ -203,17 +148,6 @@ nav {
 	margin-top: 10px;
 }
 
-.form-button {
-	background-color: black;
-	border: none;
-	padding: 10px 20px;
-	cursor: pointer; 
-	border-radius: 3px;
-}
-
-.form-button:hover {
-	background-color: darkslategray;
-}
 
 .button-icon {
 	font-size: 20px;

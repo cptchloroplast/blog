@@ -45,21 +45,6 @@
 		<div id="content">
 			<div class="box" id="main-content">{% block body %}{% endblock %}</div>
 			<div class="box" id="sidebar">
-				<div id="picture-frame">
-					<img src="{{ url_for('static', filename='img/me.small.webp') }}">
-				</div>
-				<hr>
-				<h2 id="name">Benjamin Okkema</h2>
-				<ul id="contact">
-					{% for contact in data['contact'] %}
-					<li class="contact-item">
-						<a class="contact-link" href="{{ contact['url'] }}" title="{{ contact['text'] }}" target="_blank">
-							<i class="contact-icon {{ contact['icon'] }}"></i>
-						</a>
-					</li>
-					{% endfor %}
-				</ul>
-				<hr>
 				<ul id="bio">
 					{% for bio in data['bio'] %}
 					<li class="bio-item">

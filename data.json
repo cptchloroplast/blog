@@ -27,48 +27,9 @@
 		}
 	],
 	"bio": [
-		{
-			"icon": "i-code",
-			"text": "Software Engineer @ <a href='https://www.nvisia.com/'>nvisia</a>"
-		},
-		{
-			"icon": "i-wrench",
-			"text": "Guerrilla Bicycle Mechanic"
-		},
-		{
-			"icon": "i-leaf",
-			"text": "Amateur Botanist"
-		},
-		{
-			"icon": "i-space",
-			"text": "Astronomy Enthusiast"
-		}
+		
 	],
 	"contact": [
-		{
-			"text": "@cptchloroplast",
-			"icon": "i-github",
-			"url": "https://github.com/cptchloroplast"
-		},
-		{
-			"text": "Benjamin Okkema",
-			"icon": "i-linkedin",
-			"url": "https://www.linkedin.com/in/benokkema"
-		},
-		{
-			"text": "@cptchloroplast",
-			"icon": "i-twitter",
-			"url": "https://twitter.com/cptchloroplast"
-		},
-		{
-			"text": "ben@okkema.org",
-			"icon": "i-mail",
-			"url": "mailto:ben@okkema.org"
-		},
-		{
-			"text": "+1(630)670-9876",
-			"icon": "i-phone",
-			"url": "tel:+16306709876"
-		}
+		
 	]
 }
