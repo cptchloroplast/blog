@@ -38,18 +38,6 @@
 }
 
 @media screen and (max-width: 768px){
-	nav, #content, #nav-links {
-		flex-direction: column !important;
-	}
-
-	#main-content, #sidebar {
-		width: unset !important;
-	}
-
-	#sidebar {
-		margin-top: 0 !important;
-		margin-left: 10px !important;
-	}
 
 	#nav-button {
 		display: unset !important;

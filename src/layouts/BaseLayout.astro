@@ -59,4 +59,14 @@ const {title} = Astro.props
     margin: 10px;
     gap: 10px;
   }
+
+  @media screen and (max-width: 768px) {
+    div {
+      flex-direction: column;
+    }
+    
+    main, aside {
+      width: unset;
+    }
+  }
 </style>

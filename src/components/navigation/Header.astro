@@ -69,4 +69,20 @@ const url = Astro.request.url
     flex-direction: row;
     align-items: stretch;
   }
+
+  @media screen and (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+
+    i {
+      display: unset;
+    }
+    
+    .links {
+      flex-direction: column;
+      display: none;
+    }
+  }
+
 </style>
