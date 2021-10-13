@@ -18,12 +18,14 @@ const {title} = Astro.props
   </head>
   <body>
     <Header />
-    <main>
-      <slot />
-    </main>
-    <aside>
-      <Profile />
-    </aside>
+    <div>
+      <main>
+        <slot />
+      </main>
+      <aside>
+        <Profile />
+      </aside>
+    </div>
     <Toast client:load />
     <Footer />
 	</body>
@@ -44,6 +46,17 @@ const {title} = Astro.props
   }
 
   main {
-    flex-grow: 1;
+    width: 70%;
+  }
+
+  aside {
+    width: 30%;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    gap: 10px;
   }
 </style>

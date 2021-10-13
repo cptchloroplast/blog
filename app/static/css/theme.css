@@ -121,15 +121,6 @@ nav {
 	flex-grow: 1;
 }
 
-#main-content {
-	width: 70%;
-}
-
-#sidebar {
-	width: 30%;
-	margin-left: 0;
-}
-
 #nav-button {
 	display: none;
 	cursor: pointer;
@@ -215,11 +206,6 @@ textarea, input[type=text], input[type=email] {
 #table-of-contents {
 	padding-left: 0;
 	margin-bottom: 0;
-}
-
-#picture-frame img {
-	border-radius: 2px;
-	width: 100%;
 }
 
 #post-body {
