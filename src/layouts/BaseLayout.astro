@@ -13,9 +13,18 @@ const {title} = Astro.props
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="I'll fix your bike for beer.">
+    <meta name="author" content="Benjamin Okkema <ben@okkema.org>">
     <title>{title} - ben.okkema.org</title>
     <link rel="icon" href="favicon.ico">
-		<link rel="stylesheet" href={Astro.resolve("../css/icons.css")}>
+    <link rel="stylesheet" href={Astro.resolve("../css/icons.css")}>
+    <meta property="og:title" content="Ben Okkema's Homepage">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ben.okkema.org">
+    <meta property="og:description" content="I'll fix your bike for beer.">
+    <meta property="og:image" content="https://ben.okkema.org/me.webp">
   </head>
   <body>
     <Header />
