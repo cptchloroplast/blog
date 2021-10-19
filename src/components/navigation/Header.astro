@@ -2,24 +2,24 @@
 import Item from "./Item.astro"
 
 const nav: NavItem[] = [
-  {
-    text: "Blog",
-    href: "/blog/",
-  },
-  {
-    text: "Projects",
-    child: [
-      {
-        text: "Crank Tools",
-        href: "https://crank.tools",
-        external: true,
-      },
-    ], 
-  },
-  {
-    text: "Contact",
-    href: "/contact/",
-  },
+  // {
+  //   text: "Blog",
+  //   href: "/blog/",
+  // },
+  // {
+  //   text: "Projects",
+  //   child: [
+  //     {
+  //       text: "Crank Tools",
+  //       href: "https://crank.tools",
+  //       external: true,
+  //     },
+  //   ], 
+  // },
+  // {
+  //   text: "Contact",
+  //   href: "/contact/",
+  // },
 ]
 const url = Astro.request.url
 ---
@@ -70,7 +70,7 @@ const url = Astro.request.url
     align-items: stretch;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     nav {
       flex-direction: column;
     }
