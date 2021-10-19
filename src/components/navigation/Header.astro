@@ -1,0 +1,88 @@
+---
+import Item from "./Item.astro"
+
+const nav: NavItem[] = [
+  // {
+  //   text: "Blog",
+  //   href: "/blog/",
+  // },
+  // {
+  //   text: "Projects",
+  //   child: [
+  //     {
+  //       text: "Crank Tools",
+  //       href: "https://crank.tools",
+  //       external: true,
+  //     },
+  //   ], 
+  // },
+  // {
+  //   text: "Contact",
+  //   href: "/contact/",
+  // },
+]
+const url = Astro.request.url
+---
+
+<nav>
+  <div class="buttons">
+    <a href="/" title="ben.okkema.org">
+      <img src="img/logo.png">
+    </a>
+    <i class="i-menu"></i>
+  </div>
+  <div class="links">
+		{nav.map((item: NavItem) => <Item item={item} />)}
+  </div>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+	  background-color: black;
+	  color: white;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    width: 32px;
+    margin: 5px;
+  }
+
+  i {
+    display: none;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  @media screen and (max-width: 1000px) {
+    nav {
+      flex-direction: column;
+    }
+
+    i {
+      display: unset;
+    }
+    
+    .links {
+      flex-direction: column;
+      display: none;
+    }
+  }
+
+</style>

@@ -1,4 +1,0 @@
-[flake8]
-ignore = 
-    E302, # line spacing
-    E501, # line length
