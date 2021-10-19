@@ -2,7 +2,7 @@
 const bio = [
   {
     icon: "code",
-    text: "Software Engineer @",
+    text: "Software Engineer @ ",
     link: {
       href: "https://www.nvisia.com/",
       text: "nvisia",
@@ -29,8 +29,10 @@ const bio = [
         <span class="icon">
           <i class={`i-${item.icon}`}></i>
         </span>
-        <span class="text">{item.text}</span>
-        {item.link && <a href={item.link.href}>{item.link.text}</a>} 
+        <span>
+          <span class="text">{item.text}</span>
+          {item.link && <a href={item.link.href}>{item.link.text}</a>} 
+        </span>
       </li>
     )
   })}
@@ -59,7 +61,6 @@ const bio = [
   }
 
   a {
-    margin-left: 5px;
   	color: steelblue;
   }
 
