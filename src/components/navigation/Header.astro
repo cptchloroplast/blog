@@ -27,7 +27,7 @@ const url = Astro.request.url
 <nav>
   <div class="buttons">
     <a href="/" title="ben.okkema.org">
-      <img src="img/logo.png">
+      <img src={Astro.resolve("../../img/logo.png")}>
     </a>
     <i class="i-menu"></i>
   </div>
