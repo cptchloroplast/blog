@@ -1,0 +1,15 @@
+---
+import slugify from "slugify"
+export function getStaticPaths() {
+  return Astro.fetchContent("../../content/**/index.md").map(post => {
+    console.log(post.astro.url)
+    return {
+      params: { slug: slugify(post.title, {lower: true}) },
+      props: { post }
+    }
+  })
+}
+import PostLayout from "../../layouts/PostLayout.astro"
+const { post } = Astro.props
+---
+<PostLayout title={post.title} content={post.astro.source} />

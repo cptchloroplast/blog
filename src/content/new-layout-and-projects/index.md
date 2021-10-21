@@ -1,6 +1,7 @@
-[title]:#(Layout Overhaul and New Projects)
-[published]:#(2020-07-08T19:12:07.110Z)
-[updated]:#()
+---
+title: Layout Overhaul and New Projects
+published: 2020-07-08T19:12:07.110Z
+---
 
 Hi again!
 
