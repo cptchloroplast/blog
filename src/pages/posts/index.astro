@@ -1,9 +1,31 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
+
+const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.published > b.published) ? 1 : 1)
 ---
 <BaseLayout title="Posts">
   <Card>
-    <p>List of posts goes here....</p>
+    <ol>
+    {posts.map(post => (
+      <li>
+        <a href={post.url}>
+          <span>{post.title}</span>
+          <small>{post.published}</small>
+        </a>
+      </li>
+    ))}
+    </ol>
   </Card>
 </BaseLayout>
+
+<style>
+  li {
+    line-height: 1.5;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
