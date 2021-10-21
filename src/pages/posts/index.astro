@@ -6,12 +6,14 @@ const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.publish
 ---
 <BaseLayout title="Posts">
   <Card>
+    <h1>Table of Contents</h1>
+    <h4>Disclaimer: The following content is not representative of the views of our corporate overlords.</h4>
     <ol>
     {posts.map(post => (
       <li>
         <a href={post.url}>
           <span>{post.title}</span>
-          <small>{post.published}</small>
+          <small>{new Date(post.published).toISOString().split("T")[0]}</small>
         </a>
       </li>
     ))}
@@ -27,6 +29,7 @@ const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.publish
   a {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: steelblue;
   }
 
