@@ -6,12 +6,45 @@ export interface Props {
   content: Post
 }
 
-const { content: { title, published } } = Astro.props as Props
+const { content: { title, published, updated } } = Astro.props as Props
 ---
 <BaseLayout title={title}>
   <Card>
     <h1>{title}</h1>
-    <h4>Published: {new Date(published).toISOString().split("T")[0]}</h4>
-    <slot />
+    <h4>
+      <span>Published: {new Date(published).toISOString().split("T")[0]}</span>
+      {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
+    </h4>
+    <hr>
+    <div class="markdown">
+      <slot />
+    </div>
   </Card>
 </BaseLayout>
+
+<style>
+  h1 {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+
+<style global>
+  .markdown {
+    line-height: 1.5;
+  }
+  
+  .markdown p:first-of-type {
+    margin-top: 0;
+  }
+
+  .markdown p:last-of-type {
+    margin-bottom: 0;
+  }
+</style>

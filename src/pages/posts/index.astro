@@ -8,6 +8,7 @@ const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.publish
   <Card>
     <h1>Table of Contents</h1>
     <h4>Disclaimer: The following content is not representative of the views of our corporate overlords.</h4>
+    <hr>
     <ol>
     {posts.map(post => (
       <li>
@@ -22,7 +23,13 @@ const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.publish
 </BaseLayout>
 
 <style>
+  ol {
+    margin: 0;
+    padding-left: 0;
+  }
+
   li {
+    list-style: none;
     line-height: 1.5;
   }
 
@@ -30,10 +37,14 @@ const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.publish
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: steelblue;
   }
 
-  a:hover {
-    color: lightsteelblue;
+  h1 {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    margin: 0;
   }
 </style>
