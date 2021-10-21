@@ -27,5 +27,10 @@ const posts = Astro.fetchContent<Post>("./**/index.md").sort((a,b) => (a.publish
   a {
     display: flex;
     justify-content: space-between;
+    color: steelblue;
+  }
+
+  a:hover {
+    color: lightsteelblue;
   }
 </style>
