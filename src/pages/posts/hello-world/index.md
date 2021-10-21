@@ -1,4 +1,5 @@
 ---
+layout: ../../../layouts/PostLayout.astro
 title: Hello, World
 published: 2018-10-06T23:51:31.209Z
 updated: 2020-06-13T03:07:01.590Z

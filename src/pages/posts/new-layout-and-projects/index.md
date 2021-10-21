@@ -1,4 +1,5 @@
 ---
+layout: ../../../layouts/PostLayout.astro
 title: Layout Overhaul and New Projects
 published: 2020-07-08T19:12:07.110Z
 ---

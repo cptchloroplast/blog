@@ -1,17 +1,17 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
 import Card from "../components/Card.astro"
-import { Markdown } from "astro/components"
 
 export interface Props {
-  title: string
-  content: string
+  content: {
+    title: string
+  }
 }
 
-const {title, content} = Astro.props
+const { content: { title } } = Astro.props as Props
 ---
 <BaseLayout title={title}>
   <Card>
-    <Markdown content={content} />
+    <slot />
   </Card>
 </BaseLayout>
