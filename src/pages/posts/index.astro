@@ -7,7 +7,7 @@ const posts = Astro.fetchContent<Post>("./*.md").sort((a,b) => (a.published > b.
 <BaseLayout title="Posts">
   <Card>
     <h1>Table of Contents</h1>
-    <h4>Disclaimer: The following content is not representative of the views of our corporate overlords.</h4>
+    <h4>The following is not representative of the views of our corporate overlords.</h4>
     <hr>
     <ol>
     {posts.map(post => (
