@@ -1,42 +1,30 @@
----
-import Item from "./Item.astro"
+<script lang="ts">
+  import Item from "./Item.svelte"
 
-const nav: NavItem[] = [
-  {
-    text: "Posts",
-    href: "/posts"
-  }
-  // {
-  //   text: "Blog",
-  //   href: "/blog/",
-  // },
-  // {
-  //   text: "Projects",
-  //   child: [
-  //     {
-  //       text: "Crank Tools",
-  //       href: "https://crank.tools",
-  //       external: true,
-  //     },
-  //   ], 
-  // },
-  // {
-  //   text: "Contact",
-  //   href: "/contact/",
-  // },
-]
-const url = Astro.request.url
----
+  export let logo
+
+  const nav: NavItem[] = [
+    {
+      text: "Posts",
+      href: "/posts"
+    }
+  ]
+</script>
 
 <nav>
   <div class="buttons">
     <a href="/" title="ben.okkema.org">
-      <img src={Astro.resolve("../../img/logo.png")}>
+      <img
+        alt="Logo" 
+        src={logo}
+      >
     </a>
     <i class="i-menu"></i>
   </div>
   <div class="links">
-		{nav.map((item: NavItem) => <Item item={item} />)}
+    {#each nav as item}
+      <Item item={item} />
+    {/each}
   </div>
 </nav>
 
