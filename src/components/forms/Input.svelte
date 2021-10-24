@@ -1,12 +1,15 @@
 <script>
   export let value
+  export let label
   export let placeholder
 </script>
 
-<input 
-  bind:value={value} 
-  placeholder={placeholder}
-/>
+<label>{label}
+  <input 
+    bind:value={value} 
+    placeholder={placeholder}
+  />
+</label>
 
 <style>
   input {
