@@ -3,11 +3,24 @@
   
   export let item: NavItem
   
-  const {text, href, external, child} = item
+  const {text, href, external, children} = item
 </script>
 
-{#if child}
-  <Dropdown class="item" text={text} />
+{#if children}
+  <Dropdown text={text}>
+    {#each children as child}
+      {#if !child.href}
+        <span class="item">{child.text}</span>
+      {:else if !child.external}
+        <a class="item" href={child.href}>{child.text}</a>
+      {:else}
+        <a class="item" href={child.href} target="_blank">
+          <span>{child.text}</span>
+          <i class="i-external"></i>
+        </a>
+      {/if}
+    {/each}
+  </Dropdown>
 {:else if !href}
   <span class="item">{text}</span>
 {:else if !external}
@@ -21,6 +34,7 @@
 
 <style>
   a {
+    width: 100%;
     justify-content: space-between;
   }
 

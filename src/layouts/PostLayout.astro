@@ -1,12 +1,13 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
 import Card from "../components/Card.astro"
+import Chip from "../components/Chip.astro"
 
 export interface Props {
   content: Post
 }
 
-const { content: { title, published, updated } } = Astro.props as Props
+const { content: { title, published, updated, tags } } = Astro.props as Props
 ---
 <BaseLayout title={title}>
   <Card>
@@ -16,8 +17,12 @@ const { content: { title, published, updated } } = Astro.props as Props
       {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
     </h4>
     <hr>
-    <div class="markdown">
+    <div id="markdown">
       <slot />
+    </div>
+    <hr>
+    <div id="tags">
+      {tags.split(",").map(tag => (<Chip href={`/tags/${tag}`}>{tag}</Chip>))}
     </div>
   </Card>
 </BaseLayout>
@@ -33,18 +38,24 @@ const { content: { title, published, updated } } = Astro.props as Props
     display: flex;
     justify-content: space-between;
   }
+
+  #tags {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
 </style>
 
 <style global>
-  .markdown {
+  #markdown {
     line-height: 1.5;
   }
   
-  .markdown p:first-of-type {
+  #markdown p:first-of-type {
     margin-top: 0;
   }
 
-  .markdown p:last-of-type {
+  #markdown p:last-of-type {
     margin-bottom: 0;
   }
 </style>

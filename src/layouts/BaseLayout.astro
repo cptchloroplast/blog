@@ -30,7 +30,10 @@ const {title} = Astro.props
     <meta property="og:image" content="https://ben.okkema.org/me.webp">
   </head>
   <body>
-    <Header logo={Astro.resolve("../img/logo.png")}/>
+    <Header
+      client:load 
+      logo={Astro.resolve("../img/logo.png")}
+    />
     <div>
       <main>
         <slot />

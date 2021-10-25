@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Card from "../../components/Card.astro"
+
+const posts = Astro.fetchContent<Post>("../posts/*.md")
+const tags = posts.reduce((result, post) => {
+  for (let tag of post.tags.split(",")) {
+    if (!result[tag]) result[tag] = 0
+    result[tag] += 1
+  }
+  return result
+}, {})
+---
+
+<BaseLayout title="Tags">
+  <Card>
+    <ul>
+      {Object.keys(tags).map(key => (
+      <li>{key}: {tags[key]}</li>
+      ))}
+    </ul>
+  </Card>
+</BaseLayout>

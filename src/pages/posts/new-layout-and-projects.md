@@ -2,6 +2,7 @@
 layout: ../../layouts/PostLayout.astro
 title: Layout Overhaul and New Projects
 published: 2020-07-08
+tags: projects,meta
 ---
 
 Hi again!

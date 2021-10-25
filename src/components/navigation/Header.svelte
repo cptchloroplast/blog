@@ -2,14 +2,37 @@
   import Item from "./Item.svelte"
 
   export let logo
+  let show = false
+  let button
 
   const nav: NavItem[] = [
     {
       text: "Posts",
       href: "/posts"
+    },
+    {
+      text: "Tags",
+      href: "/tags"
+    },
+    {
+      text: "Projects",
+      children: [
+        {
+          text: "Crank Tools",
+          external: true,
+          href: "https://crank.tools",
+        }
+      ]
     }
   ]
+
+  const toggle = () => show = !show
+  const close = (event) => {
+    if (!event.target.matches('[role="menu"]')) show = false
+  }
 </script>
+
+<svelte:window on:click={close} />
 
 <nav>
   <div class="buttons">
@@ -19,9 +42,19 @@
         src={logo}
       >
     </a>
-    <i class="i-menu"></i>
+    <button 
+      role="menu"
+      type="button" 
+      bind:this={button}
+      on:click={toggle}
+    >
+      <i 
+        class="i-menu"
+        role="menu"  
+      ></i>
+    </button>
   </div>
-  <div class="links">
+  <div class="links" class:show={show}>
     {#each nav as item}
       <Item item={item} />
     {/each}
@@ -43,10 +76,15 @@
     margin: 5px;
   }
 
-  i {
+  button {
     display: none;
     cursor: pointer;
-    margin: 10px;
+    background-color: black;
+    border: none;
+  }
+
+  i {
+    color: white;
   }
 
   .buttons {
@@ -67,13 +105,17 @@
       flex-direction: column;
     }
 
-    i {
+    button {
       display: unset;
     }
     
     .links {
       flex-direction: column;
       display: none;
+    }
+
+    .show {
+      display: flex;
     }
   }
 
