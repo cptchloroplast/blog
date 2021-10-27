@@ -14,16 +14,16 @@
       text: "Tags",
       href: "/tags"
     },
-    {
-      text: "Projects",
-      children: [
-        {
-          text: "Crank Tools",
-          external: true,
-          href: "https://crank.tools",
-        }
-      ]
-    }
+    // {
+    //   text: "Projects",
+    //   children: [
+    //     {
+    //       text: "Crank Tools",
+    //       external: true,
+    //       href: "https://crank.tools",
+    //     }
+    //   ]
+    // }
   ]
 
   const toggle = () => show = !show
