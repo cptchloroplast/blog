@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
+import Chip from "../../components/Chip.astro"
 
 const posts = Astro.fetchContent<Post>("../posts/*.md")
 const tags = posts.reduce((result, post) => {
@@ -14,10 +15,35 @@ const tags = posts.reduce((result, post) => {
 
 <BaseLayout title="Tags">
   <Card>
-    <ul>
+    <h1>Tags</h1>
+    <h4>Click a tag to related posts.</h4>
+    <hr>
+    <ol>
       {Object.keys(tags).map(key => (
-      <li>{key}: {tags[key]}</li>
+        <li>
+          <Chip href="#">
+            <span>{key}: {tags[key]}</span>
+          </Chip>
+        </li>
       ))}
-    </ul>
+    </ol>
   </Card>
 </BaseLayout>
+
+<style>
+  ol {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    gap: 5px;
+  }
+
+  h1 {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    margin: 0;
+  }
+</style>
