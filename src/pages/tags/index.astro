@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
 import Chip from "../../components/Chip.astro"
+import Title from "../../components/Title.astro"
+import Subtitle from "../../components/Subtitle.astro"
 
 const posts = Astro.fetchContent<Post>("../posts/*.md")
 const tags = posts.reduce((result, post) => {
@@ -15,8 +17,8 @@ const tags = posts.reduce((result, post) => {
 
 <BaseLayout title="Tags">
   <Card>
-    <h1>Tags</h1>
-    <h4>Click a tag to related posts.</h4>
+    <Title>Tags</Title>
+    <Subtitle>Click a tag to related posts.</Subtitle>
     <hr>
     <ol>
       {Object.entries(tags).map(([tag, count]) => (
@@ -36,14 +38,5 @@ const tags = posts.reduce((result, post) => {
     display: flex;
     padding-left: 0;
     gap: 5px;
-  }
-
-  h1 {
-    margin: 0;
-    margin-bottom: 5px;
-  }
-
-  h4 {
-    margin: 0;
   }
 </style>

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
+import Title from "../../components/Title.astro"
+import Subtitle from "../../components/Subtitle.astro"
 
 export function getStaticPaths() {
   const posts = Astro.fetchContent("../posts/*.md")
@@ -34,8 +36,8 @@ const { posts } = Astro.props as Props
 ---
 <BaseLayout title={tag}>
   <Card>
-    <h1>{tag}</h1>
-    <h4>Check out some related posts.</h4>
+    <Title>{tag}</Title>
+    <Subtitle>Check out some related posts.</Subtitle>
     <hr>
     <ol>
     {posts.map(post => (
@@ -65,14 +67,5 @@ const { posts } = Astro.props as Props
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  h1 {
-    margin: 0;
-    margin-bottom: 5px;
-  }
-
-  h4 {
-    margin: 0;
   }
 </style>

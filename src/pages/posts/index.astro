@@ -1,14 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
+import Title from "../../components/Title.astro"
+import Subtitle from "../../components/Subtitle.astro"
 
 const posts = Astro.fetchContent<Post>("./*.md")
   .sort((a,b) => (a.published > b.published) ? 1 : 1)
 ---
 <BaseLayout title="Posts">
   <Card>
-    <h1>Table of Contents</h1>
-    <h4>The following is not representative of the views of our corporate overlords.</h4>
+    <Title>Table of Contents</Title>
+    <Subtitle>The following is not representative of the views of our corporate overlords.</Subtitle>
     <hr>
     <ol>
     {posts.map(post => (
@@ -38,14 +40,5 @@ const posts = Astro.fetchContent<Post>("./*.md")
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-
-  h1 {
-    margin: 0;
-    margin-bottom: 5px;
-  }
-
-  h4 {
-    margin: 0;
   }
 </style>

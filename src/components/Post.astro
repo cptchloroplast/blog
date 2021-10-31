@@ -1,6 +1,8 @@
 ---
 import Card from "../components/Card.astro"
 import Chip from "../components/Chip.astro"
+import Title from "../components/Title.astro"
+import Subtitle from "../components/Subtitle.astro"
 
 export interface Props {
   post: FetchContentResult<Post>
@@ -10,11 +12,11 @@ const { post: { title, published, updated, tags, astro: { html } } } = Astro.pro
 ---
 
 <Card>
-  <h1>{title}</h1>
-  <h4>
+  <Title>{title}</Title>
+  <Subtitle>
     <span>Published: {new Date(published).toISOString().split("T")[0]}</span>
     {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
-  </h4>
+  </Subtitle>
   <hr>
   <div id="markdown">{html}</div>
   <hr>
@@ -25,17 +27,6 @@ const { post: { title, published, updated, tags, astro: { html } } } = Astro.pro
 
 
 <style>
-  h1 {
-    margin: 0;
-    margin-bottom: 5px;
-  }
-
-  h4 {
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-  }
-
   #tags {
     display: flex;
     flex-direction: row;
