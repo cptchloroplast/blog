@@ -1,0 +1,48 @@
+---
+import Title from "./Title.astro"
+import Subtitle from "./Subtitle.astro"
+import Input from "./forms/Input.svelte"
+import Button from "./forms/Button.svelte"
+import Form from "./forms/Form.svelte"
+import TextArea from "./forms/TextArea.svelte"
+---
+<Title>Contact me</Title>
+<Subtitle>Leave a message after the beep.</Subtitle>
+<hr>
+<Form
+  action="message"
+  method="POST"
+  client:load 
+>
+  <div>
+    <Input 
+      name="email"
+      label="Email"
+      placeholder="me@domain.tld"
+      type="email"
+      required
+    />
+    <TextArea
+      name="message"
+      label="Message"
+      placeholder="No spam please!"
+      required 
+    />
+    <Button>
+      <i class="i-send" />
+    </Button>
+  </div>
+</Form>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  i {
+    color: white;
+    font-size: 30px;
+  }
+</style>

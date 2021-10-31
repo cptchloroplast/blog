@@ -3,16 +3,16 @@
   export let label
   export let placeholder
   export let required = false
-  export let type: "text" | "email" = "text"
+  export let rows = 5
 </script>
 
 <label>
   <span>{label}</span>
-  <input 
+  <textarea 
     name={name}
     placeholder={placeholder}
     required={required}
-    type={type}
+    rows={rows}
   />
 </label>
 
@@ -24,7 +24,7 @@
     width: 100%;
   }
 
-  input {
+  textarea {
     padding: 10px;
     border-radius: 5px;
     box-shadow: none;
@@ -33,11 +33,11 @@
     border-color: black;
   }
 
-  input:valid {
-    border-color: darkgreen;
+  textarea:valid {
+    border-color: forestgreen;
   }
 
-  input:focus:invalid {
+  textarea:focus:invalid {
     border-color: firebrick;
   }
 </style>
