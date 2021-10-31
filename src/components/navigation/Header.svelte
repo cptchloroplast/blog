@@ -79,6 +79,7 @@
 
   i {
     color: white;
+    font-size: 30px;
   }
 
   .buttons {

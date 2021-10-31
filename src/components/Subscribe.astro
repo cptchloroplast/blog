@@ -2,10 +2,8 @@
 import Input from "./forms/Input.svelte"
 import Button from "./forms/Button.svelte"
 import Form from "./forms/Form.svelte"
-import Subtitle from "./Subtitle.astro"
 ---
 
-<Subtitle>Subscribe for the latest and greatest!</Subtitle>
 <Form
   action="subscribe"
   method="POST"
@@ -14,6 +12,7 @@ import Subtitle from "./Subtitle.astro"
   <div>
     <Input 
       name="email"
+      label="Subscribe for the latest and greatest!"
       placeholder="me@domain.tld"
       type="email"
       required
@@ -28,7 +27,7 @@ import Subtitle from "./Subtitle.astro"
   div {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     gap: 10px;
   }
 

@@ -15,7 +15,8 @@
     border: none;
     padding: 10px 20px;
     cursor: pointer; 
-    border-radius: 3px;
+    border-radius: 5px;
+    flex-grow: 1;
   }
 
   button:hover {
@@ -23,6 +24,7 @@
   }
 
   button:disabled {
-    cursor: progress;
+    cursor: wait;
+    background-color: lightslategray;
   }
 </style>

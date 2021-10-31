@@ -5,6 +5,9 @@ import Input from "./forms/Input.svelte"
 import Button from "./forms/Button.svelte"
 import Form from "./forms/Form.svelte"
 import TextArea from "./forms/TextArea.svelte"
+import Captcha from "./forms/Captcha.svelte"
+
+const sitekey = process.env.HCAPTCHA_SITEKEY
 ---
 <Title>Contact me</Title>
 <Subtitle>Leave a message after the beep.</Subtitle>
@@ -14,7 +17,7 @@ import TextArea from "./forms/TextArea.svelte"
   method="POST"
   client:load 
 >
-  <div>
+  <div class="column">
     <Input 
       name="email"
       label="Email"
@@ -28,17 +31,31 @@ import TextArea from "./forms/TextArea.svelte"
       placeholder="No spam please!"
       required 
     />
-    <Button>
-      <i class="i-send" />
-    </Button>
+    <div class="row">
+      <Captcha 
+        sitekey={sitekey} 
+        client:load
+      />
+      <Button>
+        <i class="i-send" />
+      </Button>
+    </div>
   </div>
 </Form>
 
 <style>
-  div {
+  .column {
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   i {
