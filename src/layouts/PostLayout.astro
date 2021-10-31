@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
+import Card from "../components/Card.astro"
 import Post from "../components/Post.astro"
 
 export interface Props {
@@ -10,5 +11,7 @@ const { content } = Astro.props as Props
 const { title } = content
 ---
 <BaseLayout title={title}>
-  <Post post={content} />
+  <Card>
+    <Post post={content} />
+  </Card>
 </BaseLayout>

@@ -1,5 +1,4 @@
 ---
-import Card from "../components/Card.astro"
 import Chip from "../components/Chip.astro"
 import Title from "../components/Title.astro"
 import Subtitle from "../components/Subtitle.astro"
@@ -11,19 +10,17 @@ export interface Props {
 const { post: { title, published, updated, tags, astro: { html } } } = Astro.props as Props
 ---
 
-<Card>
-  <Title>{title}</Title>
-  <Subtitle>
-    <span>Published: {new Date(published).toISOString().split("T")[0]}</span>
-    {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
-  </Subtitle>
-  <hr>
-  <div id="markdown">{html}</div>
-  <hr>
-  <div id="tags">
-    {tags.split(",").map(tag => (<Chip href={`/tags/${tag}`}>{tag}</Chip>))}
-  </div>
-</Card>
+<Title>{title}</Title>
+<Subtitle>
+  <span>Published: {new Date(published).toISOString().split("T")[0]}</span>
+  {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
+</Subtitle>
+<hr>
+<div id="markdown">{html}</div>
+<hr>
+<div id="tags">
+  {tags.split(",").map(tag => (<Chip href={`/tags/${tag}`}>{tag}</Chip>))}
+</div>
 
 
 <style>

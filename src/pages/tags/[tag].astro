@@ -6,7 +6,6 @@ import Subtitle from "../../components/Subtitle.astro"
 
 export function getStaticPaths() {
   const posts = Astro.fetchContent("../posts/*.md")
-    .sort((a,b) => (a.published > b.published) ? 1 : 1)
   const tags = posts.reduce((result, post) => {
     for (let tag of post.tags.split(",")) {
       if (!result[tag]) result[tag] = []
@@ -21,7 +20,7 @@ export function getStaticPaths() {
         tag,
       },
       props: {
-        posts
+        posts,
       }
     }
   })
@@ -33,6 +32,7 @@ export interface Props {
 
 const { tag } = Astro.request.params
 const { posts } = Astro.props as Props
+const sorted = posts.sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
 <BaseLayout title={tag}>
   <Card>
@@ -40,7 +40,7 @@ const { posts } = Astro.props as Props
     <Subtitle>Check out some related posts.</Subtitle>
     <hr>
     <ol>
-    {posts.map(post => (
+    {sorted.map(post => (
       <li>
         <a href={post.url}>
           <span>{post.title}</span>
