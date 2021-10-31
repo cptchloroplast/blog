@@ -1,0 +1,58 @@
+---
+import Card from "../components/Card.astro"
+import Chip from "../components/Chip.astro"
+
+export interface Props {
+  post: FetchContentResult<Post>
+}
+
+const { post: { title, published, updated, tags, astro: { html } } } = Astro.props as Props
+---
+
+<Card>
+  <h1>{title}</h1>
+  <h4>
+    <span>Published: {new Date(published).toISOString().split("T")[0]}</span>
+    {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
+  </h4>
+  <hr>
+  <div id="markdown">{html}</div>
+  <hr>
+  <div id="tags">
+    {tags.split(",").map(tag => (<Chip href={`/tags/${tag}`}>{tag}</Chip>))}
+  </div>
+</Card>
+
+
+<style>
+  h1 {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #tags {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+</style>
+
+<style global>
+  #markdown {
+    line-height: 1.5;
+  }
+  
+  #markdown p:first-of-type {
+    margin-top: 0;
+  }
+
+  #markdown p:last-of-type {
+    margin-bottom: 0;
+  }
+</style>
