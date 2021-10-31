@@ -1,7 +1,7 @@
 <script lang="ts">
   export let name
-  export let label
-  export let placeholder
+  export let label = ""
+  export let placeholder = ""
   export let required = false
   export let rows = 5
 </script>

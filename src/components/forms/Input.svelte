@@ -1,7 +1,7 @@
 <script lang="ts">
   export let name
-  export let label
-  export let placeholder
+  export let label = ""
+  export let placeholder = ""
   export let required = false
   export let type: "text" | "email" = "text"
 </script>
@@ -34,7 +34,7 @@
   }
 
   input:valid {
-    border-color: darkgreen;
+    border-color: forestgreen;
   }
 
   input:focus:invalid {
