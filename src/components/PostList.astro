@@ -1,0 +1,36 @@
+---
+export interface Props {
+  posts: FetchContentResult<Post>[]
+}
+
+const { posts } = Astro.props as Props
+---
+
+<ol>
+{posts.map(post => (
+  <li>
+    <a href={post.url}>
+      <span>{post.title}</span>
+      <small>{new Date(post.published).toISOString().split("T")[0]}</small>
+    </a>
+  </li>
+))}
+</ol>
+
+<style>
+  ol {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+    line-height: 1.5;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>

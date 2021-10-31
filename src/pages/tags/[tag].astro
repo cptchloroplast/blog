@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
 import Title from "../../components/Title.astro"
 import Subtitle from "../../components/Subtitle.astro"
+import PostList from "../../components/PostList.astro"
 
 export function getStaticPaths() {
   const posts = Astro.fetchContent("../posts/*.md")
@@ -39,33 +40,6 @@ const sorted = posts.sort((a,b) => (a.published < b.published) ? 1 : -1)
     <Title>{tag}</Title>
     <Subtitle>Check out some related posts.</Subtitle>
     <hr>
-    <ol>
-    {sorted.map(post => (
-      <li>
-        <a href={post.url}>
-          <span>{post.title}</span>
-          <small>{new Date(post.published).toISOString().split("T")[0]}</small>
-        </a>
-      </li>
-    ))}
-    </ol>
+    <PostList posts={sorted} />
   </Card>
 </BaseLayout>
-
-<style>
-  ol {
-    margin: 0;
-    padding-left: 0;
-  }
-
-  li {
-    list-style: none;
-    line-height: 1.5;
-  }
-
-  a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-</style>
