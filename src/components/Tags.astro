@@ -1,0 +1,31 @@
+---
+import Chip from "../components/Chip.astro"
+
+export interface Props {
+  tags: Tag[]
+}
+
+const { tags } = Astro.props as Props
+---
+
+<ol>
+  {tags.map(tag => (
+    <li>
+      <Chip href={`/tags/${tag.name}`}>
+        <span>
+          <span>{tag.name}</span>
+          {tag.count && <span>: {tag.count}</span>}
+        </span>
+      </Chip>
+    </li>
+  ))}
+</ol>
+
+<style>
+  ol {
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    gap: 5px;
+  }
+</style>

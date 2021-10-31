@@ -1,18 +1,24 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro"
 import Card from "../../components/Card.astro"
-import Chip from "../../components/Chip.astro"
 import Title from "../../components/Title.astro"
 import Subtitle from "../../components/Subtitle.astro"
+import Tags from "../../components/Tags.astro"
 
 const posts = Astro.fetchContent<Post>("../posts/*.md")
-const tags = posts.reduce((result, post) => {
-  for (let tag of post.tags.split(",")) {
-    if (!result[tag]) result[tag] = 0
-    result[tag] += 1
-  }
-  return result
-}, {})
+const tags = Object.entries(posts.reduce((result, post) => {
+    for (let tag of post.tags.split(",")) {
+      if (!result[tag]) result[tag] = 0
+      result[tag] += 1
+    }
+    return result
+  }, {}))
+  .map(([tag, count]): Tag => {
+    return { 
+      name: tag, 
+      count: count as number, 
+    }
+  })
 ---
 
 <BaseLayout title="Tags">
@@ -20,23 +26,6 @@ const tags = posts.reduce((result, post) => {
     <Title>Tags</Title>
     <Subtitle>Click a tag to related posts.</Subtitle>
     <hr>
-    <ol>
-      {Object.entries(tags).map(([tag, count]) => (
-        <li>
-          <Chip href={`/tags/${tag}`}>
-            <span>{tag}: {count}</span>
-          </Chip>
-        </li>
-      ))}
-    </ol>
+    <Tags tags={tags} />
   </Card>
 </BaseLayout>
-
-<style>
-  ol {
-    list-style: none;
-    display: flex;
-    padding-left: 0;
-    gap: 5px;
-  }
-</style>
