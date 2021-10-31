@@ -1,4 +1,11 @@
-<button type="submit">
+<script>
+  export let disabled = false
+</script>
+
+<button
+  disabled={disabled}
+  type="submit"
+>
   <slot />
 </button>
 
@@ -13,5 +20,9 @@
 
   button:hover {
     background-color: darkslategray;
+  }
+
+  button:disabled {
+    cursor: progress;
   }
 </style>
