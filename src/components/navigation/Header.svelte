@@ -5,7 +5,7 @@
   let show = false
   let button
 
-  const nav: NavItem[] = [
+  const nav: Nav[] = [
     {
       text: "Posts",
       href: "/posts"

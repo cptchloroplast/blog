@@ -1,6 +1,6 @@
-type NavItem = {
+type Nav = {
   text: string
   href?: string
   external?: boolean
-  children?: NavItem[]
+  children?: Nav[]
 }

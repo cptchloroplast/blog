@@ -1,7 +1,7 @@
 <script lang="ts">
   import Dropdown from "./Dropdown.svelte"
   
-  export let item: NavItem
+  export let item: Nav
   
   const {text, href, external, children} = item
 </script>
