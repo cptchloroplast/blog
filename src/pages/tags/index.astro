@@ -19,10 +19,10 @@ const tags = posts.reduce((result, post) => {
     <h4>Click a tag to related posts.</h4>
     <hr>
     <ol>
-      {Object.keys(tags).map(key => (
+      {Object.entries(tags).map(([tag, count]) => (
         <li>
-          <Chip href="#">
-            <span>{key}: {tags[key]}</span>
+          <Chip href={`/tags/${tag}`}>
+            <span>{tag}: {count}</span>
           </Chip>
         </li>
       ))}

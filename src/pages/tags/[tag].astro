@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Card from "../../components/Card.astro"
+
+export function getStaticPaths() {
+  const posts = Astro.fetchContent("../posts/*.md")
+    .sort((a,b) => (a.published > b.published) ? 1 : 1)
+  const tags = posts.reduce((result, post) => {
+    for (let tag of post.tags.split(",")) {
+      if (!result[tag]) result[tag] = []
+      result[tag] = [post, ...result[tag]]
+    }
+    return result
+  }, {})
+  return Object.entries(tags).map(entry => {
+    const [tag, posts] = entry
+    return {
+      params: {
+        tag,
+      },
+      props: {
+        posts
+      }
+    }
+  })
+}
+
+export interface Props {
+  posts: FetchContentResult<Post>[]
+}
+
+const { tag } = Astro.request.params
+const { posts } = Astro.props as Props
+---
+<BaseLayout title={tag}>
+  <Card>
+    <h1>{tag}</h1>
+    <h4>Check out some related posts.</h4>
+    <hr>
+    <ol>
+    {posts.map(post => (
+      <li>
+        <a href={post.url}>
+          <span>{post.title}</span>
+          <small>{new Date(post.published).toISOString().split("T")[0]}</small>
+        </a>
+      </li>
+    ))}
+    </ol>
+  </Card>
+</BaseLayout>
+
+<style>
+  ol {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+    line-height: 1.5;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  h4 {
+    margin: 0;
+  }
+</style>
