@@ -23,11 +23,14 @@
     z-index: 1;
     left: 50%;
     bottom: 30px;
-    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
   }
 
   i {
-    margin-right: 5px;
+    font-size: 30px;
   }
 
   .flash {
