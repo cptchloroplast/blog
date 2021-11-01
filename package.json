@@ -6,8 +6,9 @@
     "build": "npm-run-all build:astro build:webpack",
     "build:astro": "astro build",
     "build:webpack": "webpack",
-    "dev": "astro dev",
-    "start": "astro dev",
+    "start": "npm-run-all -p start:astro start:miniflare",
+    "start:astro": "astro dev",
+    "start:miniflare": "miniflare ./dist/worker.js -w -d -u http://localhost:3000",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "astro": "^0.20.12",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.2",
+    "miniflare": "^1.4.1",
     "npm-run-all": "^4.1.5",
     "slugify": "^1.6.1",
     "svelte": "^3.43.0",

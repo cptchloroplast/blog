@@ -3,15 +3,13 @@ addEventListener("fetch", (event: FetchEvent) => {
 })
 
 async function handleRequest(request: Request) {
-  if (request.url.match(/\/api\/.+/g)) {
-    return new Response(JSON.stringify({
-      ok: true,
-    }), {
+  // if (request.url.match(/\/api\/.+/g)) {
+    return new Response(JSON.stringify(request), {
       headers: {
         "Content-Type": "application/json",
       },
       status: 200,
     })
-  }
-  return fetch(request)
+  // }
+  // return fetch(request)
 }
