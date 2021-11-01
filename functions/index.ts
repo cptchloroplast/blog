@@ -1,7 +1,17 @@
-addEventListener("fetch", event => {
+addEventListener("fetch", (event: FetchEvent) => {
   event.respondWith(handleRequest(event.request))
 })
 
-async function handleRequest(request) {
+async function handleRequest(request: Request) {
+  if (request.url.match(/\/api\/.+/g)) {
+    return new Response(JSON.stringify({
+      ok: true,
+    }), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      status: 200,
+    })
+  }
   return fetch(request)
 }
