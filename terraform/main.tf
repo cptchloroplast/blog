@@ -21,8 +21,8 @@ provider "cloudflare" {
 resource "cloudflare_record" "domain" {
   zone_id         = var.cloudflare_zone_id
   name            = var.cloudflare_domain_name
-  type            = "AAAA"
-  value           = "100::"
+  type            = "CNAME"
+  value           = var.cloudflare_pages_url
   proxied         = true
   allow_overwrite = true
 }

@@ -13,3 +13,7 @@ variable "cloudflare_account_id" {
 variable "cloudflare_worker_route_pattern" {
   type = string
 }
+
+variable "cloudflare_pages_url" {
+  type = string
+}
