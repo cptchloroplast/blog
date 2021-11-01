@@ -32,7 +32,7 @@ resource "cloudflare_workers_kv_namespace" "subscribers" {
 }
 
 locals {
-  worker_path = abspath("${path.module}/../functions/index.js")
+  worker_path = abspath("${path.module}/../dist/worker.js")
 }
 
 resource "cloudflare_worker_script" "worker" {

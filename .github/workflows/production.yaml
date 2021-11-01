@@ -27,7 +27,7 @@ jobs:
 
       - name: Build
         id: build
-        run: npm run build
+        run: npm run build:webpack
 
       # - name: Test
       #   id: test
