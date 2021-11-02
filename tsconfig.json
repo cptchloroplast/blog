@@ -1,6 +1,7 @@
 {
   "moduleResolution": "node",
   "compilerOptions": {
-    "lib": ["WebWorker"]
+    "lib": ["ES2015", "WebWorker"],
+    "types": ["@cloudflare/workers-types"]
   }
 }
