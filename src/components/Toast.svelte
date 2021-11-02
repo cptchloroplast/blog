@@ -12,21 +12,19 @@
 <style>
   div {
     visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
     background-color: darkslategray;
     color: white;
-    text-align: center;
     border-radius: 2px;
-    padding: 16px;
+    padding: 15px;
     position: fixed;
     z-index: 1;
     left: 50%;
+    transform: translateX(-50%);
     bottom: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
   }
 
   i {
