@@ -1,0 +1,6 @@
+kv_namespaces = [
+  { binding = "SUBSCRIBERS" }
+]
+
+[miniflare]
+kv_persist = true

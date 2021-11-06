@@ -1,12 +1,12 @@
 import { router } from "./router"
+import Worker from "@okkema/worker"
 
-addEventListener("fetch", (event: FetchEvent) => {
-  event.respondWith(handleRequest(event.request))
+Worker({
+  handler: (event) => {
+    const { request } = event
+    if (request.url.match(/^.+\/api\/.+/g)) {
+      return router.handle(request)
+    }
+    return fetch(request)
+  },
 })
-
-async function handleRequest(request: Request) {
-  if (request.url.match(/^.+\/api\/.+/g)) {
-    return router.handle(request)
-  }
-  return fetch(request)
-}
