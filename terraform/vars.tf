@@ -17,3 +17,11 @@ variable "cloudflare_worker_route_pattern" {
 variable "cloudflare_pages_url" {
   type = string
 }
+
+variable "admin_email" {
+  type = string
+}
+
+variable "sendgrid_api_key" {
+  type = string
+}

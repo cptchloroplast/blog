@@ -43,6 +43,16 @@ resource "cloudflare_worker_script" "worker" {
     name         = "SUBSCRIBERS"
     namespace_id = cloudflare_workers_kv_namespace.subscribers.id
   }
+
+  plain_text_binding {
+    name = "ADMIN_EMAIL"
+    text = var.admin_email
+  }
+
+  secret_text_binding {
+    name = "SENDGRID_API_KEY"
+    text = var.sendgrid_api_key
+  }
 }
 
 resource "cloudflare_worker_route" "route" {
