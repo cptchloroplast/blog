@@ -1,4 +1,4 @@
-import { uuid } from "@okkema/worker/core"
+import { uuid } from "@okkema/worker/utils"
 import { json } from "../utils"
 import { sendEmail } from "../sendgrid"
 import { subscribers } from "../kv/subscribers"

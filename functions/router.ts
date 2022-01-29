@@ -1,4 +1,4 @@
-import { Router } from "@okkema/worker/core"
+import { Router } from "@okkema/worker"
 import { subscribe } from "./handlers/subscribe"
 import { message } from "./handlers/message"
 import { confirm } from "./handlers/confirm"
