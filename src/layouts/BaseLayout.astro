@@ -7,7 +7,7 @@ import Photo from "../components/profile/Photo.astro"
 import Contact from "../components/profile/Contact.astro"
 import Bio from "../components/profile/Bio.astro"
 import Title from "../components/Title.astro"
-import Subscribe from "../components/Subscribe.astro"
+import Subscribe from "../components/forms/Subscribe.svelte"
 
 export interface Props {
   title: string
@@ -19,28 +19,25 @@ const {title} = Astro.props
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="I'll fix your bike for beer.">
-    <meta name="author" content="Benjamin Okkema <ben@okkema.org>">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="I'll fix your bike for beer." />
+    <meta name="author" content="Benjamin Okkema <ben@okkema.org>" />
     <title>{title} - ben.okkema.org</title>
     <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet" href={Astro.resolve("../css/icons.css")}>
-    <meta property="og:title" content="Ben Okkema's Homepage">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ben.okkema.org">
-    <meta property="og:description" content="I'll fix your bike for beer.">
-    <meta property="og:image" content="https://ben.okkema.org/me.webp">
+    <link rel="stylesheet" href="/css/icons.css">
+    <meta property="og:title" content="Ben Okkema's Homepage" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ben.okkema.org" />
+    <meta property="og:description" content="I'll fix your bike for beer." />
+    <meta property="og:image" content="https://ben.okkema.org/me.webp" />
   </head>
   <body>
-    <Header
-      client:load 
-      logo={Astro.resolve("../img/logo.png")}
-    />
+    <Header logo="/img/logo.png" client:load />
     <div>
       <main>
         <slot />
         <Card>
-          <Subscribe />
+          <Subscribe client:load />
         </Card>
       </main>
       <aside>   

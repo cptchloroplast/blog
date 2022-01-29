@@ -5,7 +5,7 @@ const config = {
   entry: "./functions/index.ts",
   output: {
     filename: "worker.js",
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "../dist"),
   },
   mode: "production",
   resolve: {
@@ -16,6 +16,12 @@ const config = {
       {
         test: /\.tsx?$/,
         loader: "babel-loader",
+        options: {
+          presets: [
+            ["@babel/preset-env", { targets: { node: "current" } }],
+            "@babel/preset-typescript",
+          ],
+        },
       },
     ],
   },

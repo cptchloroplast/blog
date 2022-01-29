@@ -1,5 +1,6 @@
 export default {
-  projectRoot: ".",
+  projectRoot: "./",
+  src: "./src",
   pages: "./src/pages",
   dist: "./dist",
   public: "./public",
@@ -9,7 +10,7 @@ export default {
   },
   devOptions: {
     hostname: "localhost",
-    port: 3000,
+    port: 5000,
   },
   renderers: [
     "@astrojs/renderer-svelte",

@@ -1,0 +1,9 @@
+{
+  "remote.SSH.defaultForwardedPorts": [
+    {
+      "localPort": 24678,
+      "remotePort": 24678,
+      "name": "astro"
+    }
+  ]
+}
