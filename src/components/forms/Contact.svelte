@@ -1,21 +1,16 @@
----
-import Title from "./Title.astro"
-import Subtitle from "./Subtitle.astro"
-import Input from "./forms/Input.svelte"
-import Button from "./forms/Button.svelte"
-import Form from "./forms/Form.svelte"
-import TextArea from "./forms/TextArea.svelte"
-import Captcha from "./forms/Captcha.svelte"
+<script lang="ts">
+  import Input from "./Input.svelte"
+  import Button from "./Button.svelte"
+  import Form from "./Form.svelte"
+  import TextArea from "./TextArea.svelte"
+  import Captcha from "./Captcha.svelte"
+  
+  const sitekey = process.env.HCAPTCHA_SITEKEY
+</script>
 
-const sitekey = process.env.HCAPTCHA_SITEKEY
----
-<Title>Contact me</Title>
-<Subtitle>Leave a message after the beep.</Subtitle>
-<hr>
 <Form
   action="message"
   method="POST"
-  client:load 
 >
   <div class="column">
     <Input 
@@ -32,10 +27,7 @@ const sitekey = process.env.HCAPTCHA_SITEKEY
       required 
     />
     <div class="row">
-      <Captcha 
-        sitekey={sitekey} 
-        client:load
-      />
+      <Captcha sitekey={sitekey} />
       <Button>
         <i class="i-send" />
       </Button>

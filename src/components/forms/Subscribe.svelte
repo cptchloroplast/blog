@@ -1,13 +1,12 @@
----
-import Input from "./forms/Input.svelte"
-import Button from "./forms/Button.svelte"
-import Form from "./forms/Form.svelte"
----
+<script lang="ts">
+  import Input from "./Input.svelte"
+  import Button from "./Button.svelte"
+  import Form from "./Form.svelte"
+</script>
 
 <Form
   action="subscribe"
   method="POST"
-  client:load 
 >
   <div>
     <Input 

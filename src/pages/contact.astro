@@ -1,10 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Card from "../components/Card.astro"
-import Contact from "../components/Contact.astro"
+import Contact from "../components/forms/Contact.svelte"
+import Title from "../components/Title.astro"
+import Subtitle from "../components/Subtitle.astro"
+
 ---
 <BaseLayout title="Contact">
   <Card>
-    <Contact />
+    <Title>Contact me</Title>
+    <Subtitle>Leave a message after the beep.</Subtitle>
+    <hr>
+    <Contact client:load />
   </Card>
 </BaseLayout>
