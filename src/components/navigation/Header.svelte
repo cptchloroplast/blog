@@ -31,7 +31,7 @@
 
 <nav>
   <div class="buttons">
-    <a href="/" title="ben.okkema.org">
+    <a href="/" title="Home">
       <img
         alt="Logo" 
         src={logo}

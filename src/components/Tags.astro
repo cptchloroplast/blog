@@ -9,16 +9,19 @@ const { tags } = Astro.props as Props
 ---
 
 <ol>
-  {tags.map(tag => (
-    <li>
-      <Chip href={`/tags/${tag.name}`}>
-        <span>
-          <span>{tag.name}</span>
-          {tag.count && <span>: {tag.count}</span>}
-        </span>
-      </Chip>
-    </li>
-  ))}
+  {tags.map(tag => {
+    const { name, count } = tag
+    return (
+      <li>
+        <Chip href={`/tags/${name}`} title={name}>
+          <span>
+            <span>{name}</span>
+            {count && <span>: {count}</span>}
+          </span>
+        </Chip>
+      </li>
+    )
+  })}
 </ol>
 
 <style>
@@ -26,6 +29,6 @@ const { tags } = Astro.props as Props
     list-style: none;
     display: flex;
     padding-left: 0;
-    gap: 4px;
+    gap: 8px;
   }
 </style>
