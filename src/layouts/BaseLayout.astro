@@ -10,10 +10,15 @@ import Title from "../components/Title.astro"
 import Subscribe from "../components/forms/Subscribe.svelte"
 
 export interface Props {
-  title: string
+  title?: string
+  image?: string
 }
 
-const {title} = Astro.props
+const { 
+  title = "Benjamin Okkema's Homepage", 
+  image = "/img/me.webp" 
+} = Astro.props
+const { origin, hostname } = Astro.site
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,23 +27,25 @@ const {title} = Astro.props
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="I'll fix your bike for beer." />
     <meta name="author" content="Benjamin Okkema <ben@okkema.org>" />
-    <title>{title} - ben.okkema.org</title>
+    <title>{title} - {hostname}</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="/css/icons.css">
-    <meta property="og:title" content="Ben Okkema's Homepage" />
+    <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ben.okkema.org" />
+    <meta property="og:url" content={origin} />
     <meta property="og:description" content="I'll fix your bike for beer." />
-    <meta property="og:image" content="https://ben.okkema.org/me.webp" />
+    <meta property="og:image" content={`${origin}${image}`} />
   </head>
   <body>
     <Header logo="/img/logo.png" client:load />
     <div>
       <main>
         <slot />
-        <Card>
-          <Subscribe client:load />
-        </Card>
+        <span>
+          <Card>
+            <Subscribe client:load />
+          </Card>
+        </span>
       </main>
       <aside>   
         <Card>
@@ -61,8 +68,16 @@ const {title} = Astro.props
     color: steelblue;
   }
 
-  a:hover {
+  a:hover, a:focus {
     color: lightsteelblue;
+  }
+
+  a:active, a:visited {
+    color: darkslateblue;
+  }
+
+  hr {
+    border: solid black 1px;
   }
 </style>
 
@@ -84,27 +99,38 @@ const {title} = Astro.props
     width: 70%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   aside {
     width: 30%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   div {
     display: flex;
     flex-direction: row;
-    margin: 10px;
-    gap: 10px;
+    margin: 8px;
+    gap: 8px;
     flex-grow: 1;
   }
 
+  span {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+  }
+
+  /** mobile */
   @media screen and (max-width: 1000px) {
     div {
       flex-direction: column;
+    }
+
+    span {
+      justify-content: center;
     }
     
     main, aside {

@@ -21,6 +21,7 @@
     "@cloudflare/workers-types": "^3.0.0",
     "@okkema/worker": "^0.0.14",
     "astro": "^0.22.20",
+    "autoprefixer": "^10.4.2",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.2",
     "miniflare": "^1.4.1",

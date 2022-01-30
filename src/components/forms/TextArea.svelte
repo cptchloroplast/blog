@@ -20,24 +20,28 @@
   label {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    width: 100%;
+    gap: 4px;
   }
 
   textarea {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 8px;
+    border-radius: 4px;
     box-shadow: none;
     font-family: sans-serif;
     font-size: medium;
-    border-color: black;
+    border: solid black 1px;
+  }
+  textarea:focus {
+    outline: solid darkslateblue 2px;
+    outline-offset: -1px;
   }
 
-  textarea:valid {
-    border-color: forestgreen;
+  textarea:valid:focus {
+    outline: solid forestgreen 2px;
+    outline-offset: -1px;
   }
 
-  textarea:focus:invalid {
-    border-color: firebrick;
-  }
-</style>
+  textarea:focus:user-invalid {
+    outline: solid firebrick 2px;
+    outline-offset: -1px;
+  }</style>

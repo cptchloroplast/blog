@@ -6,7 +6,7 @@ import Post from "../components/Post.astro"
 const posts = Astro.fetchContent<Post>("./posts/*.md")
   .sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
-<BaseLayout title="Home">
+<BaseLayout>
   <Card>
     <Post post={posts[0]}/>
   </Card>

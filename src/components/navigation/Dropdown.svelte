@@ -27,7 +27,7 @@
 
 <style>
   button {
-    padding: 10px;
+    padding: 8px;
     background-color: black;
     color: white;
     text-decoration: none;
@@ -50,12 +50,17 @@
   }
 
   button:hover, button:focus {
-    color: white !important;
-    background-color: darkslategray !important;
+    color: white;
+    background-color: dimgray;
+  }
+
+  button:active {
+    color: white;
+    background-color: darkslategray;
   }
 
   i {
-    margin-left: 10px; 
+    margin-left: 8px; 
   }
 
   #items {

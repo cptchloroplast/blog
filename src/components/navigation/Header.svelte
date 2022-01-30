@@ -1,7 +1,8 @@
 <script lang="ts">
-  import Item from "./Item.svelte"
-
   export let logo
+  
+  import Item from "./Item.svelte"
+  
   let show = false
   let button
 
@@ -30,7 +31,7 @@
 
 <nav>
   <div class="buttons">
-    <a href="/" title="ben.okkema.org">
+    <a href="/" title="Home">
       <img
         alt="Logo" 
         src={logo}
@@ -67,7 +68,7 @@
 
   img {
     width: 32px;
-    margin: 5px;
+    margin: 4px;
   }
 
   button {
