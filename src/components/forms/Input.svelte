@@ -20,24 +20,30 @@
   label {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    width: 100%;
+    gap: 4px;
   }
 
   input {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 8px;
+    border-radius: 4px;
     box-shadow: none;
     font-family: sans-serif;
     font-size: medium;
-    border-color: black;
+    border: solid black 1px;
   }
 
-  input:valid {
-    border-color: forestgreen;
+  input:focus {
+    outline: solid darkslateblue 2px;
+    outline-offset: -1px;
   }
 
-  input:focus:invalid {
-    border-color: firebrick;
+  input:valid:focus {
+    outline: solid forestgreen 2px;
+    outline-offset: -1px;
+  }
+
+  input:focus:user-invalid {
+    outline: solid firebrick 2px;
+    outline-offset: -1px;
   }
 </style>
