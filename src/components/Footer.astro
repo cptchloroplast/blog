@@ -19,7 +19,7 @@ const year = new Date().getUTCFullYear()
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 8px;
     flex-shrink: 0;
     background-color: black;
     color: white;
@@ -29,7 +29,11 @@ const year = new Date().getUTCFullYear()
     color: steelblue;
   }
 
-  a:hover {
+  a:hover, a:focus {
     color: lightsteelblue;
+  }
+
+  a:active, a:visited {
+    color: darkslateblue;
   }
 </style>

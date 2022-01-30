@@ -14,13 +14,13 @@ const { href } = Astro.props as Props
   a {
     color: white;
     background-color: black;
-    padding: 10px;
-    border-radius: 50px;
+    padding: 8px;
+    border-radius: 35px;
     cursor: pointer;
     text-decoration: none;
   }
 
-  a:hover {
+  a:hover, a:focus {
     color: white;
     background-color: dimgray;
   }
@@ -28,5 +28,9 @@ const { href } = Astro.props as Props
   a:active {
     color: white;
     background-color: darkslategray;
+  }
+
+  a:visited {
+    color: white;
   }
 </style>

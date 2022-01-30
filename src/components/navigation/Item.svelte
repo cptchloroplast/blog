@@ -39,7 +39,7 @@
   }
 
   .item {
-    padding: 10px;
+    padding: 8px;
     color: white;
     text-decoration: none;
     display: flex;
@@ -50,7 +50,12 @@
   }
 
   .item:hover, .item:focus {
-    color: white !important;
-    background-color: darkslategray !important;
+    color: white;
+    background-color: dimgray;
+  }
+
+  .item:active {
+    color: white;
+    background-color: darkslategray;
   }
 </style>

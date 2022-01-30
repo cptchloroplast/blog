@@ -20,7 +20,7 @@
     border-radius: 4px;
   }
 
-  button:hover {
+  button:hover, button:focus{
     background-color: dimgray;
   }
 

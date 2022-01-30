@@ -15,16 +15,16 @@
     background-color: darkslategray;
     color: white;
     border-radius: 2px;
-    padding: 15px;
+    padding: 16px;
     position: fixed;
     z-index: 1;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 30px;
+    bottom: 36px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   i {
@@ -39,21 +39,21 @@
 
   @-webkit-keyframes fadein {
     from {bottom: 0; opacity: 0;} 
-    to {bottom: 30px; opacity: 1;}
+    to {bottom: 36px; opacity: 1;}
   }
 
   @keyframes fadein {
     from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
+    to {bottom: 36px; opacity: 1;}
   }
 
   @-webkit-keyframes fadeout {
-    from {bottom: 30px; opacity: 1;} 
+    from {bottom: 36px; opacity: 1;} 
     to {bottom: 0; opacity: 0;}
   }
 
   @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
+    from {bottom: 36px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
   }
 </style>

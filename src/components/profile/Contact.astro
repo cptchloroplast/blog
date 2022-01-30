@@ -38,7 +38,7 @@ const contact = [
   {
     title: "AD18B95D04FD76D23EE482A64B62EE4B3E7E7D6B",
     icon: "key",
-    href: "keys/public.txt"
+    href: "/keys/public.txt"
   }
 ] as Contact[]
 ---
@@ -65,8 +65,11 @@ const contact = [
   }
 
   li {
+    margin-right: 8px;
+  }
+
+  i {
     font-size: 30px;
-    margin-right: 10px;
   }
 
   a {
@@ -74,7 +77,7 @@ const contact = [
     color: black;
   }
 
-  a:hover {
+  a:hover, a:focus {
     color: dimgray;
   }
 
