@@ -28,7 +28,7 @@
     />
     <div class="row">
       <Captcha sitekey={sitekey} />
-      <Button>
+      <Button title="Send!">
         <i class="i-send" />
       </Button>
     </div>
@@ -48,6 +48,7 @@
     align-items: stretch;
     gap: 10px;
     flex-wrap: wrap;
+    justify-content: end;
   }
 
   i {

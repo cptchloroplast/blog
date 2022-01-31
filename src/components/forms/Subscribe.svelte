@@ -16,7 +16,7 @@
       type="email"
       required
     />
-    <Button>
+    <Button title="Subscribe!">
       <i class="i-send" />
     </Button>
   </div>

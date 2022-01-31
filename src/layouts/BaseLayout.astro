@@ -120,17 +120,13 @@ const { origin, hostname } = Astro.site
   span {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: center;
   }
 
   /** mobile */
   @media screen and (max-width: 1000px) {
     div {
       flex-direction: column;
-    }
-
-    span {
-      justify-content: center;
     }
     
     main, aside {

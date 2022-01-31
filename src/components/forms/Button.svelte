@@ -1,12 +1,14 @@
 <script lang="ts">
-  export let onClick: (event: MouseEvent) => void
+  export let onClick: (event: MouseEvent) => void = () => {}
   export let disabled = false
+  export let title: string = null
 </script>
 
 <button
   disabled={disabled}
   on:click={onClick}
   type="submit"
+  title={title}
 >
   <slot />
 </button>
