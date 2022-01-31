@@ -58,6 +58,10 @@
     background-color: darkslategray;
   }
 
+  span {
+    padding: 0px 8px;
+  }
+
   i {
     margin-left: 8px; 
   }
@@ -77,6 +81,11 @@
 
   /** mobile */
   @media screen and (max-width: 1000px) {
+
+    span {
+      padding: unset;
+    }
+
     #items {
       position: static;
       width: auto;

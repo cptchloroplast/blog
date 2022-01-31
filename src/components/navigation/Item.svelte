@@ -74,4 +74,11 @@
     color: black;
     background-color: slategray;
   }
+
+   /** mobile */
+   @media screen and (max-width: 1000px) {
+    .item {
+      padding: 8px;
+    }
+}
 </style>
