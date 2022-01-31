@@ -1,45 +1,9 @@
 <script lang="ts">
-  export let logo
-  
+  import metadata from "../../metadata"
   import Item from "./Item.svelte"
   
   let show = false
-  let button
-
-  const nav: Nav[] = [
-    {
-      text: "Posts",
-      href: "/posts"
-    },
-    {
-      text: "Projects",
-      children: [
-        {
-          text: "Okkema Labs",
-          href: "https://okkema.org",
-          external: true,
-        },
-        {
-          text: "Rayün Handmade",
-          href: "https://rayunhandmade.com",
-          external: true,
-        },
-        {
-          text: "Crank Tools",
-          href: "https://crank.tools",
-          external: true,
-        },
-      ]
-    },
-    {
-      text: "Tags",
-      href: "/tags"
-    },
-    {
-      text: "Contact",
-      href:"/contact"
-    }
-  ]
+  const { navigation } = metadata
 
   const toggle = () => show = !show
   const close = (event) => {
@@ -54,13 +18,12 @@
     <a href="/" title="Home">
       <img
         alt="Logo" 
-        src={logo}
+        src="/img/logo.png"
       >
     </a>
     <button 
       role="menu"
       type="button" 
-      bind:this={button}
       on:click={toggle}
     >
       <i 
@@ -70,7 +33,7 @@
     </button>
   </div>
   <div class="links" class:show={show}>
-    {#each nav as item}
+    {#each navigation as item}
       <Item item={item} />
     {/each}
   </div>

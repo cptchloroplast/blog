@@ -15,9 +15,12 @@ export interface Props {
   image?: string
 }
 
+import metadata from "../metadata.ts"
+const { author: { name, email } } = metadata as Metadata
+
 const {
   title,
-  description = "Benjamin Okkema's Homepage", 
+  description = metadata.description, 
   image = "/img/me.webp" 
 } = Astro.props
 const { origin, hostname } = Astro.site
@@ -28,7 +31,7 @@ const { origin, hostname } = Astro.site
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="author" content="Benjamin Okkema <ben@okkema.org>" />
+    <meta name="author" content={`${name} <${email}>`} />
     <title>{title} - {hostname}</title>
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="/css/icons.css">
@@ -39,7 +42,7 @@ const { origin, hostname } = Astro.site
     <meta property="og:image" content={`${origin}${image}`} />
   </head>
   <body>
-    <Header logo="/img/logo.png" client:load />
+    <Header client:load />
     <div>
       <main>
         <slot />

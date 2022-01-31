@@ -1,10 +1,23 @@
 ---
+import metadata from "../metadata.ts"
+const { author: { name, email } } = metadata as Metadata
+
 const build = process.env.CF_PAGES_COMMIT_SHA
 const href = `https://github.com/cptchloroplast/blog/commit/${build}`
-const year = new Date().getUTCFullYear()
+const current = new Date().getUTCFullYear()
+const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
+  .reduce((result, post) => {
+    const year = new Date(post.published).getUTCFullYear()
+    return year < result ? year : result
+  }, current)
 ---
 <footer>
-  <small>&copy; {year} - 2018 Benjamin Okkema</small>
+  <small>
+    <span>&copy;</span>
+    {initial < current && <span>{current}-{initial}</span>}
+    {initial === current && <span>{current}</span>}
+    <span>{name} &lt;{email}&gt;</span>
+  </small>
   {build && 
     <small id="build">
       <span>Build: </span>

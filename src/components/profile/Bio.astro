@@ -1,34 +1,6 @@
 ---
-const bio = [
-  {
-    icon: "lab",
-    text: "Founder @ ",
-    link: {
-      href: "https://okkema.org",
-      text: "Okkema Labs"
-    }
-  },
-  {
-    icon: "code",
-    text: "Software Engineer @ ",
-    link: {
-      href: "https://www.nvisia.com/",
-      text: "nvisia",
-    }
-  },
-  {
-    icon: "wrench",
-    text: "Guerrilla Bicycle Mechanic"
-  },
-  {
-    icon: "leaf",
-    text: "Amateur Botanist"
-  },
-  {
-    icon: "space",
-    text: "Astronomy Enthusiast"
-  }
-] as Bio[]
+import metadata from "../../metadata.ts"
+const { profile: { bio } } = metadata as Metadata
 ---
 <ul>
   {bio.map(item => {
