@@ -4,14 +4,15 @@ const { profile: { bio } } = metadata as Metadata
 ---
 <ul>
   {bio.map(item => {
+    const { icon, text, link } = item
     return (
       <li>
         <span class="icon">
-          <i class={`i-${item.icon}`}></i>
+          <i class={`i-${icon}`}></i>
         </span>
         <span>
-          <span class="text">{item.text}</span>
-          {item.link && <a href={item.link.href} target="_blank">{item.link.text}</a>} 
+          <span class="text">{text}</span>
+          {link && <a href={link.href} title={link.href} target="_blank">{link.text}</a>} 
         </span>
       </li>
     )

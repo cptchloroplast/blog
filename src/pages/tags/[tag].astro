@@ -35,7 +35,7 @@ const { tag } = Astro.request.params
 const { posts } = Astro.props as Props
 const sorted = posts.sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
-<BaseLayout title={tag}>
+<BaseLayout title={`Tags - ${tag}`}>
   <Card>
     <Title>{tag}</Title>
     <Subtitle>Check out some related posts.</Subtitle>

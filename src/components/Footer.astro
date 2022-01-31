@@ -13,11 +13,10 @@ const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
 ---
 <footer>
   <small>
-    <span>&copy;</span>
-    {initial < current && <span>{current}-{initial}</span>}
-    {initial === current && <span>{current}</span>}
+    {initial < current && <span>&copy; {initial}-{current}</span>}
+    {initial === current && <span>&copy; {current}</span>}
     <span>{name}</span>
-    <a href={`mailto:${email}`}>&lt;{email}&gt;</a>
+    <a href={`mailto:${email}`} title={email}>&lt;{email}&gt;</a>
   </small>
   {build && 
     <small id="build">
