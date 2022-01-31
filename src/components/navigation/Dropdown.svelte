@@ -1,5 +1,8 @@
 <script>
   export let text
+
+  import Icon from "../Icon.svelte"
+
   let show = false
 
   const toggle = () => show = !show
@@ -18,10 +21,7 @@
     on:click={toggle}
   >
     <span role="menu">{text}</span>
-    <i 
-      class="i-dropdown"
-      role="menu"
-    ></i>
+    <Icon icon="dropdown" role="menu" color="white" />
   </button>
   <div id="items" class:show={show} >
     <slot/>
@@ -60,10 +60,7 @@
 
   span {
     padding: 0px 8px;
-  }
-
-  i {
-    margin-left: 8px; 
+    margin-right: 8px;
   }
 
   #items {

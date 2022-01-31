@@ -1,6 +1,7 @@
 <script lang="ts">
   import metadata from "../../metadata"
   import Item from "./Item.svelte"
+  import Icon from "../Icon.svelte"
   
   let show = false
   const { navigation } = metadata
@@ -26,10 +27,12 @@
       type="button" 
       on:click={toggle}
     >
-      <i 
-        class="i-menu"
-        role="menu"  
-      ></i>
+      <Icon
+        icon="menu"
+        color="white"
+        size="large"
+        role="menu"
+      />
     </button>
   </div>
   <div class="links" class:show={show}>
@@ -61,17 +64,16 @@
     border: none;
   }
 
+  a {
+    display: flex;
+  }
+
   a:hover, a:focus {
     background-color: dimgray;
   }
 
   a:active {
     background-color: darkslategray;
-  }
-
-  i {
-    color: white;
-    font-size: 30px;
   }
 
   .buttons {

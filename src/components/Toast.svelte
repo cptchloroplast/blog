@@ -1,10 +1,11 @@
 <script>
   import { toast } from "../stores/toast"
+  import Icon from "./Icon.svelte"
 </script>
 
 {#if $toast}
 <div class:flash={$toast}>
-  <i class={`i-${$toast.type}`}></i>
+  <Icon icon={toast.type} color="white" size="large" />
   <span>{$toast.text}</span>
 </div>
 {/if}
@@ -25,10 +26,6 @@
     flex-direction: row;
     align-items: center;
     gap: 8px;
-  }
-
-  i {
-    font-size: 30px;
   }
 
   .flash {

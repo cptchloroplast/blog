@@ -1,7 +1,8 @@
 <script lang="ts">
-  import Dropdown from "./Dropdown.svelte"
+  export let item: Navigation
   
-  export let item: Nav
+  import Dropdown from "./Dropdown.svelte"
+  import Icon from "../Icon.svelte"
   
   const {text, href, external, children} = item
 </script>
@@ -16,7 +17,7 @@
       {:else}
         <a class="item child" href={child.href} title={child.href} target="_blank">
           <span>{child.text}</span>
-          <i class="i-external"></i>
+          <Icon icon="external" />
         </a>
       {/if}
     {/each}
@@ -28,7 +29,7 @@
 {:else}
   <a class="item" href={href} title={href} target="_blank">
     <span>{text}</span>
-    <i class="i-external"></i>
+    <Icon icon="external" />
   </a>
 {/if}
 

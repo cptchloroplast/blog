@@ -1,13 +1,15 @@
 ---
+import Icon from "../Icon.svelte"
 import metadata from "../../metadata.ts"
 const { profile: { contact } } = metadata as Metadata
 ---
 <ul>
   {contact.map(item => {
+    const { href, title, icon } = item
     return (
       <li>
-        <a href={item.href} title={item.title} target="_blank">
-          <i class={`i-${item.icon}`}></i>
+        <a href={href} title={title} target="_blank">
+        <Icon icon={icon} size="large" />
         </a>
       </li>
     )
@@ -27,10 +29,6 @@ const { profile: { contact } } = metadata as Metadata
 
   li {
     margin-right: 8px;
-  }
-
-  i {
-    font-size: 30px;
   }
 
   a {

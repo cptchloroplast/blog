@@ -2,6 +2,7 @@
   import Input from "./Input.svelte"
   import Button from "./Button.svelte"
   import Form from "./Form.svelte"
+  import Icon from "../Icon.svelte"
 </script>
 
 <Form
@@ -17,7 +18,7 @@
       required
     />
     <Button title="Subscribe!">
-      <i class="i-send" />
+      <Icon icon="send" color="white" size="large" />
     </Button>
   </div>
 </Form>
@@ -27,11 +28,6 @@
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    gap: 10px;
-  }
-
-  i {
-    color: white;
-    font-size: 30px;
+    gap: 8px;
   }
 </style>

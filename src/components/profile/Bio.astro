@@ -1,4 +1,5 @@
 ---
+import Icon from "../Icon.svelte"
 import metadata from "../../metadata.ts"
 const { profile: { bio } } = metadata as Metadata
 ---
@@ -8,10 +9,10 @@ const { profile: { bio } } = metadata as Metadata
     return (
       <li>
         <span class="icon">
-          <i class={`i-${icon}`}></i>
+          <Icon icon={icon} />
         </span>
         <span>
-          <span class="text">{text}</span>
+          <span>{text}</span>
           {link && <a href={link.href} title={link.href} target="_blank">{link.text}</a>} 
         </span>
       </li>
@@ -33,11 +34,7 @@ const { profile: { bio } } = metadata as Metadata
   }
 
   .icon {
-    width: 25px;
+    width: 32px;
     text-align: center;
-  }
-
-  .text {
-    margin-left: 8px;
   }
 </style>

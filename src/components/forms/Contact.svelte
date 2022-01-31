@@ -4,6 +4,7 @@
   import Form from "./Form.svelte"
   import TextArea from "./TextArea.svelte"
   import Captcha from "./Captcha.svelte"
+  import Icon from "../Icon.svelte"
   
   const sitekey = process.env.HCAPTCHA_SITEKEY
 </script>
@@ -29,7 +30,7 @@
     <div class="row">
       <Captcha sitekey={sitekey} />
       <Button title="Send!">
-        <i class="i-send" />
+        <Icon icon="send" color="white" size="large" />
       </Button>
     </div>
   </div>
@@ -49,10 +50,5 @@
     gap: 8px;
     flex-wrap: wrap;
     justify-content: end;
-  }
-
-  i {
-    color: white;
-    font-size: 30px;
   }
 </style>
