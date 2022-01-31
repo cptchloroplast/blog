@@ -4,6 +4,7 @@ type Metadata = {
     email: string
   }
   description: string
+  repo: string
   navigation: Navigation[]
   profile: {
     bio: Bio[]

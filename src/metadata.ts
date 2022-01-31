@@ -4,6 +4,7 @@ const metadata: Metadata = {
     email: "ben@okkema.org",
   },
   description: "Benjamin Okkema's Homepage",
+  repo: "https://github.com/cptchloroplast/blog",
   navigation: [
     {
       text: "Posts",

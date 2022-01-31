@@ -1,9 +1,9 @@
 ---
 import metadata from "../metadata.ts"
-const { author: { name, email } } = metadata as Metadata
+const { author: { name, email }, repo } = metadata as Metadata
 
 const build = process.env.CF_PAGES_COMMIT_SHA
-const href = `https://github.com/cptchloroplast/blog/commit/${build}`
+const href = `${repo}/commit/${build}`
 const current = new Date().getUTCFullYear()
 const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
   .reduce((result, post) => {
@@ -16,12 +16,13 @@ const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
     <span>&copy;</span>
     {initial < current && <span>{current}-{initial}</span>}
     {initial === current && <span>{current}</span>}
-    <span>{name} &lt;{email}&gt;</span>
+    <span>{name}</span>
+    <a href={`mailto:${email}`}>&lt;{email}&gt;</a>
   </small>
   {build && 
     <small id="build">
       <span>Build: </span>
-      <a href={href} target="_blank">{build.slice(0,7)}</a>
+      <a href={href} title={build} target="_blank">{build.slice(0,7)}</a>
     </small>
   }
 </footer>
@@ -46,7 +47,7 @@ const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
     color: lightsteelblue;
   }
 
-  a:active, a:visited {
+  a:active {
     color: darkslateblue;
   }
 </style>
