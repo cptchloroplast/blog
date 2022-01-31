@@ -13,7 +13,7 @@ const { tags } = Astro.props as Props
     const { name, count } = tag
     return (
       <li>
-        <Chip href={`/tags/${name}`} title={name}>
+        <Chip href={`/tags/${name}`} title={`Tags - ${name}`}>
           <span>
             <span>{name}</span>
             {count && <span>: {count}</span>}

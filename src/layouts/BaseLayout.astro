@@ -10,12 +10,14 @@ import Title from "../components/Title.astro"
 import Subscribe from "../components/forms/Subscribe.svelte"
 
 export interface Props {
-  title?: string
+  title: string
+  description?: string
   image?: string
 }
 
-const { 
-  title = "Benjamin Okkema's Homepage", 
+const {
+  title,
+  description = "Benjamin Okkema's Homepage", 
   image = "/img/me.webp" 
 } = Astro.props
 const { origin, hostname } = Astro.site
@@ -25,7 +27,7 @@ const { origin, hostname } = Astro.site
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="I'll fix your bike for beer." />
+    <meta name="description" content={description} />
     <meta name="author" content="Benjamin Okkema <ben@okkema.org>" />
     <title>{title} - {hostname}</title>
     <link rel="icon" href="favicon.ico">
@@ -33,7 +35,7 @@ const { origin, hostname } = Astro.site
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={origin} />
-    <meta property="og:description" content="I'll fix your bike for beer." />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content={`${origin}${image}`} />
   </head>
   <body>

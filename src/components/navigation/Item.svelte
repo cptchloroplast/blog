@@ -14,7 +14,7 @@
       {:else if !child.external}
         <a class="item child" href={child.href} title={child.text}>{child.text}</a>
       {:else}
-        <a class="item child" href={child.href} title={child.text} target="_blank">
+        <a class="item child" href={child.href} title={child.href} target="_blank">
           <span>{child.text}</span>
           <i class="i-external"></i>
         </a>
@@ -26,7 +26,7 @@
 {:else if !external}
   <a class="item" href={href} title={text}>{text}</a>
 {:else}
-  <a class="item" href={href} title={text} target="_blank">
+  <a class="item" href={href} title={href} target="_blank">
     <span>{text}</span>
     <i class="i-external"></i>
   </a>
@@ -39,7 +39,7 @@
   }
 
   .item {
-    padding: 8px;
+    padding: 8px 16px;
     color: white;
     background-color: black;
     text-decoration: none;

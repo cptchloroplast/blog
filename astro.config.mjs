@@ -20,7 +20,7 @@ const config = {
   ],
   vite: {
     plugins: [
-      EnvironmentPlugin(["CF_PAGES_COMMIT_SHA"], { defineOn: 'import.meta.env' }),
+      EnvironmentPlugin(["CF_PAGES_COMMIT_SHA", "HCAPTCHA_SITEKEY"]),
     ]
   },
 };

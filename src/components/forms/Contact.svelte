@@ -39,14 +39,14 @@
   .column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .row {
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     justify-content: end;
   }

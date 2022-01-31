@@ -98,6 +98,14 @@
     border: none;
   }
 
+  a:hover, a:focus {
+    background-color: dimgray;
+  }
+
+  a:active {
+    background-color: darkslategray;
+  }
+
   i {
     color: white;
     font-size: 30px;
