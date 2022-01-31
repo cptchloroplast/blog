@@ -1,5 +1,5 @@
 ---
-const build = process.env.CF_PAGES_COMMIT_SHA
+const build = import.meta.env.CF_PAGES_COMMIT_SHA as string
 const href = `https://github.com/cptchloroplast/blog/commit/${build}`
 const year = new Date().getUTCFullYear()
 ---

@@ -12,6 +12,26 @@
       href: "/posts"
     },
     {
+      text: "Projects",
+      children: [
+        {
+          text: "Okkema Labs",
+          href: "https://okkema.org",
+          external: true,
+        },
+        {
+          text: "Rayün Handmade",
+          href: "https://rayunhandmade.com",
+          external: true,
+        },
+        {
+          text: "Crank Tools",
+          href: "https://crank.tools",
+          external: true,
+        },
+      ]
+    },
+    {
       text: "Tags",
       href: "/tags"
     },
@@ -96,6 +116,7 @@
     align-items: stretch;
   }
 
+  /** mobile */
   @media screen and (max-width: 1000px) {
     nav {
       flex-direction: column;

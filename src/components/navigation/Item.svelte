@@ -10,11 +10,11 @@
   <Dropdown text={text}>
     {#each children as child}
       {#if !child.href}
-        <span class="item">{child.text}</span>
+        <span class="item child">{child.text}</span>
       {:else if !child.external}
-        <a class="item" href={child.href} title={child.text}>{child.text}</a>
+        <a class="item child" href={child.href} title={child.text}>{child.text}</a>
       {:else}
-        <a class="item" href={child.href} title={child.text} target="_blank">
+        <a class="item child" href={child.href} title={child.text} target="_blank">
           <span>{child.text}</span>
           <i class="i-external"></i>
         </a>
@@ -34,13 +34,14 @@
 
 <style>
   a {
-    width: 100%;
     justify-content: space-between;
+    gap: 8px;
   }
 
   .item {
     padding: 8px;
     color: white;
+    background-color: black;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -57,5 +58,20 @@
   .item:active {
     color: white;
     background-color: darkslategray;
+  }
+
+  .child {
+    color: black;
+    background-color: white;
+  }
+
+  .child:hover, .child:focus {
+    color: black;
+    background-color: lightgray;
+  }
+
+  .child:active {
+    color: black;
+    background-color: slategray;
   }
 </style>
