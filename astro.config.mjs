@@ -1,4 +1,7 @@
-export default {
+import EnvironmentPlugin from "vite-plugin-environment"
+
+/** @type {import('astro').AstroUserConfig} */
+const config = {
   projectRoot: "./",
   src: "./src",
   pages: "./src/pages",
@@ -15,4 +18,11 @@ export default {
   renderers: [
     "@astrojs/renderer-svelte",
   ],
+  vite: {
+    plugins: [
+      EnvironmentPlugin(["CF_PAGES_COMMIT_SHA"], { defineOn: 'import.meta.env' }),
+    ]
+  },
 };
+
+export default config
