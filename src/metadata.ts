@@ -13,11 +13,11 @@ const metadata: Metadata = {
     {
       text: "Projects",
       children: [
-        {
-          text: "Okkema Labs",
-          href: "https://okkema.org",
-          external: true,
-        },
+        // {
+        //   text: "Okkema Labs",
+        //   href: "https://okkema.org",
+        //   external: true,
+        // },
         {
           text: "Rayün Handmade",
           href: "https://rayunhandmade.com",
@@ -36,7 +36,12 @@ const metadata: Metadata = {
     },
     {
       text: "Contact",
-      href:"/contact"
+      href: "/contact"
+    },
+    {
+      text: "RSS",
+      href: "/rss.xml",
+      icon: "rss",
     }
   ],
   profile: {

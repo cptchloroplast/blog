@@ -4,7 +4,7 @@
   import Dropdown from "./Dropdown.svelte"
   import Icon from "../Icon.svelte"
   
-  const {text, href, external, children} = item
+  const {text, href, external, children, icon} = item
 </script>
 
 {#if children}
@@ -13,7 +13,12 @@
       {#if !child.href}
         <span class="item child">{child.text}</span>
       {:else if !child.external}
-        <a class="item child" href={child.href} title={child.text}>{child.text}</a>
+        <a class="item child" href={child.href} title={child.text}>
+          <span>{child.text}</span>
+          {#if child.icon}
+            <Icon icon={child.icon} color="white" />
+          {/if}
+        </a>
       {:else}
         <a class="item child" href={child.href} title={child.href} target="_blank">
           <span>{child.text}</span>
@@ -25,7 +30,12 @@
 {:else if !href}
   <span class="item">{text}</span>
 {:else if !external}
-  <a class="item" href={href} title={text}>{text}</a>
+  <a class="item" href={href} title={text}>
+    <span>{text}</span>
+      {#if icon}
+        <Icon icon={icon} color="white" />
+      {/if}
+    </a>
 {:else}
   <a class="item" href={href} title={href} target="_blank">
     <span>{text}</span>
