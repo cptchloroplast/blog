@@ -23,6 +23,31 @@ const config = {
       EnvironmentPlugin(["CF_PAGES_COMMIT_SHA", "HCAPTCHA_SITEKEY"]),
     ]
   },
+  markdownOptions: {
+    render: [
+      '@astrojs/markdown-remark',
+      {
+        remarkPlugins: [
+          'remark-gfm'
+        ],
+        rehypePlugins: [
+          ['rehype-external-links', { 
+            target: "_blank", 
+            content: { 
+              type: "element", 
+              tagName: "i", 
+              properties: { 
+                className: ["i-external"],  
+              } 
+            },
+            contentProperties: {
+              style: "margin-left: 4px;"
+            },
+          }],
+        ],
+      },
+    ]
+  }
 };
 
 export default config
