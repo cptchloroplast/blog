@@ -5,6 +5,7 @@
   "scripts": {
     "build": "npm-run-all build:astro build:webpack",
     "build:astro": "astro build",
+    "build:astro:verbose": "astro build --verbose",
     "build:webpack": "webpack -c ./functions/webpack.config.js",
     "build:webpack:watch": "nodemon --watch ./functions --ext ts --ignore *.test.ts --exec npm run build:webpack",
     "clean": "rm -rf dist",
@@ -14,14 +15,14 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/renderer-svelte": "^0.3.1",
+    "@astrojs/renderer-svelte": "^0.5.1",
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@cloudflare/workers-types": "^3.0.0",
     "@okkema/worker": "^0.0.14",
     "@types/node": "^17.0.13",
-    "astro": "^0.22.20",
+    "astro": "^0.23.7",
     "autoprefixer": "^10.4.2",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.2",

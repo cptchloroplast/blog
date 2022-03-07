@@ -6,7 +6,7 @@ const build = process.env.CF_PAGES_COMMIT_SHA
 const href = `${repo}/commit/${build}`
 const current = new Date().getUTCFullYear()
 
-// https://github.com/withastro/astro/issues/2419
+// https://github.com/withastro/rfcs/discussions/118
 const initial = 2018
 // const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
 //   .reduce((result, post) => {

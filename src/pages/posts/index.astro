@@ -5,7 +5,7 @@ import Title from "../../components/Title.astro"
 import Subtitle from "../../components/Subtitle.astro"
 import PostList from "../../components/PostList.astro"
 
-const posts = Astro.fetchContent<Post>("./*.md")
+const posts = (await Astro.fetchContent<Post>("./*.md"))
   .sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
 <BaseLayout title="Posts">

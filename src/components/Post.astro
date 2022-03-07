@@ -5,7 +5,7 @@ import Subtitle from "../components/Subtitle.astro"
 import Tags from "../components/Tags.astro"
 
 export interface Props {
-  post: FetchContentResult<Post>
+  post: Post
 }
 
 const { post: { title, published, updated, tags, astro: { html } } } = Astro.props as Props
@@ -17,7 +17,7 @@ const { post: { title, published, updated, tags, astro: { html } } } = Astro.pro
     {updated && <span>Updated: {new Date(updated).toISOString().split("T")[0]}</span>}
   </Subtitle>
   <hr>
-  <div id="markdown">{html}</div>
+  <div id="markdown" set:html={html} />
   <hr>
   <Tags tags={tags.split(",").map((tag): Tag => ({ name: tag }))} />
 </article>
