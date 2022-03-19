@@ -1,5 +1,4 @@
 ---
-import Chip from "../components/Chip.astro"
 import Title from "../components/Title.astro"
 import Subtitle from "../components/Subtitle.astro"
 import Tags from "../components/Tags.astro"
@@ -33,5 +32,14 @@ const { post: { title, published, updated, tags, astro: { html } } } = Astro.pro
 
   #markdown p:last-of-type {
     margin-bottom: 0;
+  }
+
+  #markdown table {
+    border-collapse: collapse;
+  }
+
+  #markdown td {
+    border: solid black 1px;
+    padding: 4px;
   }
 </style>
