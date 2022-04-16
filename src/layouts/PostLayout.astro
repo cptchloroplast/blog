@@ -2,7 +2,7 @@
 import BaseLayout from "./BaseLayout.astro"
 import Card from "../components/Card.astro"
 import Post from "../components/Post.astro"
-
+import Giscus from "@giscus/svelte"
 export interface Props {
   content: Post
 }
@@ -13,5 +13,18 @@ const { title, description } = content
 <BaseLayout title={title} description={description}>
   <Card>
     <Post post={content} />
+  </Card>
+  <Card>
+    <Giscus 
+      repo="cptchloroplast/blog"
+      repoId="MDEwOlJlcG9zaXRvcnkyNTM2MzYxNDk="
+      mapping="og:title"
+      reactionsEnabled="0"
+      emitMetadata="0"
+      inputPosition="bottom"
+      theme="light"
+      lang="en"
+      client:load
+    />
   </Card>
 </BaseLayout>
