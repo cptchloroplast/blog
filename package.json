@@ -21,6 +21,7 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
     "@cloudflare/workers-types": "^3.0.0",
+    "@giscus/svelte": "^2.0.2",
     "@okkema/worker": "^0.0.14",
     "@types/node": "^17.0.13",
     "astro": "^0.23.7",
