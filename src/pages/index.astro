@@ -1,13 +1,7 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import Card from "../components/Card.astro"
-import Post from "../components/Post.astro"
+import PostLayout from "../layouts/PostLayout.astro"
 
-const posts = (await Astro.fetchContent<Post>("./posts/*.md"))
-  .sort((a,b) => (a.published < b.published) ? 1 : -1)
+const post = (await Astro.fetchContent<Post>("./posts/*.md"))
+  .sort((a,b) => (a.published < b.published) ? 1 : -1)[0]
 ---
-<BaseLayout title="Home">
-  <Card>
-    <Post post={posts[0]}/>
-  </Card>
-</BaseLayout>
+<PostLayout content={post} />
