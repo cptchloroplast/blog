@@ -3,7 +3,9 @@
   "version": "6.6.6",
   "private": true,
   "scripts": {
-    "build": "astro build",
+    "build": "npm-run-all build:astro build:esbuild",
+    "build:astro": "astro build",
+    "build:esbuild": "esbuild ./functions/index.ts --bundle --sourcemap --outfile=./dist/worker.mjs --format=esm",
     "clean": "rm -rf dist",
     "start": "npm-run-all -p start:astro start:miniflare",
     "start:astro": "astro dev",
@@ -14,7 +16,7 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^0.6.4",
     "@astrojs/renderer-svelte": "^0.5.1",
-    "@cloudflare/workers-types": "^3.0.0",
+    "@cloudflare/workers-types": "^3.1.0",
     "@giscus/svelte": "^2.0.2",
     "@okkema/worker": "^0.0.14",
     "@types/node": "^17.0.13",

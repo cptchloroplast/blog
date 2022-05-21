@@ -1,8 +1,18 @@
 name = "blog"
-main = "./functions/index.ts"
 
 kv_namespaces = [
-  { binding = "SUSCRIBERS", id = "", preview_id = "566506980bc5459aa2f30ad5d15f3e51" }
+  { binding = "SUBSCRIBERS" }
 ]
 
-compatibility_date = "2022-05-21"
+[build]
+command = "npm run build:esbuild"
+watch_dir = "./dist"
+
+[build.upload]
+format = "modules"
+dir = "./dist"
+main = "./worker.mjs"
+
+[miniflare]
+upstream = "http://localhost:5000"
+kv_persist = true

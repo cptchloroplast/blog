@@ -1,10 +1,9 @@
 import { router } from "./router"
 
 export default {
-  async fetch(request, env, ctx) {
-    console.log(request.url)
+  async fetch(request: Request, env: Environment, ctx: ExecutionContext) {
     if (request.url.match(/^.+\/api\/.+/g)) {
-      return router.handle(request)
+      return router.handle(request, env, ctx)
     }
     return fetch(request)
   }

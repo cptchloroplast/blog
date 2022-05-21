@@ -1,11 +1,12 @@
 import { uuid } from "@okkema/worker/utils"
 import { json } from "../utils"
-import { sendEmail } from "../sendgrid"
-import { subscribers } from "../kv/subscribers"
+import Emailer from "../lib/emailer"
+import { Subscribers } from "../kv/subscribers"
 
 const site = "ben.okkema.org"
 
-export const subscribe = async (req: Request): Promise<Response> => {
+export const subscribe = async (req: Request, env: Environment): Promise<Response> => {
+  const subscribers = Subscribers(env.SUBSCRIBERS)
   const data = await req.json<{ email: string }>()
   const { email } = data 
   const subscriber = await subscribers.get(email)
@@ -29,14 +30,20 @@ export const subscribe = async (req: Request): Promise<Response> => {
     email,
     id,
   })
-  const ok = await sendEmail(email, `Confirm your subscription to ${site}!`, `
-    <p>Hi!</p>
-    <p>Thanks for subscribing to the email list!</p>
-    <p>We promise to never send you spam, unless you specifically request it!</p>
-    <a href="https://${site}/api/subscribe/confirm?${params.toString()}">Click here to confirm your subscription!</a>
-    <p>Stay tuned for all the latest updates!</p>
-    <p>Ben</p>
-  `)
+  const emailer = Emailer({ key: env.SENDGRID_API_KEY })
+  const ok = await emailer.send({
+    from: env.ADMIN_EMAIL,
+    to: email,
+    subject: `Confirm your subscription to ${site}!`,
+    html: `
+      <p>Hi!</p>
+      <p>Thanks for subscribing to the email list!</p>
+      <p>We promise to never send you spam, unless you specifically request it!</p>
+      <a href="https://${site}/api/subscribe/confirm?${params.toString()}">Click here to confirm your subscription!</a>
+      <p>Stay tuned for all the latest updates!</p>
+      <p>Ben</p>
+    `
+  })
   if (!ok) {
     return json({
       ok: false,

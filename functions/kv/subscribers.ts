@@ -1,5 +1,3 @@
-declare const SUBSCRIBERS: KVNamespace
-
 type Subscriber = {
   id: string
   email: string
@@ -7,14 +5,14 @@ type Subscriber = {
   confirmed: boolean
 }
 
-export const subscribers = {
+export const Subscribers = (KV: KVNamespace) => ({
   get: (email: string) => {
-    return SUBSCRIBERS.get<Subscriber>(email, "json")
+    return KV.get<Subscriber>(email, "json")
   },
   put: (email: string, subscriber: Subscriber) => {
-    return SUBSCRIBERS.put(email, JSON.stringify(subscriber))
+    return KV.put(email, JSON.stringify(subscriber))
   },
   delete: (email: string) => {
-    return SUBSCRIBERS.delete(email)
+    return KV.delete(email)
   },
-}
+})

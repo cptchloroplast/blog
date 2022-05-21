@@ -31,8 +31,12 @@ resource "cloudflare_workers_kv_namespace" "subscribers" {
   title = "blog-subscribers"
 }
 
+resource "cloudflare_workers_kv_namespace" "subscribers-preview" {
+  title = "blog-subscribers_preview"
+}
+
 locals {
-  worker_path = abspath("${path.module}/../dist/worker.js")
+  worker_path = abspath("${path.module}/../dist/worker.mjs")
 }
 
 resource "cloudflare_worker_script" "worker" {
