@@ -11,7 +11,7 @@
     "clean": "rm -rf dist",
     "start": "npm-run-all -p build:webpack:watch start:astro start:miniflare",
     "start:astro": "astro dev",
-    "start:miniflare": "miniflare ./dist/worker.js -w -d -u http://localhost:3000",
+    "start:miniflare": "miniflare -w -d",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -37,6 +37,7 @@
     "typescript": "^4.4.3",
     "vite-plugin-environment": "^1.1.0",
     "webpack": "^5.61.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "wrangler": "^2.0.6"
   }
 }

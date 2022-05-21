@@ -1,6 +1,18 @@
+name = "blog"
+main = "./dist/worker.js"
+
 kv_namespaces = [
-  { binding = "SUBSCRIBERS" }
+  { binding = "SUSCRIBERS", }
 ]
+
+compatibility_date = "2022-05-21"
+
+[build]
+command = "npm run build:webpack"
+
+[build.upload]
+main = "./worker.js"
 
 [miniflare]
 kv_persist = true
+upstream = "http://localhost:5000"
