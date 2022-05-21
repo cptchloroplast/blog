@@ -3,3 +3,10 @@ type Environment = {
   ADMIN_EMAIL: string
   SUBSCRIBERS: KVNamespace
 }
+
+type Subscriber = {
+  id: string
+  email: string
+  subscribed: Date
+  confirmed: boolean
+}

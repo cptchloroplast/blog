@@ -1,12 +1,12 @@
 import { uuid } from "@okkema/worker/utils"
-import { json } from "../utils"
+import { json } from "../lib/utils"
 import Emailer from "../lib/emailer"
-import { Subscribers } from "../kv/subscribers"
+import Repository from "../lib/repository"
 
 const site = "ben.okkema.org"
 
 export const subscribe = async (req: Request, env: Environment): Promise<Response> => {
-  const subscribers = Subscribers(env.SUBSCRIBERS)
+  const subscribers = Repository<Subscriber>(env.SUBSCRIBERS)
   const data = await req.json<{ email: string }>()
   const { email } = data 
   const subscriber = await subscribers.get(email)

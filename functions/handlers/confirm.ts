@@ -1,4 +1,4 @@
-import { json } from "../utils"
+import { json } from "../lib/utils"
 
 declare const SUBSCRIBERS: KVNamespace
 

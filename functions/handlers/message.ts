@@ -1,4 +1,4 @@
-import { json } from "../utils"
+import { json } from "../lib/utils"
 
 export const message = async (req: Request): Promise<Response> => {
   const data = await req.json()
