@@ -1,18 +1,8 @@
 name = "blog"
-main = "./dist/worker.js"
+main = "./functions/index.ts"
 
 kv_namespaces = [
-  { binding = "SUSCRIBERS", }
+  { binding = "SUSCRIBERS", id = "", preview_id = "566506980bc5459aa2f30ad5d15f3e51" }
 ]
 
 compatibility_date = "2022-05-21"
-
-[build]
-command = "npm run build:webpack"
-
-[build.upload]
-main = "./worker.js"
-
-[miniflare]
-kv_persist = true
-upstream = "http://localhost:5000"
