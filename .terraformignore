@@ -1,3 +1,3 @@
 *
 !terraform/
-!dist/worker.js
+!dist/worker.mjs
