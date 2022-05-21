@@ -6,12 +6,11 @@
     "build": "npm-run-all build:astro build:webpack",
     "build:astro": "astro build",
     "build:astro:verbose": "astro build --verbose",
-    "build:webpack": "webpack -c ./functions/webpack.config.js",
-    "build:webpack:watch": "nodemon --watch ./functions --ext ts --ignore *.test.ts --exec npm run build:webpack",
     "clean": "rm -rf dist",
     "start": "npm-run-all -p build:webpack:watch start:astro start:miniflare",
     "start:astro": "astro dev",
     "start:miniflare": "miniflare -w -d",
+    "start:wrangler": "wrangler dev",
     "preview": "astro preview"
   },
   "dependencies": {

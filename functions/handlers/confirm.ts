@@ -7,6 +7,8 @@ type ConfirmQuery = {
   email: string
 }
 
+type ConfirmRequest = Request & { query: ConfirmQuery }
+
 type Subscriber = {
   id: string
   email: string
@@ -14,8 +16,8 @@ type Subscriber = {
   confirmed: boolean
 }
 
-export const confirm = async (req: Request & { query: ConfirmQuery }): Promise<Response> => {
-  const { query: { email, id } } = req
+export const confirm = async (req: Request): Promise<Response> => {
+  const { query: { email, id } } = req as ConfirmRequest
   if (!id || !email) {
     return json({
       ok: false,
