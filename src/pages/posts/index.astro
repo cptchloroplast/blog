@@ -4,10 +4,11 @@ import Card from "../../components/Card.astro"
 import Title from "../../components/Title.astro"
 import Subtitle from "../../components/Subtitle.astro"
 import PostList from "../../components/PostList.astro"
+import sortPosts from "../../utils/sortPosts.ts"
 
 const posts = (await Astro.glob<Post>("./*.md"))
+  .sort(sortPosts)
   .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))
-  .sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
 <BaseLayout title="Posts">
   <Card>

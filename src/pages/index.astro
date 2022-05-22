@@ -1,7 +1,8 @@
 ---
+import sortPosts from "../utils/sortPosts.ts"
+
 const post = (await Astro.glob<Post>("./posts/*.md"))
-  .sort((a,b) => (a.frontmatter.published < b.frontmatter.published) ? 1 : -1)
-  .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))[0]
-  const Post = post.content
+  .sort(sortPosts)[0]
+const LatestPost = post.Content
 ---
-<Post />
+<LatestPost />
