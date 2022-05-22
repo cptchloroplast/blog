@@ -6,7 +6,8 @@ import Subtitle from "../../components/Subtitle.astro"
 import PostList from "../../components/PostList.astro"
 
 export async function getStaticPaths() {
-  const posts = await Astro.fetchContent("../posts/*.md")
+  const posts = (await Astro.glob<Post>("../posts/*.md"))
+    .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))
   const tags = posts.reduce((result, post) => {
     for (let tag of post.tags.split(",")) {
       if (!result[tag]) result[tag] = []
@@ -31,7 +32,7 @@ export interface Props {
   posts: Post[]
 }
 
-const { tag } = Astro.request.params
+const { tag } = Astro.params
 const { posts } = Astro.props as Props
 const sorted = posts.sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---

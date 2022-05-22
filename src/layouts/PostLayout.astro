@@ -12,7 +12,9 @@ const { title, description } = content
 ---
 <BaseLayout title={title} description={description}>
   <Card>
-    <Post post={content} />
+    <Post post={content}>
+      <slot />
+    </Post>
   </Card>
   <Card>
     <Giscus 
