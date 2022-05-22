@@ -1,18 +1,19 @@
 name: worker
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - functions/**
-      - terraform/**
-      - ".terraformignore"
-  pull_request:
-    paths:
-      - functions/**
-      - terraform/**
-      - ".terraformignore"
+on: workflow_dispatch
+# on:
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - functions/**
+#       - terraform/**
+#       - ".terraformignore"
+#   pull_request:
+#     paths:
+#       - functions/**
+#       - terraform/**
+#       - ".terraformignore"
 
 jobs:
   build-test-deploy:
