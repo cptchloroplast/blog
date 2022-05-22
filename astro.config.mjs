@@ -1,9 +1,8 @@
 import EnvironmentPlugin from "vite-plugin-environment";
 import svelte from "@astrojs/svelte";
-/** @type {import('astro').AstroUserConfig} */
-
 import { defineConfig } from "astro/config";
-const config = {
+
+export default defineConfig({
   site: "https://ben.okkema.org",
   server: {
     port: 5000
@@ -28,7 +27,4 @@ const config = {
       }
     }]]
   }
-};
-
-// https://astro.build/config
-export default defineConfig(config);
+});

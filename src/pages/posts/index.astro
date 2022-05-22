@@ -6,8 +6,8 @@ import Subtitle from "../../components/Subtitle.astro"
 import PostList from "../../components/PostList.astro"
 
 const posts = (await Astro.glob<Post>("./*.md"))
-  .sort((a,b) => (a.frontmatter.published < b.frontmatter.published) ? 1 : -1)
   .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))
+  .sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
 <BaseLayout title="Posts">
   <Card>
