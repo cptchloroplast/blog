@@ -1,0 +1,23 @@
+---
+import PostLayout from "./PostLayout.astro";
+
+export interface Props {
+  content: Post
+}
+
+const { content } = Astro.props as Props
+---
+<PostLayout content={content} />
+
+<style global>
+  #markdown p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #markdown p img {
+    border-radius: 2px;
+    width: 100%;
+  }
+</style>

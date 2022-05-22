@@ -11,13 +11,12 @@ const metadata: Metadata = {
       href: "/posts"
     },
     {
+      text: "Tags",
+      href: "/tags"
+    },
+    {
       text: "Projects",
       children: [
-        // {
-        //   text: "Okkema Labs",
-        //   href: "https://okkema.org",
-        //   external: true,
-        // },
         {
           text: "Rayün Handmade",
           href: "https://rayunhandmade.com",
@@ -29,10 +28,6 @@ const metadata: Metadata = {
           external: true,
         },
       ]
-    },
-    {
-      text: "Tags",
-      href: "/tags"
     },
     {
       text: "Contact",
@@ -56,7 +51,7 @@ const metadata: Metadata = {
       },
       {
         icon: "code",
-        text: "Software Engineer @ ",
+        text: "Technical Lead @ ",
         link: {
           href: "https://www.nvisia.com/",
           text: "nvisia",
