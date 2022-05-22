@@ -1,6 +1,6 @@
 import { json } from "../lib/utils"
+import Repository from "../lib/repository"
 
-declare const SUBSCRIBERS: KVNamespace
 
 type ConfirmQuery = {
   id: string
@@ -9,14 +9,7 @@ type ConfirmQuery = {
 
 type ConfirmRequest = Request & { query: ConfirmQuery }
 
-type Subscriber = {
-  id: string
-  email: string
-  subscribed: Date
-  confirmed: boolean
-}
-
-export const confirm = async (req: Request): Promise<Response> => {
+export const confirm = async (req: Request, env: Environment): Promise<Response> => {
   const { query: { email, id } } = req as ConfirmRequest
   if (!id || !email) {
     return json({
@@ -24,17 +17,18 @@ export const confirm = async (req: Request): Promise<Response> => {
       message: "Something doesn't look right here....",
     })
   }
-  const subscriber = await SUBSCRIBERS.get<Subscriber>(email, "json")
+  const subscribers = Repository<Subscriber>(env.SUBSCRIBERS)
+  const subscriber = await subscribers.get(email)
   if (!subscriber || id !== subscriber.id) {
     return json({
       ok: false,
       message: "Something doesn't look right here....",
     })
   }
-  await SUBSCRIBERS.put(email, JSON.stringify({
+  await subscribers.put(email, {
     ...subscriber,
     confirmed: true,
-  }))
+  })
   return json({
     ok: true,
     message: "Thanks for confirming your email!",

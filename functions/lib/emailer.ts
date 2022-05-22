@@ -1,3 +1,5 @@
+import { base64 } from "@okkema/worker/utils"
+
 export type Email = {
   to: string
   from: string
@@ -5,31 +7,29 @@ export type Email = {
   html: string
 }
 
-export type EmailerInit = {
-  key: string
-}
-
 type Emailer = {
   send: (email: Email) => Promise<boolean>
 }
 
-const Emailer = (init: EmailerInit): Emailer => {
-  const { key } = init
+const Emailer = (init: {
+  account: string
+  secret: string
+}): Emailer => {
+  const { account, secret } = init
   return {
     send: async (email) => {
       const { to, from, subject, html } = email
-      const response = await fetch("https://api.sendgrid.com/v3/mail/send", {
+      const response = await fetch("https://api.mailjet.com/v3/send", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${key}`,
+          Authorization: `Basic ${base64.encode(`${account}:${secret}`)}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          personalizations: [{ to: [{ email: to }] }],
-          subject,
-          content: [{ type: "text/html", value: html }],
-          from: { email: from },
-          reply_to: { email: from },
+          FromEmail: from,
+          Recipients:[{ Email: to }],
+          Subject: subject,
+          "Html-part": html,
         }),
       })
       return response.ok

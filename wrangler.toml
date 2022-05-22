@@ -1,7 +1,9 @@
 name = "blog"
+workers_dev = false
+compatibility_date = "2022-05-20"
 
 kv_namespaces = [
-  { binding = "SUBSCRIBERS" }
+  { binding = "SUBSCRIBERS", id="29bb0a582e6d49089775f462ba395859" }
 ]
 
 [build]

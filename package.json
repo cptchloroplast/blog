@@ -11,7 +11,9 @@
     "start:astro": "astro dev",
     "start:miniflare": "miniflare -w -d",
     "start:wrangler": "wrangler dev",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "publish": "wrangler publish",
+    "tail": "wrangler tail"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^0.6.4",

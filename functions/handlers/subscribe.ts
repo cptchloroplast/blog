@@ -30,7 +30,10 @@ export const subscribe = async (req: Request, env: Environment): Promise<Respons
     email,
     id,
   })
-  const emailer = Emailer({ key: env.SENDGRID_API_KEY })
+  const emailer = Emailer({ 
+    account: env.MAILJET_API_KEY,
+    secret: env.MAILJET_SECRET_KEY,
+  })
   const ok = await emailer.send({
     from: env.ADMIN_EMAIL,
     to: email,
