@@ -5,7 +5,4 @@ type Post = {
   updated?: Date
   tags: string
   url: string
-  astro: {
-    html: string
-  }
 }

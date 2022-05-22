@@ -1,7 +1,8 @@
 ---
 import PostLayout from "../layouts/PostLayout.astro"
 
-const post = (await Astro.fetchContent<Post>("./posts/*.md"))
-  .sort((a,b) => (a.published < b.published) ? 1 : -1)[0]
+const post = (await Astro.glob<Post>("./posts/*.md"))
+  .sort((a,b) => (a.frontmatter.published < b.frontmatter.published) ? 1 : -1)
+  .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))[0]
 ---
 <PostLayout content={post} />

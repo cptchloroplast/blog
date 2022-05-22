@@ -1,53 +1,34 @@
-import EnvironmentPlugin from "vite-plugin-environment"
-
+import EnvironmentPlugin from "vite-plugin-environment";
+import svelte from "@astrojs/svelte";
 /** @type {import('astro').AstroUserConfig} */
+
+import { defineConfig } from "astro/config";
 const config = {
-  projectRoot: "./",
-  src: "./src",
-  pages: "./src/pages",
-  dist: "./dist",
-  public: "./public",
-  buildOptions: {
-    site: "https://ben.okkema.org",
-    sitemap: true,
+  site: "https://ben.okkema.org",
+  server: {
+    port: 5000
   },
-  devOptions: {
-    hostname: "localhost",
-    port: 5000,
-  },
-  renderers: [
-    "@astrojs/renderer-svelte",
-  ],
+  integrations: [svelte()],
   vite: {
-    plugins: [
-      EnvironmentPlugin(["CF_PAGES_COMMIT_SHA", "HCAPTCHA_SITEKEY"]),
-    ]
+    plugins: [EnvironmentPlugin(["CF_PAGES_COMMIT_SHA", "HCAPTCHA_SITEKEY"])]
   },
-  markdownOptions: {
-    render: [
-      '@astrojs/markdown-remark',
-      {
-        remarkPlugins: [
-          'remark-gfm'
-        ],
-        rehypePlugins: [
-          ['rehype-external-links', { 
-            target: "_blank", 
-            content: { 
-              type: "element", 
-              tagName: "i", 
-              properties: { 
-                className: ["i-external"],  
-              } 
-            },
-            contentProperties: {
-              style: "margin-left: 4px;"
-            },
-          }],
-        ],
+  markdown: {
+    remarkPlugins: ['remark-gfm'],
+    rehypePlugins: [['rehype-external-links', {
+      target: "_blank",
+      content: {
+        type: "element",
+        tagName: "i",
+        properties: {
+          className: ["i-external"]
+        }
       },
-    ]
+      contentProperties: {
+        style: "margin-left: 4px;"
+      }
+    }]]
   }
 };
 
-export default config
+// https://astro.build/config
+export default defineConfig(config);

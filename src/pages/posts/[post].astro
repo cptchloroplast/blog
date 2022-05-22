@@ -5,8 +5,9 @@ import metadata from "../../metadata.ts"
 export async function getStaticPaths({ rss }) {
   const { description } = metadata as Metadata
   const { hostname } = Astro.site
-  const posts = (await Astro.fetchContent<Post>("./*.md"))
-    .sort((a,b) => (a.published < b.published) ? 1 : -1)
+  const posts = (await Astro.glob<Post>("./*.md"))
+    .sort((a,b) => (a.frontmatter.published < b.frontmatter.published) ? 1 : -1)
+    .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))
   rss({
     title: hostname,
     description,

@@ -8,7 +8,7 @@ export interface Props {
   post: Post
 }
 
-const { post: { title, published, updated, tags, astro: { html } } } = Astro.props as Props
+const { post: { title, published, updated, tags } } = Astro.props as Props
 ---
 <article>
   <Title>{title}</Title>
@@ -17,12 +17,14 @@ const { post: { title, published, updated, tags, astro: { html } } } = Astro.pro
     {updated && <span>Updated: {formatDate(updated)}</span>}
   </Subtitle>
   <hr>
-  <div id="markdown" set:html={html} />
+  <div id="markdown">
+    <slot />
+  </div>
   <hr>
   <Tags tags={tags.split(",").map((tag): Tag => ({ name: tag }))} />
 </article>
 
-<style global>
+<style is:global>
   #markdown {
     line-height: 1.5;
   }
