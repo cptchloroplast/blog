@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fonts';
-  src:  url('../fonts/fonts.eot?frb5y1');
-  src:  url('../fonts/fonts.eot?frb5y1#iefix') format('embedded-opentype'),
-    url('../fonts/fonts.ttf?frb5y1') format('truetype'),
-    url('../fonts/fonts.woff?frb5y1') format('woff'),
-    url('../fonts/fonts.svg?frb5y1#fonts') format('svg');
+  src:  url('../fonts/fonts.eot?gwb91');
+  src:  url('../fonts/fonts.eot?gwb91#iefix') format('embedded-opentype'),
+    url('../fonts/fonts.ttf?gwb91') format('truetype'),
+    url('../fonts/fonts.woff?gwb91') format('woff'),
+    url('../fonts/fonts.svg?gwb91#fonts') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.i-family:before {
+  content: "\e907";
+}
 .i-rss:before {
   content: "\f09e";
 }

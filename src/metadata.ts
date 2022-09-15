@@ -68,6 +68,10 @@ const metadata: Metadata = {
       {
         icon: "space",
         text: "Astronomy Enthusiast"
+      },
+      {
+        icon: "family",
+        text: "Husband and Father"
       }
     ],
     contact: [
