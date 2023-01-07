@@ -1,4 +1,5 @@
 name = "blog"
+main = "./dist/worker.mjs"
 workers_dev = false
 compatibility_date = "2022-05-20"
 
@@ -9,11 +10,6 @@ kv_namespaces = [
 [build]
 command = "npm run build:esbuild"
 watch_dir = "./dist"
-
-[build.upload]
-format = "modules"
-dir = "./dist"
-main = "./worker.mjs"
 
 [miniflare]
 upstream = "http://localhost:5000"
