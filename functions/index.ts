@@ -5,40 +5,65 @@ const webfinger = {
   "subject": "acct:ben@okkema.org",
   "aliases": [],
   "links": [
-      {
-          "rel": "http://webfinger.net/rel/profile-page",
-          "type": "text/html",
-          "href": "https://ben.okkema.org"
-      },
-      {
-          "rel": "self",
-          "type": "application/activity+json",
-          "href": "https://ben.okkema.org/feed"
-      }
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://ben.okkema.org"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://ben.okkema.org/activity"
+    }
   ]
 }
 
+const publicKey = `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyeYEwdZXvhpmJa4pC/zI
+LE6Sy/BxsrSyy+kA3tzZIZId72DlU2NWVsCygvH9UIGW/OipHKmzihSZjlWJ/vam
+QipBgD4/OKlZKuiyI+xzePBYWl4xxcB49CVvfthU3qT090eZJ+35/UQjfLotDAN9
+24dqTCCIqchuOxAw3Jc/IbwRPDWPPpBV2Av9te2by60iK6Srg3JvkU3AB28efpF5
+QtBjZgD8ZYjYheye2FDERI5fIBMSVzDMeyvF1E/Rru9nAgzFhhCBVhYPp7SZM9NU
+SH93tPKo+67e19zeJMifRW811SRxe8FV0jfkrVhmDYMhtXl6CiZjm/r3rhDHL1DM
+qQIDAQAB
+-----END PUBLIC KEY-----`
+
 const feed = {
   "@context": [
-      "https://www.w3.org/ns/activitystreams",
-      "https://w3id.org/security/v1"
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
   ],
-  "id": "https://ben.okkema.org",
+  "id": "https://ben.okkema.org/activity",
   "type": "Person",
+  // "following": "https://ben.okkema.org/activity/following",
+  // "followers": "https://ben.okkema.org/activity/followers",
+  "inbox": "https://ben.okkema.org/activity/inbox",
+  "outbox": "https://ben.okkema.org/activity/outbox",
+  // "featured": "https://ben.okkema.org/activity/collections/featured",
+  // "featuredTags": "https://ben.okkema.org/activity/collections/tags",
   "preferredUsername": "cptchloroplast",
-  "summary": "Now on the fediverse",
-  "inbox": "https://${DOMAIN}/api/inbox",
-  "followers": "https://${DOMAIN}/u/photos/followers",
+  "name": "Benjamin Okkema",
+  "summary": "Now on the fediverse!",
+  "url": "https://ben.okkema.org",
+  // "manuallyApprovesFollowers": false,
+  "discoverable": false,
+  "published": "2023-01-07T00:00:00Z",
+  // "devices": "https://ben.okkema.org/activity/collections/devices",
   "icon": {
-      "type": "Image",
-      "mediaType": "image/webp",
-      "url": "https://ben.okkema.org/img/me.small.webp"
+    "type": "Image",
+    "mediaType": "image/webp",
+    "url": "https://ben.okkema.org/img/me.small.webp",
   },
   "publicKey": {
-      "id": "https://ben.okkema.org#main-key",
-      "owner": "https://ben.okkema.org",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA7LBs3Qyuh93lRboTNXLN\nhj4n92oK5Qg4oS8Cc81AXh04hD7nQSSKBhtarbHy2yPXeiKA+H3EGbcflsLvZCo2\nB3OPNo2nGTCMyJM8HWDf/7JCOHHcy4tZC1ldjrItkb1YDABWwfoXxyBiGTyTVXjL\nsBX5ArTGUPwctMSOdxlJp0ttFn5WDIHiPzxbSaEX/fzTy+HKr9RvYPu/hWWpXA/W\n8QQRacZjslweupZFGCGPX1zJ+P0FSe81uV6N5cOPpy+vFkBQrvApwCSIyp/n7Rfq\nUtU+zi/ru+wSxyvnoZPZa+zOXst8+pk7lIbmI6dyJ2+wijkykAxKt2DnDXWOSUGM\nR+aNjc6tt8xp2MwmhAz91f1rIt2+jOhkPZ0m6aLV3B86J3iI0BIHXzQNydDtz5/P\nEOj79vnnDwjCrWmbsfsIVCmECQDS7EW6Lzdc98GyiD/vyA4Epg3QgpeN4r7fELZj\n8IfJJ7J8Z8nYewRoCVNnfvXpR26y+CLftMUi9LtPP1N78er1IdvZEer/8RIAc58r\nS5VmDYBBfEduxPh/l3tn4A5Ri8smue26yG+wPkBj3CSqaOaNFxxZPgXcbI2OePrH\n81goKk17g+5O0sZJGv+EAeFM1OQPXKqyu0DLY6PHJKGSho/B/BNWQ34vZnQhQF1r\n++VZAcLEeqny/Cn6CHoeu5cCAwEAAQ==\n-----END PUBLIC KEY-----"
-  }
+    "id": "https://ben.okkema.org#main-key",
+    "owner": "https://ben.okkema.org/activity",
+    "publicKeyPem": publicKey
+   },
+  "tag": [],
+  "attachment": [],
+  // "endpoints": {
+  //   "sharedInbox": "https://ben.okkema.org/activity/inbox"
+  // }
 }
 
 export default {
@@ -47,7 +72,7 @@ export default {
       return router.handle(request, env, ctx)
     } else if (request.url.match(/^.+\/.well-known\/.+/g)) {
       return json(webfinger)
-    } else if (request.url.match(/^.+\/feed\/.+/g)) {
+    } else if (request.url.match(/^.+\/activity/g)) {
       return new Response(JSON.stringify(feed), { headers: { "Content-Type": "application/activity+json" }})
     }
     return fetch(request)
