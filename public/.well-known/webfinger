@@ -10,7 +10,7 @@
         {
             "rel": "self",
             "type": "application/activity+json",
-            "href": "https://ben.okkema.org"
+            "href": "https://ben.okkema.org/feed"
         }
     ]
 }
