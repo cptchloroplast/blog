@@ -1,7 +1,7 @@
-import { json } from "../lib/utils"
+import { json } from "../../functions/lib/utils"
 
-export const message = async (req: Request): Promise<Response> => {
-  const data = await req.json()
+export const onRequestPost: PagesFunction<Environment> = async (context) => {
+  const data = await context.request.json()
   if (!data["h-captcha-response"]) return json({
     ok: false,
     message: "No robots allowed!"

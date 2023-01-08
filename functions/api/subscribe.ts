@@ -1,13 +1,13 @@
 import { uuid } from "@okkema/worker/utils"
-import { json } from "../lib/utils"
-import Emailer from "../lib/emailer"
-import Repository from "../lib/repository"
+import { json } from "../../functions/lib/utils"
+import Emailer from "../../functions/lib/emailer"
+import Repository from "../../functions/lib/repository"
 
 const site = "ben.okkema.org"
 
-export const subscribe = async (req: Request, env: Environment): Promise<Response> => {
-  const subscribers = Repository<Subscriber>(env.SUBSCRIBERS)
-  const data = await req.json<{ email: string }>()
+export const onRequestPost: PagesFunction<Environment> = async (context) => {
+  const subscribers = Repository<Subscriber>(context.env.SUBSCRIBERS)
+  const data = await context.request.json<{ email: string }>()
   const { email } = data 
   const subscriber = await subscribers.get(email)
   const today = new Date()
@@ -31,11 +31,11 @@ export const subscribe = async (req: Request, env: Environment): Promise<Respons
     id,
   })
   const emailer = Emailer({ 
-    account: env.MAILJET_API_KEY,
-    secret: env.MAILJET_SECRET_KEY,
+    account: context.env.MAILJET_API_KEY,
+    secret: context.env.MAILJET_SECRET_KEY,
   })
   const ok = await emailer.send({
-    from: env.ADMIN_EMAIL,
+    from: context.env.ADMIN_EMAIL,
     to: email,
     subject: `Confirm your subscription to ${site}!`,
     html: `

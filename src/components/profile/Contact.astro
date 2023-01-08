@@ -8,7 +8,7 @@ const { profile: { contact } } = metadata as Metadata
     const { href, title, icon } = item
     return (
       <li>
-        <a href={href} title={title} target="_blank">
+        <a href={href} title={title} target="_blank" rel="noreferrer">
         <Icon icon={icon} size="large" />
         </a>
       </li>

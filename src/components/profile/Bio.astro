@@ -13,7 +13,7 @@ const { profile: { bio } } = metadata as Metadata
         </span>
         <span>
           <span>{text}</span>
-          {link && <a href={link.href} title={link.href} target="_blank">{link.text}</a>} 
+          {link && <a href={link.href} title={link.href} target="_blank" rel="noreferrer">{link.text}</a>} 
         </span>
       </li>
     )

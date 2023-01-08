@@ -1,7 +1,9 @@
 {
-  "moduleResolution": "node",
   "compilerOptions": {
-    "lib": ["ES2015"],
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext"],
     "types": ["@cloudflare/workers-types", "node", "astro"]
   }
 }

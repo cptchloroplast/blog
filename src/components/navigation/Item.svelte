@@ -20,7 +20,7 @@
           {/if}
         </a>
       {:else}
-        <a class="item child" href={child.href} title={child.href} target="_blank">
+        <a class="item child" href={child.href} title={child.href} target="_blank" rel="noreferrer">
           <span>{child.text}</span>
           <Icon icon="external" />
         </a>
@@ -37,7 +37,7 @@
       {/if}
     </a>
 {:else}
-  <a class="item" href={href} title={href} target="_blank">
+  <a class="item" href={href} title={href} target="_blank" rel="noreferrer">
     <span>{text}</span>
     <Icon icon="external" />
   </a>

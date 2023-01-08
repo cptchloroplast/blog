@@ -1,6 +1,5 @@
-import { json } from "../lib/utils"
-import Repository from "../lib/repository"
-
+import { json } from "../../lib/utils"
+import Repository from "../../lib/repository"
 
 type ConfirmQuery = {
   id: string
@@ -9,15 +8,15 @@ type ConfirmQuery = {
 
 type ConfirmRequest = Request & { query: ConfirmQuery }
 
-export const confirm = async (req: Request, env: Environment): Promise<Response> => {
-  const { query: { email, id } } = req as ConfirmRequest
+export const onRequestGet: PagesFunction<Environment> = async (context) => {
+  const { query: { email, id } } = context.request as ConfirmRequest
   if (!id || !email) {
     return json({
       ok: false,
       message: "Something doesn't look right here....",
     })
   }
-  const subscribers = Repository<Subscriber>(env.SUBSCRIBERS)
+  const subscribers = Repository<Subscriber>(context.env.SUBSCRIBERS)
   const subscriber = await subscribers.get(email)
   if (!subscriber || id !== subscriber.id) {
     return json({

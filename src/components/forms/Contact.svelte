@@ -49,6 +49,6 @@
     align-items: stretch;
     gap: 8px;
     flex-wrap: wrap;
-    justify-content: end;
+    justify-content: flex-end;
   }
 </style>

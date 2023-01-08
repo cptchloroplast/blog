@@ -38,10 +38,19 @@ resource "cloudflare_pages_project" "project" {
   deployment_configs {
     production {
       environment_variables = {
-        HCAPTCHA_SITEKEY = var.HCAPTCHA_SITEKEY
+        HCAPTCHA_SITEKEY   = var.HCAPTCHA_SITEKEY
+        MAILJET_API_KEY    = var.MAILJET_API_KEY
+        MAILJET_SECRET_KEY = var.MAILJET_SECRET_KEY
+        ADMIN_EMAIL        = var.ADMIN_EMAIL
+      }
+      kv_namespaces = {
+        SUBSCRIBERS = cloudflare_workers_kv_namespace.subscribers.id
       }
     }
   }
+  depends_on = [
+    cloudflare_workers_kv_namespace.subscribers
+  ]
 }
 
 resource "cloudflare_pages_domain" "domain" {
@@ -65,40 +74,7 @@ resource "cloudflare_record" "record" {
   ]
 }
 
-# resource "cloudflare_workers_kv_namespace" "subscribers" {
-#   title = "blog-subscribers"
-# }
-
-# resource "cloudflare_workers_kv_namespace" "subscribers-preview" {
-#   title = "blog-subscribers_preview"
-# }
-
-# locals {
-#   worker_path = abspath("${path.module}/../dist/worker.mjs")
-# }
-
-# resource "cloudflare_worker_script" "worker" {
-#   name    = "blog"
-#   content = file(local.worker_path)
-
-#   kv_namespace_binding {
-#     name         = "SUBSCRIBERS"
-#     namespace_id = cloudflare_workers_kv_namespace.subscribers.id
-#   }
-
-#   plain_text_binding {
-#     name = "ADMIN_EMAIL"
-#     text = var.admin_email
-#   }
-
-#   secret_text_binding {
-#     name = "SENDGRID_API_KEY"
-#     text = var.sendgrid_api_key
-#   }
-# }
-
-# resource "cloudflare_worker_route" "route" {
-#   zone_id     = var.cloudflare_zone_id
-#   pattern     = var.cloudflare_worker_route_pattern
-#   script_name = cloudflare_worker_script.worker.name
-# }
+resource "cloudflare_workers_kv_namespace" "subscribers" {
+  account_id = var.cloudflare_account_id
+  title      = "blog:subscribers"
+}

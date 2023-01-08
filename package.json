@@ -10,7 +10,7 @@
     "start": "npm-run-all -p start:astro start:miniflare",
     "start:astro": "astro dev --verbose",
     "start:miniflare": "miniflare -w -d",
-    "start:wrangler": "wrangler dev",
+    "start:wrangler": "wrangler pages dev dist --local --port 5000 --kv SUBSCRIBERS",
     "preview": "astro preview",
     "publish": "wrangler publish",
     "tail": "wrangler tail"
