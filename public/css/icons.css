@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'fonts';
-  src:  url('../fonts/fonts.eot?gwb91');
-  src:  url('../fonts/fonts.eot?gwb91#iefix') format('embedded-opentype'),
-    url('../fonts/fonts.ttf?gwb91') format('truetype'),
-    url('../fonts/fonts.woff?gwb91') format('woff'),
-    url('../fonts/fonts.svg?gwb91#fonts') format('svg');
+  src:  url('../fonts/fonts.eot?wy0pky');
+  src:  url('../fonts/fonts.eot?wy0pky#iefix') format('embedded-opentype'),
+    url('../fonts/fonts.ttf?wy0pky') format('truetype'),
+    url('../fonts/fonts.woff?wy0pky') format('woff'),
+    url('../fonts/fonts.svg?wy0pky#fonts') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,14 +25,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.i-activitypub:before {
+  content: "\e906";
+}
 .i-family:before {
   content: "\e907";
 }
 .i-rss:before {
   content: "\f09e";
-}
-.i-keybase:before {
-  content: "\e906";
 }
 .i-phone:before {
   content: "\e901";
@@ -75,9 +75,6 @@
 }
 .i-dropdown:before {
   content: "\f0d7";
-}
-.i-code:before {
-  content: "\f120";
 }
 .i-success:before {
   content: "\f14a";

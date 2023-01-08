@@ -43,18 +43,10 @@ const metadata: Metadata = {
     bio: [
       {
         icon: "lab",
-        text: "Founder @ ",
+        text: "Console Cowboy @ ",
         link: {
           href: "https://okkema.org",
           text: "Okkema Labs"
-        }
-      },
-      {
-        icon: "code",
-        text: "Technical Lead @ ",
-        link: {
-          href: "https://www.nvisia.com/",
-          text: "nvisia",
         }
       },
       {
@@ -96,24 +88,14 @@ const metadata: Metadata = {
         href: "https://www.strava.com/athletes/8782282"
       },
       {
-        title: "cptchloroplast",
-        icon: "keybase",
-        href: "https://keybase.io/cptchloroplast"
-      },
-      {
         title: "ben@okkema.org",
         icon: "mail",
         href: "mailto:ben@okkema.org"
       },
       {
-        title: "+1-630-670-9876",
-        icon: "phone",
-        href: "tel:+16306709876"
-      },
-      {
-        title: "AD18B95D04FD76D23EE482A64B62EE4B3E7E7D6B",
-        icon: "key",
-        href: "/keys/public.txt"
+        title: "@ben@okkema.org",
+        icon: "activitypub",
+        href: "https://ben.okkema.org/activity"
       }
     ],
   },

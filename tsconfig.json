@@ -4,6 +4,6 @@
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext"],
-    "types": ["@cloudflare/workers-types", "node", "astro"]
+    "types": ["@cloudflare/workers-types", "astro"]
   }
 }
