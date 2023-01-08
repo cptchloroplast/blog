@@ -1,0 +1,27 @@
+name: terraform
+on:
+  push:
+    paths:
+      - terraform/**
+      - .terraformignore
+      - .github/workflows/terraform.yaml
+concurrency: terraform
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - name: Terraform Init
+        working-directory: terraform
+        run: terraform init
+      - name: Terraform Validate
+        working-directory: terraform
+        run: terraform validate -no-color
+      - name: Terraform Apply
+        working-directory: terraform
+        run: terraform apply -auto-approve
