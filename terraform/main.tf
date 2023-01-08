@@ -30,7 +30,7 @@ resource "cloudflare_pages_project" "project" {
       repo_name                     = var.github_repository
       production_branch             = var.github_branch
       pr_comments_enabled           = false
-      deployments_enabled           = false
+      deployments_enabled           = true
       production_deployment_enabled = true
       preview_deployment_setting    = "none"
     }
