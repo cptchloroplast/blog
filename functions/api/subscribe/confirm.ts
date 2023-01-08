@@ -1,21 +1,16 @@
 import { json } from "../../lib/utils"
 import Repository from "../../lib/repository"
 
-type ConfirmQuery = {
-  id: string
-  email: string
-}
-
-type ConfirmRequest = Request & { query: ConfirmQuery }
-
 export const onRequestGet: PagesFunction<Environment> = async (context) => {
-  const { query: { email, id } } = context.request as ConfirmRequest
-  if (!id || !email) {
+  const params = new URL(context.request.url).searchParams
+  if (!params.has("id") || !params.has("email")) {
     return json({
       ok: false,
       message: "Something doesn't look right here....",
     })
   }
+  const email = params.get("email")
+  const id = params.get("id")
   const subscribers = Repository<Subscriber>(context.env.SUBSCRIBERS)
   const subscriber = await subscribers.get(email)
   if (!subscriber || id !== subscriber.id) {
