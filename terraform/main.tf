@@ -45,6 +45,7 @@ resource "cloudflare_pages_project" "project" {
       }
       kv_namespaces = {
         SUBSCRIBERS = cloudflare_workers_kv_namespace.subscribers.id
+        KEYS = cloudflare_workers_kv_namespace.keys.id
       }
     }
   }
@@ -77,4 +78,9 @@ resource "cloudflare_record" "record" {
 resource "cloudflare_workers_kv_namespace" "subscribers" {
   account_id = var.cloudflare_account_id
   title      = "blog:subscribers"
+}
+
+resource "cloudflare_workers_kv_namespace" "keys" {
+  account_id = var.cloudflare_account_id
+  title      = "blog:keys"
 }
