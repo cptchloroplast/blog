@@ -35,7 +35,7 @@ const feed = {
 	  "url": "https://ben.okkema.org/img/me.small.webp",
 	},
 	"publicKey": {
-	  "id": "https://ben.okkema.org#main-key",
+	  "id": "https://ben.okkema.org/activity#main-key",
 	  "owner": "https://ben.okkema.org/activity",
 	  "publicKeyPem": publicKey
 	 },

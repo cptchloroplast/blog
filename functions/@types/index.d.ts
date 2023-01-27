@@ -3,6 +3,7 @@ type Environment = {
   MAILJET_SECRET_KEY: string
   ADMIN_EMAIL: string
   SUBSCRIBERS: KVNamespace
+  KEYS: KVNamespace
 }
 
 type Subscriber = {

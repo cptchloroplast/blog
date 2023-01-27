@@ -10,7 +10,7 @@
     "start:wrangler": "wrangler pages dev dist --local --port 5000 --kv SUBSCRIBERS",
     "preview": "astro preview",
     "publish": "wrangler publish",
-    "tail": "wrangler tail"
+    "tail": "wrangler pages deployment tail --project-name blog"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^1.2.0",
