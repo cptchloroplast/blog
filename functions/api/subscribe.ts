@@ -1,7 +1,7 @@
 import { uuid } from "@okkema/worker/utils"
-import { json } from "../../functions/lib/utils"
-import Emailer from "../../functions/lib/emailer"
-import Repository from "../../functions/lib/repository"
+import { json } from "../_/utils"
+import Emailer from "../_/emailer"
+import Repository from "../_/repository"
 
 const site = "ben.okkema.org"
 

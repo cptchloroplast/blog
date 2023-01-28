@@ -1,4 +1,4 @@
-import { json } from "../../functions/lib/utils"
+import { json } from "../_/utils"
 
 export const onRequestPost: PagesFunction<Environment> = async (context) => {
   const data = await context.request.json()
