@@ -17,6 +17,7 @@ export const onRequestPost: PagesFunction<Environment> = async (context) => {
         }
       })
     default:
+      console.error(JSON.stringify(activity))
       return new Response("Unknown action", { status: 400 })
   }
 }
