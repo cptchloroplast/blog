@@ -30,6 +30,10 @@ const metadata: Metadata = {
       ]
     },
     {
+      text: "The Bike Shed",
+      href: "/bikes"
+    },
+    {
       text: "Contact",
       href: "/contact"
     },
