@@ -14,6 +14,7 @@ variable "HCAPTCHA_SITEKEY" {}
 variable "MAILJET_API_KEY" {}
 variable "MAILJET_SECRET_KEY" {}
 variable "ADMIN_EMAIL" {}
+variable "GOOGLE_CREDENTIALS" {}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {}

@@ -3,6 +3,7 @@
   "version": "6.6.6",
   "private": true,
   "scripts": {
+    "prebuild": "scripts/get-credentials.sh",
     "build": "astro build",
     "clean": "rm -rf dist",
     "start": "npm-run-all build start:wrangler",

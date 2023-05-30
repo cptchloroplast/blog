@@ -42,10 +42,11 @@ resource "cloudflare_pages_project" "project" {
         MAILJET_API_KEY    = var.MAILJET_API_KEY
         MAILJET_SECRET_KEY = var.MAILJET_SECRET_KEY
         ADMIN_EMAIL        = var.ADMIN_EMAIL
+        GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
       }
       kv_namespaces = {
         SUBSCRIBERS = cloudflare_workers_kv_namespace.subscribers.id
-        KEYS = cloudflare_workers_kv_namespace.keys.id
+        KEYS        = cloudflare_workers_kv_namespace.keys.id
       }
     }
   }
