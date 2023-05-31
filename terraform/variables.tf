@@ -15,6 +15,8 @@ variable "MAILJET_API_KEY" {}
 variable "MAILJET_SECRET_KEY" {}
 variable "ADMIN_EMAIL" {}
 variable "GOOGLE_CREDENTIALS" {}
+variable "GOOGLE_SHEETS_ID" {}
+variable "GOOGLE_SHEETS_RANGE" {}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {}

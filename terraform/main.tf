@@ -38,11 +38,13 @@ resource "cloudflare_pages_project" "project" {
   deployment_configs {
     production {
       environment_variables = {
-        HCAPTCHA_SITEKEY   = var.HCAPTCHA_SITEKEY
-        MAILJET_API_KEY    = var.MAILJET_API_KEY
-        MAILJET_SECRET_KEY = var.MAILJET_SECRET_KEY
-        ADMIN_EMAIL        = var.ADMIN_EMAIL
-        GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
+        HCAPTCHA_SITEKEY    = var.HCAPTCHA_SITEKEY
+        MAILJET_API_KEY     = var.MAILJET_API_KEY
+        MAILJET_SECRET_KEY  = var.MAILJET_SECRET_KEY
+        ADMIN_EMAIL         = var.ADMIN_EMAIL
+        GOOGLE_CREDENTIALS  = var.GOOGLE_CREDENTIALS
+        GOOGLE_SHEETS_ID    = var.GOOGLE_SHEETS_ID
+        GOOGLE_SHEETS_RANGE = var.GOOGLE_SHEETS_RANGE
       }
       kv_namespaces = {
         SUBSCRIBERS = cloudflare_workers_kv_namespace.subscribers.id

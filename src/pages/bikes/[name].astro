@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Card from "../../components/Card.astro"
+import Title from "../../components/Title.astro"
+import Subtitle from "../../components/Subtitle.astro"
+import bikes from "../../../public/bikes.json"
+
+export async function getStaticPaths() {
+  return bikes.map(bike => {
+    const name = bike.Name.toLowerCase().replace(/ /g, "-")
+    return {
+      params: {
+        name,
+      },
+      props: {
+        bike,
+      }
+    }
+  })
+}
+
+export interface Props {
+  bike: any
+}
+
+const { bike } = Astro.props as Props
+---
+<BaseLayout title={`Bike - ${bike.Name}`}>
+  <Card>
+    <Title>{bike.Name}</Title>
+    <Subtitle>{bike.Frame}</Subtitle>
+    <hr>
+    <table>
+      {Object.entries(bike).map(([key, value]) => (
+        <tr>
+          <th>{key}</th>
+          <td>{value}</td>
+        </tr>
+      ))}
+    </table>
+  </Card>
+</BaseLayout>
+
+<style>
+  table {
+    border: 1px black solid;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px black solid;  
+    text-align: left;
+    padding: 4px;
+  }
+</style>

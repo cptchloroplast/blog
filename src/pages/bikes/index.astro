@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Card from "../../components/Card.astro"
+import Title from "../../components/Title.astro"
+import Subtitle from "../../components/Subtitle.astro"
+import bikes from "../../../public/bikes.json"
+---
+<BaseLayout title="The Bike Shed">
+  <Card>
+    <Title>The Bike Shed</Title>
+    <Subtitle>Welcome to the Jungle</Subtitle>
+    <hr>
+    <div>
+      <ul>
+        {bikes.map((bike) => (<li>
+            <a href={bike.Name.toLowerCase().replace(/ /g, "-")}>{bike.Name}</a>
+          </li>))}
+      </ul>
+      <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/8782282/activity-summary/96d77f0d34aa5f345ff4842d6e495f3a872d610b'></iframe>
+    </div>
+  </Card>
+</BaseLayout>
+
+<style>
+  div {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 0;
+  }
+
+  li {
+    list-style: none;
+    line-height: 1.5;
+  }
+
+  /** mobile */
+  @media screen and (max-width: 1000px) {
+    div {
+      flex-direction: column;
+    }
+  }
+</style>
