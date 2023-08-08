@@ -8,17 +8,19 @@ export interface Props {
 const { content } = Astro.props as Props
 ---
 <PostLayout content={content}>
-  <slot />
+  <div>
+    <slot />
+  </div>
 </PostLayout>
 
 <style is:global>
-  #markdown > p {
+  #markdown > div > p {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  #markdown > p > img {
+  #markdown > div > p > img {
     border-radius: 2px;
     width: 100%;
   }

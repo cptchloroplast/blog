@@ -1,12 +1,14 @@
 import { google } from "googleapis"
 import keys from "../credentials.json" assert { type: "json" }
-import fs from "fs/promises"
+import fs from "fs"
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 const ID = process.env.GOOGLE_SHEETS_ID
 const RANGE = process.env.GOOGLE_SHEETS_RANGE
+const FILE_PATH = "./public/bikes.json"
 
 async function getBikes() {
+  if (fs.existsSync(FILE_PATH)) return
   const bikes = []
   const rows = await getSheetsData(ID, RANGE)
   for (const row of rows) {
@@ -17,7 +19,7 @@ async function getBikes() {
     }
   }
   const stringified = JSON.stringify(bikes)
-  await fs.writeFile("./public/bikes.json", stringified)
+  await fs.promises.writeFile(FILE_PATH, stringified)
 }
 
 export async function getSheetsData(spreadsheetId, range) {
