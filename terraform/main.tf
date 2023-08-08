@@ -8,7 +8,7 @@ module "secrets" {
   for_each = local.secrets
 
   source  = "app.terraform.io/okkema/secret/github"
-  version = "0.1.0"
+  version = "0.2.1"
 
   repository = var.github_repository
   key        = each.key

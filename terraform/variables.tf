@@ -12,11 +12,17 @@ variable "pages_subdomain" {}
 # Environment Variables
 variable "HCAPTCHA_SITEKEY" {}
 variable "MAILJET_API_KEY" {}
-variable "MAILJET_SECRET_KEY" {}
+variable "MAILJET_SECRET_KEY" {
+  sensitive = true
+}
 variable "ADMIN_EMAIL" {}
-variable "GOOGLE_CREDENTIALS" {}
+variable "GOOGLE_CREDENTIALS" {
+  sensitive = true
+}
 variable "GOOGLE_SHEETS_ID" {}
 variable "GOOGLE_SHEETS_RANGE" {}
 
 # GitHub Actions Secrets
-variable "TF_API_TOKEN" {}
+variable "TF_API_TOKEN" {
+  sensitive = true
+}
