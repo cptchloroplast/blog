@@ -1,5 +1,5 @@
 ---
-import sortPosts from "../utils/sortPosts.ts"
+import { sortPosts } from "../utils/sortPosts.ts"
 
 const post = (await Astro.glob<Post>("./posts/*.md"))
   .sort(sortPosts)[0]

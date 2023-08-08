@@ -2,7 +2,7 @@
 import Title from "../components/Title.astro"
 import Subtitle from "../components/Subtitle.astro"
 import Tags from "../components/Tags.astro"
-import formatDate from "../utils/formatDate.ts"
+import { formatDate } from "../utils/formatDate.ts"
 
 export interface Props {
   post: Post
@@ -13,8 +13,8 @@ const { post: { title, published, updated, tags } } = Astro.props as Props
 <article>
   <Title>{title}</Title>
   <Subtitle>
-    <span>Published: {formatDate(published)}</span>
     {updated && <span>Updated: {formatDate(updated)}</span>}
+    <span>Published: {formatDate(published)}</span>
   </Subtitle>
   <hr>
   <div id="markdown">
