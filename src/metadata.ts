@@ -27,6 +27,11 @@ const metadata: Metadata = {
           href: "https://crank.tools",
           external: true,
         },
+        {
+          text: "Notebooks",
+          href: "https://public.notes.okkema.org",
+          external: true,
+        }
       ]
     },
     {
