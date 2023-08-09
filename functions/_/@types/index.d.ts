@@ -4,6 +4,7 @@ type Environment = {
   ADMIN_EMAIL: string
   BUCKET: R2Bucket
   RSA_PUBLIC_KEY: string
+  RSA_PRIVATE_KEY: string
 }
 
 type Subscriber = {
