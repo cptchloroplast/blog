@@ -1,13 +1,13 @@
 import { uuid } from "@okkema/worker/utils"
 import { json } from "../_/utils"
 import Emailer from "../_/emailer"
-import { KVRepository } from "../_/repository"
+import { R2Repository } from "../_/repository"
 
 const site = "ben.okkema.org"
 
-export const onRequestPost: PagesFunction<Environment> = async (context) => {
-  const subscribers = KVRepository<Subscriber>(context.env.SUBSCRIBERS)
-  const data = await context.request.json<{ email: string }>()
+export const onRequestPost: PagesFunction<Environment> = async ({ request, env }) => {
+  const subscribers = R2Repository<Subscriber>(env.BUCKET, "subscribers")
+  const data = await request.json<{ email: string }>()
   const { email } = data 
   const subscriber = await subscribers.get(email)
   const today = new Date()
@@ -23,7 +23,6 @@ export const onRequestPost: PagesFunction<Environment> = async (context) => {
   await subscribers.put(email, {
     email,
     subscribed: today,
-    confirmed: false,
     id,
   })
   const params = new URLSearchParams({
@@ -31,11 +30,11 @@ export const onRequestPost: PagesFunction<Environment> = async (context) => {
     id,
   })
   const emailer = Emailer({ 
-    account: context.env.MAILJET_API_KEY,
-    secret: context.env.MAILJET_SECRET_KEY,
+    account: env.MAILJET_API_KEY,
+    secret: env.MAILJET_SECRET_KEY,
   })
   const ok = await emailer.send({
-    from: context.env.ADMIN_EMAIL,
+    from: env.ADMIN_EMAIL,
     to: email,
     subject: `Confirm your subscription to ${site}!`,
     html: `

@@ -15,9 +15,20 @@ module "secrets" {
   value      = each.value
 }
 
+
+module "bucket" {
+  source  = "app.terraform.io/okkema/bucket/cloudflare"
+  version = "0.1.1"
+
+  account_id = var.cloudflare_account_id
+  access_key = var.cloudflare_r2_access_key
+  secret_key = var.cloudflare_r2_secret_key
+  bucket     = var.github_repository
+}
+
 resource "cloudflare_pages_project" "project" {
   account_id        = var.cloudflare_account_id
-  name              = var.pages_name
+  name              = var.github_repository
   production_branch = var.github_branch
   build_config {
     build_command   = var.build_command
@@ -50,16 +61,20 @@ resource "cloudflare_pages_project" "project" {
         SUBSCRIBERS = cloudflare_workers_kv_namespace.subscribers.id
         KEYS        = cloudflare_workers_kv_namespace.keys.id
       }
+      r2_buckets = {
+        BUCKET = var.github_repository
+      }
     }
   }
   depends_on = [
-    cloudflare_workers_kv_namespace.subscribers
+    cloudflare_workers_kv_namespace.subscribers,
+    module.bucket
   ]
 }
 
 resource "cloudflare_pages_domain" "domain" {
   account_id   = var.cloudflare_account_id
-  project_name = var.pages_name
+  project_name = var.github_repository
   domain       = "${var.pages_subdomain}.${var.cloudflare_zone}"
   depends_on = [
     cloudflare_pages_project.project,

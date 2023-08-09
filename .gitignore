@@ -7,3 +7,4 @@ private.pem
 temp
 credentials.json
 public/bikes.json
+.wrangler

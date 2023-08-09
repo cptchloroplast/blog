@@ -1,8 +1,8 @@
 import { json } from "../../_/utils"
-import { KVRepository } from "../../_/repository"
+import { R2Repository } from "../../_/repository"
 
-export const onRequestGet: PagesFunction<Environment> = async (context) => {
-  const params = new URL(context.request.url).searchParams
+export const onRequestGet: PagesFunction<Environment> = async ({ request, env }) => {
+  const params = new URL(request.url).searchParams
   if (!params.has("id") || !params.has("email")) {
     return json({
       ok: false,
@@ -11,7 +11,7 @@ export const onRequestGet: PagesFunction<Environment> = async (context) => {
   }
   const email = params.get("email")
   const id = params.get("id")
-  const subscribers = KVRepository<Subscriber>(context.env.SUBSCRIBERS)
+  const subscribers = R2Repository<Subscriber>(env.BUCKET, "subscribers")
   const subscriber = await subscribers.get(email)
   if (!subscriber || id !== subscriber.id) {
     return json({
@@ -21,7 +21,7 @@ export const onRequestGet: PagesFunction<Environment> = async (context) => {
   }
   await subscribers.put(email, {
     ...subscriber,
-    confirmed: true,
+    confirmed: new Date(),
   })
   return json({
     ok: true,

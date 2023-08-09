@@ -1,0 +1,7 @@
+name = "blog"
+compatibility_date = "2022-08-07"
+
+[[r2_buckets]]
+binding = "BUCKET"
+preview_bucket_name = "blog"
+bucket_name = "blog"

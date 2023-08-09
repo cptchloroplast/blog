@@ -4,11 +4,12 @@ type Environment = {
   ADMIN_EMAIL: string
   SUBSCRIBERS: KVNamespace
   KEYS: KVNamespace
+  BUCKET: R2Bucket
 }
 
 type Subscriber = {
   id: string
   email: string
   subscribed: Date
-  confirmed: boolean
+  confirmed?: Date
 }
