@@ -26,6 +26,10 @@ variable "GOOGLE_CREDENTIALS" {
 }
 variable "GOOGLE_SHEETS_ID" {}
 variable "GOOGLE_SHEETS_RANGE" {}
+variable "RSA_PUBLIC_KEY" {}
+variable "RSA_PRIVATE_KEY" {
+  sensitive = true
+}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {

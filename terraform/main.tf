@@ -15,7 +15,6 @@ module "secrets" {
   value      = each.value
 }
 
-
 module "bucket" {
   source  = "app.terraform.io/okkema/bucket/cloudflare"
   version = "0.1.1"
@@ -51,23 +50,23 @@ resource "cloudflare_pages_project" "project" {
       environment_variables = {
         HCAPTCHA_SITEKEY    = var.HCAPTCHA_SITEKEY
         MAILJET_API_KEY     = var.MAILJET_API_KEY
-        MAILJET_SECRET_KEY  = var.MAILJET_SECRET_KEY
         ADMIN_EMAIL         = var.ADMIN_EMAIL
-        GOOGLE_CREDENTIALS  = var.GOOGLE_CREDENTIALS
         GOOGLE_SHEETS_ID    = var.GOOGLE_SHEETS_ID
         GOOGLE_SHEETS_RANGE = var.GOOGLE_SHEETS_RANGE
+        RSA_PUBLIC_KEY      = var.RSA_PUBLIC_KEY
       }
-      kv_namespaces = {
-        SUBSCRIBERS = cloudflare_workers_kv_namespace.subscribers.id
-        KEYS        = cloudflare_workers_kv_namespace.keys.id
+      secrets = {
+        GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
+        MAILJET_SECRET_KEY = var.MAILJET_SECRET_KEY
+        RSA_PRIVATE_KEY    = var.RSA_PRIVATE_KEY
       }
       r2_buckets = {
         BUCKET = var.github_repository
       }
     }
+    preview {}
   }
   depends_on = [
-    cloudflare_workers_kv_namespace.subscribers,
     module.bucket
   ]
 }
@@ -91,14 +90,4 @@ resource "cloudflare_record" "record" {
   depends_on = [
     cloudflare_pages_project.project
   ]
-}
-
-resource "cloudflare_workers_kv_namespace" "subscribers" {
-  account_id = var.cloudflare_account_id
-  title      = "blog:subscribers"
-}
-
-resource "cloudflare_workers_kv_namespace" "keys" {
-  account_id = var.cloudflare_account_id
-  title      = "blog:keys"
 }

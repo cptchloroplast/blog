@@ -5,6 +5,7 @@ type Environment = {
   SUBSCRIBERS: KVNamespace
   KEYS: KVNamespace
   BUCKET: R2Bucket
+  RSA_PUBLIC_KEY: string
 }
 
 type Subscriber = {
