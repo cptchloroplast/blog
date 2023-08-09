@@ -1,5 +1,5 @@
 import { json } from "../../_/utils"
-import Repository from "../../_/repository"
+import { KVRepository } from "../../_/repository"
 
 export const onRequestGet: PagesFunction<Environment> = async (context) => {
   const params = new URL(context.request.url).searchParams
@@ -11,7 +11,7 @@ export const onRequestGet: PagesFunction<Environment> = async (context) => {
   }
   const email = params.get("email")
   const id = params.get("id")
-  const subscribers = Repository<Subscriber>(context.env.SUBSCRIBERS)
+  const subscribers = KVRepository<Subscriber>(context.env.SUBSCRIBERS)
   const subscriber = await subscribers.get(email)
   if (!subscriber || id !== subscriber.id) {
     return json({

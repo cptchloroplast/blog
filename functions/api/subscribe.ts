@@ -1,12 +1,12 @@
 import { uuid } from "@okkema/worker/utils"
 import { json } from "../_/utils"
 import Emailer from "../_/emailer"
-import Repository from "../_/repository"
+import { KVRepository } from "../_/repository"
 
 const site = "ben.okkema.org"
 
 export const onRequestPost: PagesFunction<Environment> = async (context) => {
-  const subscribers = Repository<Subscriber>(context.env.SUBSCRIBERS)
+  const subscribers = KVRepository<Subscriber>(context.env.SUBSCRIBERS)
   const data = await context.request.json<{ email: string }>()
   const { email } = data 
   const subscriber = await subscribers.get(email)
