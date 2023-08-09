@@ -24,7 +24,7 @@ function getFeed(origin: string, publicKey: string) {
 		"publicKey": {
 			"id": `${origin}/activity#main-key`,
 			"owner": `${origin}/activity`,
-			"publicKeyPem": publicKey.replace(/\s/g, '\n')
+			"publicKeyPem": publicKey,
 		 },
 		"tag": [],
 		"attachment": [],
