@@ -1,4 +1,3 @@
-import { uuid } from "@okkema/worker/utils"
 import { json } from "../_/utils"
 import Emailer from "../_/emailer"
 import { R2Repository } from "../_/repository"
@@ -19,7 +18,7 @@ export const onRequestPost: PagesFunction<Environment> = async ({ request, env }
       message: `You already subscribed ${seconds} seconds ago!`
     })
   }
-  const id = uuid()
+  const id = crypto.randomUUID()
   await subscribers.put(email, {
     email,
     subscribed: today,

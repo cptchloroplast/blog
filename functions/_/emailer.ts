@@ -1,5 +1,3 @@
-import { base64 } from "@okkema/worker/utils"
-
 export type Email = {
   to: string
   from: string
@@ -22,7 +20,7 @@ const Emailer = (init: {
       const response = await fetch("https://api.mailjet.com/v3/send", {
         method: "POST",
         headers: {
-          Authorization: `Basic ${base64.encode(`${account}:${secret}`)}`,
+          Authorization: `Basic ${btoa(`${account}:${secret}`)}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
