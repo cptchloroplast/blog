@@ -5,10 +5,4 @@ terraform {
       name = "blog"
     }
   }
-  required_providers {
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 4.11"
-    }
-  }
 }
