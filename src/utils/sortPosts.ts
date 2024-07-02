@@ -7,5 +7,3 @@ export function sortPosts(a: MarkdownInstance<Post>, b: MarkdownInstance<Post>) 
   const dateB = b.frontmatter.updated ?? b.frontmatter.published
   return dateA < dateB ? 1 : -1
 }
-
-type rss = z.infer<typeof rssSchema>
