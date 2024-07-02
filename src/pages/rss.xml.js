@@ -7,8 +7,6 @@ const posts = (await Promise.all(Object.values(import.meta.glob('./posts/*.md'))
   return { ...frontmatter, url }
 }))).sort((a,b) => (a.published < b.published) ? 1 : -1)
 
-console.log(posts)
-
 export const GET = (context) => rss({
   title: context.site.origin,
   description: description,
