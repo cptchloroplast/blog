@@ -1,18 +1,22 @@
-import rss from '@astrojs/rss';
+import rss, { pagesGlobToRssItems } from '@astrojs/rss';
 import metadata from "../metadata"
 
 const { description } = metadata
-const posts = Object.values(import.meta.glob('./posts/*.md'))
-  .sort((a,b) => (a.published < b.published) ? 1 : -1)
+const posts = (await Promise.all(Object.values(import.meta.glob('./posts/*.md')).map(async function(getInfo) {
+  const { frontmatter, url } = await getInfo()
+  return { ...frontmatter, url }
+}))).sort((a,b) => (a.published < b.published) ? 1 : -1)
 
-export const get = (context) => rss({
-  title: context.site,
+console.log(posts)
+
+export const GET = (context) => rss({
+  title: context.site.origin,
   description: description,
   site: context.site,
-  items: posts.map(({ frontmatter: post, url }) => ({
+  items: posts.map((post) => ({
       title: post.title,
       description: post.tags,
-      link: url,
+      link: post.url,
       pubDate: post.published,
     }),
   )
