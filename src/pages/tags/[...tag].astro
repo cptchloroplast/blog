@@ -4,10 +4,11 @@ import Card from "../../components/Card.astro"
 import Title from "../../components/Title.astro"
 import Subtitle from "../../components/Subtitle.astro"
 import PostList from "../../components/PostList.astro"
-
+import { getCollection } from "astro:content"
+export const prerender = true
 export async function getStaticPaths() {
-  const posts = (await Astro.glob<Post>("../posts/*.md"))
-    .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))
+  const posts = (await getCollection("posts"))
+    .map(x => ({ ...x.data, url: x.slug }))
   const tags = posts.reduce((result, post) => {
     for (let tag of post.tags.split(",")) {
       if (!result[tag]) result[tag] = []
@@ -27,13 +28,11 @@ export async function getStaticPaths() {
     }
   })
 }
-
-export interface Props {
+type Props = {
   posts: Post[]
 }
-
 const { tag } = Astro.params
-const { posts } = Astro.props as Props
+const { posts } = Astro.props
 const sorted = posts.sort((a,b) => (a.published < b.published) ? 1 : -1)
 ---
 <BaseLayout title={`Tags - ${tag}`}>

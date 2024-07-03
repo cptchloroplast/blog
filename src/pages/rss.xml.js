@@ -1,11 +1,11 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
+import rss from '@astrojs/rss';
 import metadata from "../metadata"
+import { getCollection } from 'astro:content';
 
 const { description } = metadata
-const posts = (await Promise.all(Object.values(import.meta.glob('./posts/*.md')).map(async function(getInfo) {
-  const { frontmatter, url } = await getInfo()
-  return { ...frontmatter, url }
-}))).sort((a,b) => (a.published < b.published) ? 1 : -1)
+const posts = (await getCollection("posts"))
+  .map(x => ({ ...x.data, url: x.slug }))
+  .sort((a,b) => (a.published < b.published) ? 1 : -1)
 
 export const GET = (context) => rss({
   title: context.site.origin,
@@ -14,7 +14,7 @@ export const GET = (context) => rss({
   items: posts.map((post) => ({
       title: post.title,
       description: post.tags,
-      link: post.url,
+      link: `/posts/${post.url}`,
       pubDate: post.published,
     }),
   )

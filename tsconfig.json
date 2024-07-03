@@ -1,9 +1,7 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["esnext"],
-    "types": ["@cloudflare/workers-types", "astro"]
+    "types": ["@cloudflare/workers-types"],
+    "allowJs": true
   }
 }

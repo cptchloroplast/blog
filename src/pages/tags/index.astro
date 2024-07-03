@@ -4,9 +4,10 @@ import Card from "../../components/Card.astro"
 import Title from "../../components/Title.astro"
 import Subtitle from "../../components/Subtitle.astro"
 import Tags from "../../components/Tags.astro"
-
-const posts = (await Astro.glob<Post>("../posts/*.md"))
-  .map(x => ({ ...x.frontmatter, content: x.Content, url: x.url }))
+import { getCollection } from "astro:content"
+export const prerender = true
+const posts = (await getCollection("posts"))
+  .map(x => ({ ...x.data, url: x.slug }))
 const tags = Object.entries(posts.reduce((result, post) => {
     for (let tag of post.tags.split(",")) {
       if (!result[tag]) result[tag] = 0

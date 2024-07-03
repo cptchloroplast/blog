@@ -1,5 +1,6 @@
 ---
-layout: ../../layouts/PhotoLayout.astro
+# layout: ../../layouts/PhotoLayout.astro
+type: photo
 title: 🦊
 published: 2022-09-10
 tags: photos,art

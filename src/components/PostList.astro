@@ -1,17 +1,15 @@
 ---
 import { formatDate } from "../utils/formatDate.ts"
-
-export interface Props {
+type Props = {
   posts: Post[]
 }
-
-const { posts } = Astro.props as Props
+const { posts } = Astro.props
 ---
 
 <ol>
 {posts.map(post => (
   <li>
-    <a href={post.url}>
+    <a href={`/posts/${post.url}`}>
       <span>{post.title}</span>
       <small>{post.updated ? `Updated: ${formatDate(post.updated)}` : formatDate(post.published)}</small>
     </a>

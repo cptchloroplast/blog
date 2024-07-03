@@ -1,9 +1,5 @@
-import { MarkdownInstance } from "astro"
-import { z } from "astro:content"
-import  {rssSchema} from "@astrojs/rss"
-
-export function sortPosts(a: MarkdownInstance<Post>, b: MarkdownInstance<Post>) {
-  const dateA = a.frontmatter.updated ?? a.frontmatter.published
-  const dateB = b.frontmatter.updated ?? b.frontmatter.published
+export function sortPosts(a: Post, b: Post) {
+  const dateA = a.updated ?? a.published
+  const dateB = b.updated ?? b.published
   return dateA < dateB ? 1 : -1
 }

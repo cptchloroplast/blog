@@ -1,8 +1,14 @@
 ---
+import { getCollection } from "astro:content"
 import { sortPosts } from "../utils/sortPosts.ts"
+import PostLayout from "../layouts/PostLayout.astro"
+import PhotoLayout from "../layouts/PhotoLayout.astro"
 
-const post = (await Astro.glob<Post>("./posts/*.md"))
-  .sort(sortPosts)[0]
-const LatestPost = post.Content
+const entry = (await getCollection("posts"))
+  .sort((a, b) => sortPosts(a.data, b.data))[0]
+const Layout = entry.data.type == "post" ? PostLayout : PhotoLayout
+const { Content } = await entry.render()
 ---
-<LatestPost />
+<Layout content={entry.data}>
+  <Content />
+</Layout>
