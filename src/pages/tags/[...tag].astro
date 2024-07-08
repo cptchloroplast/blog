@@ -9,7 +9,7 @@ import type { Post } from "../../schemas/Post"
 export const prerender = true
 export async function getStaticPaths() {
   const posts = (await getCollection("posts"))
-    .map(x => ({ ...x.data, url: x.slug }))
+    .map(x => ({ ...x.data, slug: x.slug }))
   const tags = posts.reduce((result, post) => {
     for (let tag of post.tags.split(",")) {
       if (!result[tag]) result[tag] = []

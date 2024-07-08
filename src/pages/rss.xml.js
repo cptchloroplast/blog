@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 
 const { description } = metadata
 const posts = (await getCollection("posts"))
-  .map(x => ({ ...x.data, url: x.slug }))
+  .map(x => ({ ...x.data, slug: x.slug }))
   .sort((a,b) => (a.published < b.published) ? 1 : -1)
 
 export const GET = (context) => rss({
@@ -14,7 +14,7 @@ export const GET = (context) => rss({
   items: posts.map((post) => ({
       title: post.title,
       description: post.tags,
-      link: `/posts/${post.url}`,
+      link: `/posts/${post.slug}`,
       pubDate: post.published,
     }),
   )

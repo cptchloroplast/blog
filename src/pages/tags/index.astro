@@ -8,7 +8,7 @@ import { getCollection } from "astro:content"
 import type { Tag } from "../../schemas/Tag"
 export const prerender = true
 const posts = (await getCollection("posts"))
-  .map(x => ({ ...x.data, url: x.slug }))
+  .map(x => ({ ...x.data, slug: x.slug }))
 const tags = Object.entries(posts.reduce((result, post) => {
     for (let tag of post.tags.split(",")) {
       if (!result[tag]) result[tag] = 0

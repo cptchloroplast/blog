@@ -8,7 +8,7 @@ import { sortPosts } from "../../utils/sortPosts.ts"
 import { getCollection } from "astro:content"
 
 const posts = (await getCollection("posts"))
-  .map(x => ({ ...x.data, url: x.slug }))
+  .map(x => ({ ...x.data, slug: x.slug }))
   .sort(sortPosts)
 ---
 <BaseLayout title="Posts">
