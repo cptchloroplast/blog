@@ -1,5 +1,4 @@
 ---
-# layout: ../../layouts/PostLayout.astro
 type: post
 title: Git Hooks
 published: 2023-08-07

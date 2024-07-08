@@ -1,6 +1,5 @@
 ---
-# layout: ../../layouts/PhotoLayout.astro
-# type: photo
+type: photo
 title: Terrarium - Day 1
 published: 2022-05-20
 tags: photos,plants

@@ -1,5 +1,4 @@
 ---
-# layout: ../../layouts/PhotoLayout.astro
 type: photo
 title: 🦊
 published: 2022-09-10
