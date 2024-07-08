@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Icon } from "../schemas/Icon"
   export let icon: Icon
   export let size: "small" | "medium" | "large" = "medium"
   export let color: "black" | "white" = "black"
