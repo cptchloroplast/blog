@@ -1,11 +1,10 @@
 ---
 import Chip from "../components/Chip.astro"
-
-export interface Props {
+import type { Tag } from "../schemas/Tag"
+type Props = {
   tags: Tag[]
 }
-
-const { tags } = Astro.props as Props
+const { tags } = Astro.props
 ---
 
 <ol>
