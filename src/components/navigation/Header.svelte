@@ -7,7 +7,7 @@
   const { navigation } = metadata
 
   const toggle = () => show = !show
-  const close = (event) => {
+  const close = (event: any) => {
     if (!event.target.matches('[role="menu"]')) show = false
   }
 </script>

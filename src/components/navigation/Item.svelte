@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Navigation } from "../../schemas/Navigation"
   export let item: Navigation
   
   import Dropdown from "./Dropdown.svelte"
