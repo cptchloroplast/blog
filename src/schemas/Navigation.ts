@@ -7,6 +7,6 @@ const BaseNavigationSchema = z.object({
     external: z.boolean().optional(),
 }) 
 export const NavigationSchema = BaseNavigationSchema.extend({
-  children: z.array(BaseNavigationSchema)
+  children: z.array(BaseNavigationSchema).optional()
 })
 export type Navigation = z.infer<typeof NavigationSchema>

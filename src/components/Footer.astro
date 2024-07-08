@@ -1,6 +1,6 @@
 ---
-import metadata from "../metadata.ts"
-const { author: { name, email }, repo } = metadata as Metadata
+import metadata from "../metadata"
+const { author: { name, email }, repo } = metadata
 
 const build = process.env.CF_PAGES_COMMIT_SHA
 const href = `${repo}/commit/${build}`

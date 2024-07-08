@@ -8,22 +8,21 @@ import Contact from "../components/profile/Contact.astro"
 import Bio from "../components/profile/Bio.astro"
 import Title from "../components/Title.astro"
 import Subscribe from "../components/forms/Subscribe.svelte"
-
-export interface Props {
+type Props = {
   title: string
   description?: string
   image?: string
 }
 
 import metadata from "../metadata.ts"
-const { author: { name, email } } = metadata as Metadata
+const { author: { name, email } } = metadata
 
 const {
   title,
   description = metadata.description, 
   image = "/img/me.webp" 
 } = Astro.props
-const { origin, hostname } = Astro.site
+const { origin, hostname } = Astro.site!
 ---
 <!DOCTYPE html>
 <html lang="en">
