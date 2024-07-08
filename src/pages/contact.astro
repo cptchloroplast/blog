@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro"
 import Card from "../components/Card.astro"
-import Contact from "../components/forms/Contact.svelte"
+import ContactForm from "../components/forms/Contact.svelte"
 import Title from "../components/Title.astro"
 import Subtitle from "../components/Subtitle.astro"
 export const prerender = true
@@ -11,6 +11,6 @@ export const prerender = true
     <Title>Contact me</Title>
     <Subtitle>Leave a message after the beep.</Subtitle>
     <hr>
-    <Contact client:load />
+    <ContactForm client:load />
   </Card>
 </BaseLayout>

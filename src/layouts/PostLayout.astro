@@ -1,20 +1,20 @@
 ---
 import BaseLayout from "./BaseLayout.astro"
 import Card from "../components/Card.astro"
-import Post from "../components/Post.astro"
+import PostComponent from "../components/Post.astro"
 import Giscus from "@giscus/svelte"
-export interface Props {
+import type { Post } from "../schemas/Post"
+type Props = {
   content: Post
 }
-
-const { content } = Astro.props as Props
+const { content } = Astro.props
 const { title, description } = content
 ---
 <BaseLayout title={title} description={description}>
   <Card>
-    <Post post={content}>
+    <PostComponent post={content}>
       <slot />
-    </Post>
+    </PostComponent>
   </Card>
   <Card>
     <Giscus 

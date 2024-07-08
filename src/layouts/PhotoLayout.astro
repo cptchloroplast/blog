@@ -1,7 +1,7 @@
 ---
-import PostLayout from "./PostLayout.astro";
-
-export interface Props {
+import PostLayout from "./PostLayout.astro"
+import type { Post } from "../schemas/Post"
+type Props = {
   content: Post
 }
 
