@@ -6,6 +6,7 @@ import Subtitle from "../../components/Subtitle.astro"
 import PostList from "../../components/PostList.astro"
 import { getCollection } from "astro:content"
 import type { Post } from "../../schemas/Post"
+import { sortPosts } from "../../utils/sortPosts"
 export const prerender = true
 export async function getStaticPaths() {
   const posts = (await getCollection("posts"))
@@ -34,7 +35,7 @@ type Props = {
 }
 const { tag } = Astro.params
 const { posts } = Astro.props
-const sorted = posts.sort((a,b) => (a.published < b.published) ? 1 : -1)
+const sorted = posts.sort(sortPosts)
 ---
 <BaseLayout title={`Tags - ${tag}`}>
   <Card>
