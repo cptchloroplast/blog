@@ -7,7 +7,6 @@ import PostList from "../../components/PostList.astro"
 import { getCollection } from "astro:content"
 import type { Post } from "../../schemas/Post"
 import { sortPosts } from "../../utils/sortPosts"
-export const prerender = true
 export async function getStaticPaths() {
   const posts = (await getCollection("posts"))
     .map(x => ({ ...x.data, slug: x.slug }))

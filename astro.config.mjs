@@ -4,7 +4,7 @@ import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare"
 
 export default defineConfig({
-  output: "server",
+  output: "hybrid",
   adapter: cloudflare({
     imageService: "passthrough",
     platformProxy: {
