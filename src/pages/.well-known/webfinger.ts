@@ -1,3 +1,8 @@
+import type { APIContext } from "astro"
+import { json } from "../../utils/json"
+
+export const prerender = false
+
 const webfinger = {
     "subject": "acct:ben@okkema.org",
     "aliases": [],
@@ -15,10 +20,6 @@ const webfinger = {
     ]
 }
 
-export const onRequestGet: PagesFunction<Environment> = async (context) => {
-    return new Response(JSON.stringify(webfinger), { 
-       headers: { 
-           "Content-Type": "application/json" 
-       }
-   })
+export function GET(context: APIContext) {
+    return json(webfinger)
 }
