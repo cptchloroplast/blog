@@ -1,7 +1,10 @@
-import { json } from "../_/utils"
+import type { APIContext } from "astro"
+import { json } from "../../utils/json"
 
-export const onRequestPost: PagesFunction<Environment> = async (context) => {
-  const data = await context.request.json()
+export const prerender = false
+
+export async function POST(context: APIContext) {
+  const data = await context.request.json<any>()
   if (!data["h-captcha-response"]) return json({
     ok: false,
     message: "No robots allowed!"
