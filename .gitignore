@@ -9,3 +9,4 @@ credentials.json
 public/bikes.json
 .wrangler
 .astro
+.dev.vars
