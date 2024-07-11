@@ -1,8 +1,13 @@
 import type { APIContext } from "astro"
 import metadata from "../../metadata"
+import { getCollection } from "astro:content"
+import { sortPosts } from "../../utils/sortPosts"
 export const prerender = false
-export function GET(context: APIContext) {
-    const { author: { name, username } } = metadata
+export async function GET(context: APIContext) {
+    const { published } = (await getCollection("posts"))
+        .map(x => ({ ...x.data, slug: x.slug}))
+        .sort(sortPosts)[0]
+    const { author: { name, username }, description } = metadata
     const { locals: { runtime: { env } }, request: { url } } = context
 	const { origin } = new URL(url)
  	return new Response(JSON.stringify({
@@ -16,15 +21,17 @@ export function GET(context: APIContext) {
 		"outbox": `${origin}/activity/outbox`,
 		"preferredUsername": username,
 		"name": name,
-		"summary": "Now on the fediverse!",
+		"summary": description,
 		"url": origin,
 		"discoverable": true,
-		"published": "2023-01-07T00:00:00Z",
-		"icon": {
-			"type": "Image",
-			"mediaType": "image/webp",
-			"url": `${origin}/img/me.webp`,
-		},
+		"published": published.toISOString(),
+		"icon": [
+            {
+                "type": "Image",
+                "mediaType": "image/webp",
+                "url": `${origin}/img/me.webp`,
+		    }
+        ],
 		"publicKey": {
 			"id": `${origin}/activity#main-key`,
 			"owner": `${origin}/activity`,
@@ -32,7 +39,7 @@ export function GET(context: APIContext) {
 		 },
 		"tag": [],
 		"attachment": [],
-	}), { 
+	}).replace(/\\\\/g,"\\"), { // fix formatting of public key in local environment
 		headers: { 
 			"Content-Type": "application/activity+json" 
 		}
