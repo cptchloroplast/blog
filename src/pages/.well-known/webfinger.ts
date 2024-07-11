@@ -1,25 +1,23 @@
 import type { APIContext } from "astro"
 import { json } from "../../utils/json"
-
 export const prerender = false
-
-const webfinger = {
-    "subject": "acct:ben@okkema.org",
+export function GET(context: APIContext) {
+  const { request: { url } } = context
+  const { origin, hostname } = new URL(url)
+  return json({
+    "subject": `acct:me@${hostname}`,
     "aliases": [],
     "links": [
       {
         "rel": "http://webfinger.net/rel/profile-page",
         "type": "text/html",
-        "href": "https://ben.okkema.org"
+        "href": origin,
       },
       {
         "rel": "self",
         "type": "application/activity+json",
-        "href": "https://ben.okkema.org/activity"
+        "href": `${origin}/activity`
       }
     ]
-}
-
-export function GET(context: APIContext) {
-    return json(webfinger)
+  })
 }

@@ -3,6 +3,7 @@ const metadata: Metadata = {
   author: {
     name: "Benjamin Okkema",
     email: "ben@okkema.org",
+    username: "cptchloroplast"
   },
   description: "Benjamin Okkema's Homepage",
   repo: "https://github.com/cptchloroplast/blog",

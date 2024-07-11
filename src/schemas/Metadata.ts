@@ -6,6 +6,7 @@ export const MetadataSchema = z.object({
     author: z.object({
       name: z.string(),
       email: z.string().email(),
+      username: z.string(),
     }),
     description: z.string(),
     repo: z.string(),
