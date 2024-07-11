@@ -25,13 +25,11 @@ export async function GET(context: APIContext) {
 		"url": origin,
 		"discoverable": true,
 		"published": published.toISOString(),
-		"icon": [
-            {
-                "type": "Image",
-                "mediaType": "image/webp",
-                "url": `${origin}/img/me.webp`,
-		    }
-        ],
+		"icon": {
+            "type": "Image",
+            "mediaType": "image/webp",
+            "url": `${origin}/img/me.small.webp`,
+		},
 		"publicKey": {
 			"id": `${origin}/activity#main-key`,
 			"owner": `${origin}/activity`,
