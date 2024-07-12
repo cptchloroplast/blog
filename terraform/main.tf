@@ -33,6 +33,7 @@ module "page" {
   owner          = var.github_owner
   repo_name      = var.github_repository
   pages_hostname = var.pages_hostname
+  build_command  = "npm test"
 
   production_secrets = {
     GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
