@@ -5,7 +5,7 @@ import { sortPosts } from "../../utils/sortPosts"
 export const prerender = false
 export async function GET(context: APIContext) {
     const { published } = (await getCollection("posts"))
-        .map(x => ({ ...x.data, slug: x.slug}))
+        .map(x => ({ ...x.data, url: x.slug}))
         .sort(sortPosts)[0]
     const { author: { name, username }, description } = metadata
     const { locals: { runtime: { env } }, request: { url } } = context

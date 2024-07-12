@@ -5,7 +5,7 @@ import { sortPosts } from '../utils/sortPosts';
 
 const { description } = metadata
 const posts = (await getCollection("posts"))
-  .map(x => ({ ...x.data, slug: x.slug }))
+  .map(x => ({ ...x.data, url: x.slug }))
   .sort(sortPosts)
 
 export const GET = (context) => rss({
@@ -15,7 +15,7 @@ export const GET = (context) => rss({
   items: posts.map((post) => ({
       title: post.title,
       description: post.tags,
-      link: `/posts/${post.slug}`,
+      link: `/posts/${post.url}`,
       pubDate: post.published,
     }),
   )

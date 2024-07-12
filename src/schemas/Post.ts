@@ -6,6 +6,6 @@ export const PostSchema = z.object({
     published: z.date(),
     updated: z.date().optional(),
     tags: z.string(),
-    slug: z.string(),
+    url: z.string().optional(),
 })
 export type Post = z.infer<typeof PostSchema>
