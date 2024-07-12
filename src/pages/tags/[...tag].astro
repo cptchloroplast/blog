@@ -16,7 +16,7 @@ export async function getStaticPaths() {
       result[tag] = [post, ...result[tag]]
     }
     return result
-  }, {})
+  }, {} as { [key: string]: Post[]})
   return Object.entries(tags).map(entry => {
     const [tag, posts] = entry
     return {

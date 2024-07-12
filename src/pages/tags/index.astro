@@ -14,7 +14,7 @@ const tags = Object.entries(posts.reduce((result, post) => {
       result[tag] += 1
     }
     return result
-  }, {}))
+  }, {} as { [key: string]: number}))
   .map(([tag, count]): Tag => {
     return { 
       name: tag, 
