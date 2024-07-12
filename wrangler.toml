@@ -1,5 +1,4 @@
 name = "blog"
-compatibility_date = "2022-08-07"
 
 [[r2_buckets]]
 binding = "BUCKET"
