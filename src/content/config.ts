@@ -5,5 +5,5 @@ const PostCollection = defineCollection({
     schema: PostSchema,
 })
 export const collections = {
-    "post": PostCollection,
+    "posts": PostCollection,
 }
