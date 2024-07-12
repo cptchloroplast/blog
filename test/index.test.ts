@@ -1,6 +1,5 @@
 import { env, createExecutionContext, waitOnExecutionContext } from "cloudflare:test"
 import { describe, it, expect } from "vitest"
-// Could import any other source file/function here
 import worker from "../dist/_worker.js"
 
 describe("index", function() {

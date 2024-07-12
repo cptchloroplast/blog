@@ -2,7 +2,7 @@ import { json } from "../../../utils/json"
 import { Emailer } from "../../../services/Emailer"
 import { R2Repository } from "../../../services/Repository"
 import type { APIContext } from "astro"
-import type { Subscriber } from "../../../schemas"
+import type { Subscriber } from "@schemas"
 
 export const prerender = false
 

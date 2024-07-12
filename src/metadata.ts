@@ -1,4 +1,4 @@
-import type { Metadata } from "./schemas"
+import type { Metadata } from "@schemas"
 const metadata: Metadata = {
   author: {
     name: "Benjamin Okkema",

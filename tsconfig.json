@@ -5,6 +5,10 @@
       "@cloudflare/workers-types",
       "@cloudflare/vitest-pool-workers"
     ],
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@schemas": ["src/schemas"]
+    }
   }
 }
