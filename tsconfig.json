@@ -8,6 +8,7 @@
     "allowJs": true,
     "baseUrl": "./",
     "paths": {
+      "@layouts": ["src/layouts"],
       "@schemas": ["src/schemas"],
       "@services": ["src/services"],
       "@utils": ["src/utils"]

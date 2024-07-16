@@ -1,8 +1,7 @@
 ---
 import { getCollection } from "astro:content"
+import { PostLayout, PhotoLayout } from "@layouts"
 import { sortPosts } from "@utils"
-import PostLayout from "../layouts/PostLayout.astro"
-import PhotoLayout from "../layouts/PhotoLayout.astro"
 
 const entry = (await getCollection("posts"))
   .sort((a, b) => sortPosts(a.data, b.data))[0]

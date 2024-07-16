@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content"
-import PostLayout from "../../layouts/PostLayout.astro"
-import PhotoLayout from "../../layouts/PhotoLayout.astro"
+import { PostLayout, PhotoLayout } from "@layouts"
 export async function getStaticPaths() {
     const entries = await getCollection("posts")
     return entries.map(function(entry) {
