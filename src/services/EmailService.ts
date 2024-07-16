@@ -5,14 +5,14 @@ export type Email = {
   html: string
 }
   
-type Emailer = {
+type EmailService = {
   send: (email: Email) => Promise<boolean>
 }
   
-export function Emailer(init: {
+export function EmailService(init: {
   account: string
   secret: string
-}): Emailer {
+}): EmailService {
   const { account, secret } = init
   return {
     send: async (email) => {

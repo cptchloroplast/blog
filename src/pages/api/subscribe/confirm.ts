@@ -1,5 +1,5 @@
 import { json } from "@utils"
-import { R2Repository } from "../../../services/Repository"
+import { R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
 

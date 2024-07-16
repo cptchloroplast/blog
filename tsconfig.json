@@ -6,9 +6,10 @@
       "@cloudflare/vitest-pool-workers"
     ],
     "allowJs": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@schemas": ["src/schemas"],
+      "@services": ["src/services"],
       "@utils": ["src/utils"]
     }
   }

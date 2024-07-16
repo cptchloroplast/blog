@@ -1,6 +1,5 @@
 import { json } from "@utils"
-import { Emailer } from "../../../services/Emailer"
-import { R2Repository } from "../../../services/Repository"
+import { EmailService, R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
 
@@ -32,7 +31,7 @@ export async function POST(context: APIContext) {
         email,
         id,
     })
-    const emailer = Emailer({ 
+    const emailer = EmailService({ 
         account: env.MAILJET_API_KEY,
         secret: env.MAILJET_SECRET_KEY,
     })
