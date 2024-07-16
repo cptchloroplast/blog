@@ -1,7 +1,5 @@
 <script lang="ts">
-  import Input from "./Input.svelte"
-  import Button from "./Button.svelte"
-  import Form from "./Form.svelte"
+  import { Button, Form, Input } from "."
   import Icon from "../Icon.svelte"
 </script>
 

@@ -4,7 +4,7 @@
   export let action
   export let method = "POST"
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: any) => {
     const data = [...event.target.elements].reduce((result, element) => {
       if (element.name && element.value) result[element.name] = element.value
       return result
@@ -18,7 +18,7 @@
       },
       body: JSON.stringify(data),
     })
-    const json = await response.json()
+    const json = await response.json<any>()
     button.removeAttribute("disabled");
     if (!response.ok) {
       $toast = {

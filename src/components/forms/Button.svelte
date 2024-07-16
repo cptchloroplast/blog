@@ -1,7 +1,7 @@
 <script lang="ts">
   export let onClick: (event: MouseEvent) => void = () => {}
   export let disabled = false
-  export let title: string = null
+  export let title: string | undefined
 </script>
 
 <button
