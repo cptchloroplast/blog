@@ -1,5 +1,5 @@
 import type { APIContext } from "astro"
-import { json } from "../../utils/json"
+import { json } from "../../utils"
 export const prerender = false
 export function GET(context: APIContext) {
   const { request: { url } } = context

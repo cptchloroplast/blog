@@ -1,7 +1,7 @@
 import type { APIContext } from "astro"
 import metadata from "../../metadata"
 import { getCollection } from "astro:content"
-import { sortPosts } from "../../utils/sortPosts"
+import { sortPosts } from "@utils"
 export const prerender = false
 export async function GET(context: APIContext) {
     const { published } = (await getCollection("posts"))

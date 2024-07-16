@@ -1,7 +1,7 @@
-import rss from '@astrojs/rss';
+import rss from "@astrojs/rss"
 import metadata from "../metadata"
-import { getCollection } from 'astro:content';
-import { sortPosts } from '../utils/sortPosts';
+import { getCollection } from "astro:content"
+import { sortPosts } from "@utils"
 
 const { description } = metadata
 const posts = (await getCollection("posts"))

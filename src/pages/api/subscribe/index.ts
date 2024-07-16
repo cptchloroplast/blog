@@ -1,4 +1,4 @@
-import { json } from "../../../utils/json"
+import { json } from "@utils"
 import { Emailer } from "../../../services/Emailer"
 import { R2Repository } from "../../../services/Repository"
 import type { APIContext } from "astro"

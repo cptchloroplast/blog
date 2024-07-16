@@ -8,7 +8,8 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@schemas": ["src/schemas"]
+      "@schemas": ["src/schemas"],
+      "@utils": ["src/utils"]
     }
   }
 }
