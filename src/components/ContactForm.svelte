@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Button, Captcha, Form, Input, TextArea } from "./forms"
-  import Icon from "./Icon.svelte"
+  import { Icon } from "./ui"
   
   const sitekey = process.env.HCAPTCHA_SITEKEY
 </script>

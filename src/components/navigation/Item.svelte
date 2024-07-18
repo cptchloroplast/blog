@@ -3,7 +3,7 @@
   export let item: Navigation
   
   import { Dropdown } from "."
-  import Icon from "../Icon.svelte"
+  import { Icon } from "../ui"
   
   const {text, href, external, children, icon} = item
 </script>

@@ -1,7 +1,7 @@
 <script>
   export let text
 
-  import Icon from "../Icon.svelte"
+  import { Icon } from "../ui"
 
   let show = false
 
