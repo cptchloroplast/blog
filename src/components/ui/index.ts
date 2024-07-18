@@ -1,6 +1,6 @@
-import Card from "./Card.astro"
-import Chip from "./Chip.astro"
+import Card from "./Card.svelte"
+import Chip from "./Chip.svelte"
 import Icon from "./Icon.svelte"
-import Title from "./Title.astro"
-import Subtitle from "./Subtitle.astro"
+import Title from "./Title.svelte"
+import Subtitle from "./Subtitle.svelte"
 export { Card, Chip, Icon, Title, Subtitle }

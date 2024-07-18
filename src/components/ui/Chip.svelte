@@ -1,10 +1,8 @@
----
-type Props = {
-  href: string
-  title: string
-}
-const { href, title } = Astro.props
----
+<script lang="ts">
+  export let href: string
+  export let title: string
+</script>
+
 
 <a href={href} title={title}>
   <slot />
