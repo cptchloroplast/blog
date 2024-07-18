@@ -1,20 +1,31 @@
 ---
 import { BaseLayout } from "@layouts"
-import { Card } from "@components/ui"
-import PostComponent from "../components/Post.astro"
+import { Card, Subtitle, Title } from "@components/ui"
 import Giscus from "@giscus/svelte"
-import type { Post } from "@schemas"
+import type { Post, Tag } from "@schemas"
+import { formatDate } from "@utils"
+import Tags from "../components/Tags.astro"
 type Props = {
   content: Post
 }
 const { content } = Astro.props
-const { title, description } = content
+const { title, description, published, tags, updated } = content
 ---
 <BaseLayout title={title} description={description}>
   <Card>
-    <PostComponent post={content}>
-      <slot />
-    </PostComponent>
+    <article>
+      <Title>{title}</Title>
+      <Subtitle>
+        {updated && <span>Updated: {formatDate(updated)}</span>}
+        <span>Published: {formatDate(published)}</span>
+      </Subtitle>
+      <hr>
+      <div id="markdown">
+        <slot />
+      </div>
+      <hr>
+      <Tags tags={tags.split(",").map((tag): Tag => ({ name: tag }))} />
+    </article>
   </Card>
   <Card>
     <Giscus 
@@ -34,3 +45,21 @@ const { title, description } = content
     />
   </Card>
 </BaseLayout>
+
+<style is:global>
+  #markdown {
+    line-height: 1.5;
+  }
+  
+  #markdown :first-child{
+    margin-top: 0;
+  }
+
+  #markdown :last-child {
+    margin-bottom: 0;
+  }
+
+  #markdown pre {
+    padding: 8px;
+  }
+</style>
