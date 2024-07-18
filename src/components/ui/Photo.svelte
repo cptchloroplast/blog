@@ -1,5 +1,10 @@
+<script lang="ts">
+  export let src: string
+  export let alt: string
+</script>
+
 <div>
-  <img src="/img/me.small.webp">
+  <img src={src} alt={alt}>
 </div>
 
 <style>

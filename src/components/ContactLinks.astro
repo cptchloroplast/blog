@@ -1,7 +1,10 @@
 ---
+import type { Contact } from "@schemas"
 import { Icon } from "@components/ui"
-import metadata from "../../metadata"
-const { profile: { contact } } = metadata
+type Props = {
+  contact: Contact[]
+}
+const { contact } = Astro.props
 ---
 <ul>
   {contact.map(item => {

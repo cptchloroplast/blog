@@ -1,10 +1,6 @@
 ---
-import Toast from "../components/Toast.svelte"
-import Photo from "../components/profile/Photo.astro"
-import Contact from "../components/profile/Contact.astro"
-import Bio from "../components/profile/Bio.astro"
-import { Footer, Header, SubscribeForm } from "@components"
-import { Card, Title } from "@components/ui"
+import { Biography, ContactLinks, Footer, Header, SubscribeForm, Toast } from "@components"
+import { Card, Photo, Title } from "@components/ui"
 type Props = {
   title: string
   description?: string
@@ -12,7 +8,7 @@ type Props = {
 }
 
 import metadata from "../metadata.ts"
-const { author: { name, email } } = metadata
+const { author: { name, email }, profile: { bio, contact } } = metadata
 
 const {
   title,
@@ -50,12 +46,12 @@ const { origin, hostname } = Astro.site!
       </main>
       <aside>   
         <Card>
-          <Photo />
+          <Photo src="/img/me.small.webp" alt="My profile picture" />
           <hr>
-          <Title>Benjamin Okkema</Title>
-          <Bio />
+          <Title>{name}</Title>
+          <Biography bio={bio} />
           <hr>
-          <Contact />
+          <ContactLinks contact={contact} />
         </Card>
       </aside>
     </div>

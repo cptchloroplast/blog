@@ -1,7 +1,10 @@
 ---
+import type { Bio } from "@schemas"
 import { Icon } from "@components/ui"
-import metadata from "../../metadata"
-const { profile: { bio } } = metadata
+type Props = {
+  bio: Bio[]
+}
+const { bio } = Astro.props
 ---
 <ul>
   {bio.map(item => {

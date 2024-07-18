@@ -1,8 +1,10 @@
+import Biography from "./Biography.astro"
 import ContactForm from "./ContactForm.svelte"
+import ContactLinks from "./ContactLinks.astro"
 import Footer from "./Footer.astro"
 import Header from "./Header.svelte"
 import PostList from "./PostList.astro"
 import SubscribeForm from "./SubscribeForm.svelte"
 import Tags from "./Tags.astro"
 import Toast from "./Toast.svelte"
-export { ContactForm, Footer, Header, PostList, SubscribeForm, Tags, Toast }
+export { Biography, ContactForm, ContactLinks, Footer, Header, PostList, SubscribeForm, Tags, Toast }
