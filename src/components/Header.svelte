@@ -1,7 +1,7 @@
 <script lang="ts">
-  import metadata from "../../metadata"
-  import Item from "./Item.svelte"
-  import Icon from "../Icon.svelte"
+  import metadata from "../metadata"
+  import { Item } from "./navigation"
+  import Icon from "./Icon.svelte"
   
   let show = false
   const { navigation } = metadata

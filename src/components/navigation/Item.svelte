@@ -2,7 +2,7 @@
   import type { Navigation } from "@schemas"
   export let item: Navigation
   
-  import Dropdown from "./Dropdown.svelte"
+  import { Dropdown } from "."
   import Icon from "../Icon.svelte"
   
   const {text, href, external, children, icon} = item
