@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { Button, Form, Input } from "."
-  import Icon from "../Icon.svelte"
+  import { Button, Form, Input } from "./forms"
+  import Icon from "./Icon.svelte"
 </script>
 
 <Form
