@@ -1,9 +1,9 @@
 ---
-import { BaseLayout } from "@layouts"
-import { Card, Subtitle, Title } from "@components/ui"
-import PostList from "../../components/PostList.astro"
-import { sortPosts } from "@utils"
 import { getCollection } from "astro:content"
+import { PostList } from "@components"
+import { Card, Subtitle, Title } from "@components/ui"
+import { BaseLayout } from "@layouts"
+import { sortPosts } from "@utils"
 
 const posts = (await getCollection("posts"))
   .map(x => ({ ...x.data, url: x.slug }))

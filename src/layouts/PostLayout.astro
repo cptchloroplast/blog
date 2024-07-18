@@ -1,10 +1,10 @@
 ---
-import { BaseLayout } from "@layouts"
-import { Card, Subtitle, Title } from "@components/ui"
-import Giscus from "@giscus/svelte"
 import type { Post, Tag } from "@schemas"
+import Giscus from "@giscus/svelte"
+import { Tags } from "@components"
+import { Card, Subtitle, Title } from "@components/ui"
+import { BaseLayout } from "@layouts"
 import { formatDate } from "@utils"
-import Tags from "../components/Tags.astro"
 type Props = {
   content: Post
 }
