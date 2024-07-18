@@ -1,9 +1,9 @@
 ---
-import { BaseLayout } from "@layouts"
-import { Card, Title, Subtitle } from "@components"
-import Tags from "../../components/Tags.astro"
-import { getCollection } from "astro:content"
 import type { Tag } from "@schemas"
+import { getCollection } from "astro:content"
+import { Card, Title, Subtitle } from "@components/ui"
+import { BaseLayout } from "@layouts"
+import Tags from "../../components/Tags.astro"
 const posts = (await getCollection("posts"))
   .map(x => ({ ...x.data, url: x.slug }))
 const tags = Object.entries(posts.reduce((result, post) => {

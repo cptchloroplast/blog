@@ -1,6 +1,6 @@
 ---
+import { Card, Subtitle, Title } from "@components/ui"
 import { BaseLayout } from "@layouts"
-import { Card, Subtitle, Title } from "@components"
 import bikes from "../../../public/bikes.json"
 export async function getStaticPaths() {
   return bikes.map(bike => {
