@@ -43,6 +43,7 @@ module "page" {
 
   production_buckets = {
     BUCKET = var.github_repository
+    STRAVA = "strava"
   }
 
   production_env_vars = {

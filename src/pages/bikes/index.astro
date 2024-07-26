@@ -1,12 +1,21 @@
 ---
 import { BaseLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
-import bikes from "../../../public/bikes.json"
+import { R2Repository } from "@services"
+import { R2Object } from "@cloudflare/workers-types"
+// import bikes from "../../../public/bikes.json"
+const bucket = Astro.locals.runtime.env.STRAVA
+const objects = await bucket.list({ prefix: "gear" }).then(({ objects }) => objects)
+  .then(objects => Promise.all(objects.map(object => bucket.get(object.key))))
+const bikes = await Promise.all(objects.reduce(function(prev, curr) {
+  if (curr) prev.push(curr.json())
+  return prev
+}, ([] as Promise<any>[])))
 ---
 <BaseLayout title="The Bike Shed">
   <Card>
     <Title>The Bike Shed</Title>
-    <Subtitle>Welcome to the Jungle</Subtitle>
+    <Subtitle>🎵 Welcome to the Jungle 🎵</Subtitle>
     <hr>
     <div>
       <ul>
