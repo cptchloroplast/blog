@@ -19,7 +19,7 @@ const bikes = await Promise.all(objects.reduce(function(prev, curr) {
     <div>
       <ul>
         {bikes.map((bike) => (<li>
-            <a href={bike.Name.toLowerCase().replace(/ /g, "-")}>{bike.Name}</a>
+            <a href={bike.name.toLowerCase().replace(/ /g, "-")}>{bike.name}</a>
           </li>))}
       </ul>
       <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/8782282/activity-summary/96d77f0d34aa5f345ff4842d6e495f3a872d610b'></iframe>
