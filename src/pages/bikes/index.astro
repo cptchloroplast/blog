@@ -4,12 +4,16 @@ import { Card, Subtitle, Title } from "@components/ui"
 export const prerender = false
 // import bikes from "../../../public/bikes.json"
 const bucket = Astro.locals.runtime.env.STRAVA
-const objects = await bucket.list({ prefix: "gear" }).then(({ objects }) => objects)
-  .then(objects => Promise.all(objects.map(object => bucket.get(object.key))))
-const bikes = await Promise.all(objects.reduce(function(prev, curr) {
-  if (curr) prev.push(curr.json())
-  return prev
-}, ([] as Promise<any>[])))
+const promises = await bucket.list({ prefix: "gear" }).then(({ objects }) => objects)
+  .then(objects => objects.map(object => bucket.get(object.key)))
+const bikes: any[] = []
+for (const promise of promises) {
+  const object = await promise
+  if (object) {
+    const bike = await object.json()
+    bikes.push(bike)
+  }
+}
 ---
 <BaseLayout title="The Bike Shed">
   <Card>
