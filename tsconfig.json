@@ -12,6 +12,7 @@
       "@components/ui": ["src/components/ui"],
       "@layouts": ["src/layouts"],
       "@schemas": ["src/schemas"],
+      "@schemas/strava": ["src/schemas/strava"],
       "@services": ["src/services"],
       "@utils": ["src/utils"]
     }

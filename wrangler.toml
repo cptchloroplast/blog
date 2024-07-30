@@ -4,3 +4,8 @@ name = "blog"
 binding = "BUCKET"
 preview_bucket_name = "blog"
 bucket_name = "blog"
+
+[[r2_buckets]]
+binding = "STRAVA"
+preview_bucket_name = "strava"
+bucket_name = "strava"

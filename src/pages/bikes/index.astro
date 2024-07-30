@@ -1,16 +1,17 @@
 ---
 import { BaseLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
+import { type Gear, GearSchema } from "@schemas/strava"
 export const prerender = false
-// import bikes from "../../../public/bikes.json"
 const bucket = Astro.locals.runtime.env.STRAVA
 const promises = await bucket.list({ prefix: "gear" }).then(({ objects }) => objects)
   .then(objects => objects.map(object => bucket.get(object.key)))
-const bikes: any[] = []
+const bikes: Gear[] = []
 for (const promise of promises) {
   const object = await promise
   if (object) {
-    const bike = await object.json()
+    const bike = await object.json<Gear>()
+    GearSchema.parse(bike)
     bikes.push(bike)
   }
 }
