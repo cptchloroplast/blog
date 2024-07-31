@@ -9,3 +9,8 @@ bucket_name = "blog"
 binding = "STRAVA"
 preview_bucket_name = "strava"
 bucket_name = "strava"
+
+[[d1_database]]
+binding = "DB"
+database_name = "blog"
+database_id = "59d1cf85-8fac-4a48-9f52-cb97dbae8561"

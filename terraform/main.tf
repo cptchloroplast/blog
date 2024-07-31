@@ -23,6 +23,14 @@ module "bucket" {
   name       = var.github_repository
 }
 
+module "database" {
+  source  = "app.terraform.io/okkema/database/cloudflare"
+  version = "~> 0.1"
+
+  account_id = var.cloudflare_account_id
+  name       = var.github_repository
+}
+
 module "page" {
   source  = "app.terraform.io/okkema/page/cloudflare"
   version = "~> 0.4"
