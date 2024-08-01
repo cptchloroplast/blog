@@ -1,6 +1,5 @@
 variable "cloudflare_account_id" {}
 variable "cloudflare_zone_id" {}
-variable "cloudflare_zone" {}
 variable "github_owner" {}
 variable "github_repository" {}
 variable "pages_hostname" {}
@@ -21,6 +20,7 @@ variable "RSA_PUBLIC_KEY" {}
 variable "RSA_PRIVATE_KEY" {
   sensitive = true
 }
+variable "WORKER_SCHEDULE" {}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {

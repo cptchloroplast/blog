@@ -1,20 +1,11 @@
 ---
 import { BaseLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
-import { type Gear, GearSchema } from "@schemas/strava"
+import { drizzle } from "drizzle-orm/d1"
+import { GearTable } from "@tables"
 export const prerender = false
-const bucket = Astro.locals.runtime.env.STRAVA
-const promises = await bucket.list({ prefix: "gear" }).then(({ objects }) => objects)
-  .then(objects => objects.map(object => bucket.get(object.key)))
-const bikes: Gear[] = []
-for (const promise of promises) {
-  const object = await promise
-  if (object) {
-    const bike = await object.json<Gear>()
-    GearSchema.parse(bike)
-    bikes.push(bike)
-  }
-}
+const db = drizzle(Astro.locals.runtime.env.DB)
+const bikes = await db.select().from(GearTable).orderBy(GearTable.name).all()
 ---
 <BaseLayout title="The Bike Shed">
   <Card>
@@ -24,7 +15,7 @@ for (const promise of promises) {
     <div>
       <ul>
         {bikes.map((bike) => (<li>
-            <a href={bike.name.toLowerCase().replace(/ /g, "-")}>{bike.name}</a>
+            <a href={bike.slug}>{bike.name}</a>
           </li>))}
       </ul>
       <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/8782282/activity-summary/96d77f0d34aa5f345ff4842d6e495f3a872d610b'></iframe>

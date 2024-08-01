@@ -1,0 +1,40 @@
+---
+import { Card, Subtitle, Title } from "@components/ui"
+import { BaseLayout } from "@layouts"
+import { GearTable } from "@tables"
+import { eq } from "drizzle-orm"
+import { drizzle } from "drizzle-orm/d1"
+export const prerender = false
+const { slug } = Astro.params
+const db = drizzle(Astro.locals.runtime.env.DB)
+if (!slug) return Astro.redirect("/404")
+const [bike] = await db.select().from(GearTable).where(eq(GearTable.slug, slug))
+if (!bike) return Astro.redirect("/404")
+---
+<BaseLayout title={`Bike - ${bike.name}`}>
+  <Card>
+    <Title>{bike.name}</Title>
+    <Subtitle>{bike.frame_type}</Subtitle>
+    <hr>
+    <table>
+      {Object.entries(bike).map(([key, value]) => (
+        <tr>
+          <th>{key}</th>
+          <td>{value}</td>
+        </tr>
+      ))}
+    </table>
+  </Card>
+</BaseLayout>
+
+<style>
+  table {
+    border: 1px black solid;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px black solid;  
+    text-align: left;
+    padding: 4px;
+  }
+</style>

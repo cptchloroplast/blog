@@ -7,7 +7,7 @@ export const GearSchema = z.object({
         distance: z.number(),
         id: z.string(),
         model: z.string(),
-        removed: z.boolean().nullable(),
+        removed: z.string().datetime().nullable(),
         type: z.string(),
     })),
     description: z.string().nullable(),

@@ -69,3 +69,25 @@ module "page" {
 
   depends_on = [module.bucket, module.database]
 }
+
+module "worker" {
+  source  = "app.terraform.io/okkema/worker/cloudflare"
+  version = "~> 0.11"
+
+  account_id = var.cloudflare_account_id
+  zone_id    = var.cloudflare_zone_id
+  name       = "${var.github_repository}-worker"
+  content    = file(abspath("${path.module}/../build/index.js"))
+  schedules  = [var.WORKER_SCHEDULE]
+  env_vars = [
+    { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE }
+  ]
+  buckets = [
+    { binding = "STRAVA", name = "strava" }
+  ]
+  databases = [
+    { binding = "DB", id = module.database.id }
+  ]
+
+  depends_on = [module.database]
+}

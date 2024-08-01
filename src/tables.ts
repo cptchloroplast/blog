@@ -1,5 +1,5 @@
-import { relations } from "drizzle-orm";
-import { index, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { relations } from "drizzle-orm"
+import { index, real, sqliteTable, text } from "drizzle-orm/sqlite-core"
 
 export const GearTable = sqliteTable("gear", {
     brand_name: text("brand_name"),
@@ -8,9 +8,11 @@ export const GearTable = sqliteTable("gear", {
     id: text("id").primaryKey(),
     model_name: text("model_name"),
     name: text("name").notNull(),
+    // calculated fields
+    slug: text("slug").notNull(),
 }, function(table) {
     return {
-        nameIdx: index("name_idx").on(table.name),
+        slugIdx: index("slug_idx").on(table.slug),
     }
 })
 
@@ -31,7 +33,6 @@ export const ComponentsTable = sqliteTable("components", {
     type: text("type").notNull(),
 }, function(table) {
     return {
-        typeIdx: index("type_idx").on(table.type),
         gearIdIdx: index("gear_id_idx").on(table.gear_id),
     }
 })

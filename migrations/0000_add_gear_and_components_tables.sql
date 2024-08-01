@@ -16,9 +16,9 @@ CREATE TABLE `gear` (
 	`frame_type` text,
 	`id` text PRIMARY KEY NOT NULL,
 	`model_name` text,
-	`name` text NOT NULL
+	`name` text NOT NULL,
+	`slug` text NOT NULL
 );
 --> statement-breakpoint
-CREATE INDEX `type_idx` ON `components` (`type`);--> statement-breakpoint
 CREATE INDEX `gear_id_idx` ON `components` (`gear_id`);--> statement-breakpoint
-CREATE INDEX `name_idx` ON `gear` (`name`);
+CREATE INDEX `slug_idx` ON `gear` (`slug`);
