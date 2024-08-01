@@ -63,5 +63,9 @@ module "page" {
     RSA_PUBLIC_KEY      = var.RSA_PUBLIC_KEY
   }
 
-  depends_on = [module.bucket]
+  production_databases = {
+    DB = module.database.id
+  }
+
+  depends_on = [module.bucket, module.database]
 }
