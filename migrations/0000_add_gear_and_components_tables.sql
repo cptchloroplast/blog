@@ -1,7 +1,7 @@
 CREATE TABLE `components` (
 	`added` text NOT NULL,
 	`brand` text,
-	`distance` real,
+	`distance` real NOT NULL,
 	`gear_id` text NOT NULL,
 	`id` text PRIMARY KEY NOT NULL,
 	`string` text,
@@ -13,7 +13,7 @@ CREATE TABLE `components` (
 CREATE TABLE `gear` (
 	`brand_name` text,
 	`description` text,
-	`frame_type` text,
+	`frame_type` text NOT NULL,
 	`id` text PRIMARY KEY NOT NULL,
 	`model_name` text,
 	`name` text NOT NULL,

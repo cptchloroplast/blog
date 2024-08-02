@@ -1,0 +1,1 @@
+export { ComponentsRelations, ComponentsTable, GearRelations, GearTable } from "./Gear"

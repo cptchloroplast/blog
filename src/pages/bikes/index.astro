@@ -2,10 +2,9 @@
 import { BaseLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
 import { drizzle } from "drizzle-orm/d1"
-import { GearTable } from "@tables"
+import { GearService } from "@services"
 export const prerender = false
-const db = drizzle(Astro.locals.runtime.env.DB)
-const bikes = await db.select().from(GearTable).orderBy(GearTable.name).all()
+const bikes = await GearService(Astro.locals.runtime.env.DB).list()
 ---
 <BaseLayout title="The Bike Shed">
   <Card>
