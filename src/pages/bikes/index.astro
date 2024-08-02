@@ -1,7 +1,6 @@
 ---
 import { BaseLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
-import { drizzle } from "drizzle-orm/d1"
 import { GearService } from "@services"
 export const prerender = false
 const bikes = await GearService(Astro.locals.runtime.env.DB).list()
@@ -13,8 +12,8 @@ const bikes = await GearService(Astro.locals.runtime.env.DB).list()
     <hr>
     <div>
       <ul>
-        {bikes.map((bike) => (<li>
-            <a href={bike.slug}>{bike.name}</a>
+        {bikes.map(({ name, slug }) => (<li>
+            <a href={slug}>{name}</a>
           </li>))}
       </ul>
       <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/8782282/activity-summary/96d77f0d34aa5f345ff4842d6e495f3a872d610b'></iframe>

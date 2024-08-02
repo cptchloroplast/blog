@@ -7,14 +7,15 @@ const { slug } = Astro.params
 if (!slug) return Astro.redirect("/404")
 const bike = await GearService(Astro.locals.runtime.env.DB).getBySlug(slug)
 if (!bike) return Astro.redirect("/404")
+const { components, frame_type, name } = bike
 ---
-<BaseLayout title={`Bike - ${bike.name}`}>
+<BaseLayout title={`Bike - ${name}`}>
   <Card>
-    <Title>{bike.name}</Title>
-    <Subtitle>{bike.frame_type}</Subtitle>
+    <Title>{name}</Title>
+    <Subtitle>{frame_type}</Subtitle>
     <hr>
     <table>
-      {bike.components.sort(function(a,b) { return a.type > b.type ? 1 : -1 }).map(function({ brand, model, type }) {
+      {components.map(function({ brand, model, type }) {
         return (
           <tr>
             <th>{type}</th>
