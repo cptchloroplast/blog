@@ -1,5 +1,5 @@
 import type { ExecutionContext, ScheduledController } from "@cloudflare/workers-types"
-import type { Environment } from "../env"
+import type { Environment } from "@env"
 import { drizzle } from "drizzle-orm/d1"
 import { ComponentsTable, GearTable } from "@schemas/strava"
 import { eq } from "drizzle-orm"

@@ -10,6 +10,8 @@
     "paths": {
       "@components": ["src/components"],
       "@components/ui": ["src/components/ui"],
+      "@env": ["src/env"],
+      "@functions": ["src/functions"],
       "@layouts": ["src/layouts"],
       "@schemas": ["src/schemas"],
       "@schemas/strava": ["src/schemas/strava"],
