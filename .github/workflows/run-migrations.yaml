@@ -1,0 +1,28 @@
+name: Run migrations
+on:
+  push:
+    paths:
+      - .github/workflows/run-migrations.yaml
+      - migrations/**
+      - src/schemas/**
+      - drizzle.config.ts
+      - package.json
+      - wrangler.toml
+concurrency: migrations
+jobs:
+  node:
+    name: Run migrations
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+      - name: Install dependencies
+        run: npm ci
+      - name: Run migrations
+        run: npm run migrate:remote
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

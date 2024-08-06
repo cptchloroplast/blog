@@ -1,6 +1,7 @@
 locals {
   secrets = {
     "TF_API_TOKEN" : var.TF_API_TOKEN,
+    "CLOUDFLARE_API_TOKEN" : var.D1_CLOUDFLARE_API_TOKEN,
   }
 }
 
@@ -43,10 +44,9 @@ module "page" {
   pages_hostname = var.pages_hostname
 
   production_secrets = {
-    GOOGLE_CREDENTIALS   = var.GOOGLE_CREDENTIALS
-    MAILJET_SECRET_KEY   = var.MAILJET_SECRET_KEY
-    RSA_PRIVATE_KEY      = var.RSA_PRIVATE_KEY
-    CLOUDFLARE_API_TOKEN = var.D1_CLOUDFLARE_API_TOKEN
+    GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
+    MAILJET_SECRET_KEY = var.MAILJET_SECRET_KEY
+    RSA_PRIVATE_KEY    = var.RSA_PRIVATE_KEY
   }
 
   production_buckets = {
