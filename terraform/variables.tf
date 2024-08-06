@@ -21,6 +21,9 @@ variable "RSA_PRIVATE_KEY" {
   sensitive = true
 }
 variable "WORKER_SCHEDULE" {}
+variable "D1_CLOUDFLARE_API_TOKEN" {
+  sensitive = true
+}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {
