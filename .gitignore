@@ -10,3 +10,4 @@ public/bikes.json
 .wrangler
 .astro
 .dev.vars
+build/
