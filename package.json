@@ -3,7 +3,7 @@
   "version": "6.6.6",
   "private": true,
   "scripts": {
-    "build": "npm-run-all build:blog test migrate:remote",
+    "build": "npm-run-all build:blog test",
     "build:blog": "astro build",
     "build:worker": "esbuild src/functions/index.ts --bundle --outdir=build --platform=node --format=esm",
     "migrate:local": "wrangler d1 migrations apply blog --local",
