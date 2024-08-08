@@ -1,4 +1,4 @@
-import { z } from "astro:content"
+import { z } from "zod"
 export const SubscriberSchema = z.object({
     id: z.string(),
     email: z.string().email(),

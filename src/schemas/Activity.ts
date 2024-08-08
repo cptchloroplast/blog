@@ -1,4 +1,4 @@
-import { z } from "astro:content"
+import { z } from "zod"
 export const ActivitySchema = z.object({
     type: z.string(),
 })

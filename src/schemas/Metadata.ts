@@ -1,4 +1,4 @@
-import { z } from "astro:content"
+import { z } from "zod"
 import { BioSchema } from "./Bio"
 import { NavigationSchema } from "./Navigation"
 import { ContactSchema } from "./Contact"

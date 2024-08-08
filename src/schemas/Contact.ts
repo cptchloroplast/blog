@@ -1,4 +1,4 @@
-import { z } from "astro:content"
+import { z } from "zod"
 import { IconSchema } from "./Icon"
 export const ContactSchema = z.object({
     icon: IconSchema,
