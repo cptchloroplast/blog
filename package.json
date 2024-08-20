@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm-run-all build:blog test",
     "build:blog": "astro build",
-    "build:worker": "esbuild src/functions/index.ts --bundle --outdir=build --platform=browser --format=esm",
+    "build:worker": "npx wrangler deploy src/functions/index.ts --dry-run --outdir build",
     "migrate:local": "wrangler d1 migrations apply blog --local",
     "migrate:remote": "wrangler d1 migrations apply blog --remote",
     "start": "npm-run-all migrate:local start:blog",
@@ -30,7 +30,7 @@
     "drizzle-orm": "^0.32.1",
     "esbuild": "^0.23.0",
     "googleapis": "^140.0.1",
-    "gray-matter": "^4.0.3",
+    "gray-matter": "github:okkema/gray-matter",
     "npm-run-all": "^4.1.5",
     "rehype-external-links": "^3.0.0",
     "remark-gfm": "^4.0.0",

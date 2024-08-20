@@ -72,13 +72,14 @@ module "page" {
 
 module "worker" {
   source  = "app.terraform.io/okkema/worker/cloudflare"
-  version = "~> 0.11"
+  version = "~> 0.12"
 
-  account_id = var.cloudflare_account_id
-  zone_id    = var.cloudflare_zone_id
-  name       = "${var.github_repository}-worker"
-  content    = file(abspath("${path.module}/../build/index.js"))
-  schedules  = [var.WORKER_SCHEDULE]
+  account_id          = var.cloudflare_account_id
+  zone_id             = var.cloudflare_zone_id
+  name                = "${var.github_repository}-worker"
+  content             = file(abspath("${path.module}/../build/index.js"))
+  compatibility_flags = toset(["nodejs_compat"])
+  schedules           = [var.WORKER_SCHEDULE]
   env_vars = [
     { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE }
   ]
