@@ -9,7 +9,7 @@ export async function getStaticPaths() {
   const posts = (await getCollection("posts"))
     .map(x => ({ ...x.data, url: x.slug }))
   const tags = posts.reduce((result, post) => {
-    for (let tag of post.tags.split(",")) {
+    for (let tag of post.tags) {
       if (!result[tag]) result[tag] = []
       result[tag] = [post, ...result[tag]]
     }

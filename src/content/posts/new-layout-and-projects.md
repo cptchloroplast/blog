@@ -2,7 +2,9 @@
 type: post
 title: Layout Overhaul and New Projects
 published: 2020-07-08
-tags: projects,meta
+tags: 
+    - projects
+    - meta
 ---
 
 Hi again!

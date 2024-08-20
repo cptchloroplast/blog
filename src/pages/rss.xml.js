@@ -14,7 +14,7 @@ export const GET = (context) => rss({
   site: context.site,
   items: posts.map((post) => ({
       title: post.title,
-      description: post.tags,
+      description: post.tags.join(","),
       link: `/posts/${post.url}`,
       pubDate: post.published,
     }),

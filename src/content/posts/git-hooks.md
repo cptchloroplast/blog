@@ -2,7 +2,9 @@
 type: post
 title: Git Hooks
 published: 2023-08-07
-tags: code,jupyter
+tags: 
+    - code
+    - jupyter
 ---
 
 # `pre-commit`

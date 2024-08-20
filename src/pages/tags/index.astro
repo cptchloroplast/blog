@@ -1,5 +1,4 @@
 ---
-import type { Tag } from "@schemas"
 import { getCollection } from "astro:content"
 import { Card, Title, Subtitle } from "@components/ui"
 import { BaseLayout } from "@layouts"
@@ -7,13 +6,13 @@ import { Tags } from "@components"
 const posts = (await getCollection("posts"))
   .map(x => ({ ...x.data, url: x.slug }))
 const tags = Object.entries(posts.reduce((result, post) => {
-    for (let tag of post.tags.split(",")) {
+    for (let tag of post.tags) {
       if (!result[tag]) result[tag] = 0
       result[tag] += 1
     }
     return result
   }, {} as { [key: string]: number}))
-  .map(([tag, count]): Tag => {
+  .map(([tag, count]) => {
     return { 
       name: tag, 
       count: count as number, 

@@ -1,5 +1,5 @@
 ---
-import type { Post, Tag } from "@schemas"
+import type { Post } from "@schemas"
 import Giscus from "@giscus/svelte"
 import { Tags } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
@@ -24,7 +24,7 @@ const { title, description, published, tags, updated } = content
         <slot />
       </div>
       <hr>
-      <Tags tags={tags.split(",").map((tag): Tag => ({ name: tag }))} />
+      <Tags tags={tags} />
     </article>
   </Card>
   <Card>

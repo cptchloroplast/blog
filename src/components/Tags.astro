@@ -1,15 +1,18 @@
 ---
-import type { Tag } from "@schemas"
 import { Chip } from "@components/ui"
 type Props = {
-  tags: Tag[]
+  tags: {
+    name: string
+    count: number
+  }[] | string[]
 }
 const { tags } = Astro.props
 ---
 
 <ol>
   {tags.map(tag => {
-    const { name, count } = tag
+    let count = typeof tag === "object" ? tag.count : undefined
+    let name = typeof tag === "object" ? tag.name : tag
     return (
       <li>
         <Chip href={`/tags/${name}`} title={`Tags - ${name}`}>

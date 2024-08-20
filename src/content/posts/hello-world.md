@@ -3,7 +3,8 @@ type: post
 title: Hello, World
 published: 2018-10-06
 updated: 2020-06-13
-tags: meta
+tags: 
+    - meta
 ---
 
 Hi!

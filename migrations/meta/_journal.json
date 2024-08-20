@@ -8,6 +8,13 @@
       "when": 1722563388919,
       "tag": "0000_add_gear_and_components_tables",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1723171014511,
+      "tag": "0001_add_posts_and_tags_tables",
+      "breakpoints": true
     }
   ]
 }

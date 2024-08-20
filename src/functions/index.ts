@@ -1,9 +1,11 @@
 import type { ExecutionContext, ScheduledController } from "@cloudflare/workers-types"
 import type { Environment } from "@env"
 import type { Gear } from "@schemas/strava"
-import { GearService } from "@services"
+import { GearService, PostService } from "@services"
+import matter from "gray-matter"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
+const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
 
 export default {
     async scheduled(controller: ScheduledController, env: Environment, ctx: ExecutionContext) {
@@ -23,6 +25,21 @@ export default {
             const gear = await body.json<Gear>()
             const service = GearService(env.DB)
             await service.upsert(gear)
+        }
+
+        const posts = await env.BUCKET.list({ prefix: "posts" })
+        for (const object of posts.objects) {
+            const key = object.key
+            const slug = PostsRegex.exec(key)?.[1]
+            if (!slug) {
+                console.log("Unable to extract slug from key", key)
+                continue
+            }
+            const body = await env.BUCKET.get(key)
+            const raw = await body!.text()
+            const parsed = matter(raw)
+            const service = PostService(env.DB)
+            await service.upsert({ ...parsed.data, content: parsed.content } as any)
         }
     }
 }
