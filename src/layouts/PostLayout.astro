@@ -6,10 +6,10 @@ import { Card, Subtitle, Title } from "@components/ui"
 import { BaseLayout } from "@layouts"
 import { formatDate } from "@utils"
 type Props = {
-  content: Post
+  post: Post
 }
-const { content } = Astro.props
-const { title, description, published, tags, updated } = content
+const { post } = Astro.props
+const { title, description, published, tags, updated } = post
 ---
 <BaseLayout title={title} description={description}>
   <Card>

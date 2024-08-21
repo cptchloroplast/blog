@@ -8,6 +8,6 @@ const entry = (await getCollection("posts"))
 const Layout = entry.data.type == "post" ? PostLayout : PhotoLayout
 const { Content } = await entry.render()
 ---
-<Layout content={entry.data}>
+<Layout post={entry.data}>
   <Content />
 </Layout>
