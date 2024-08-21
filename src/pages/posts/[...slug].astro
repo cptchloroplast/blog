@@ -18,6 +18,6 @@ const { entry } = Astro.props
 const { Content } = await entry.render()
 const Layout = entry.data.type == "post" ? PostLayout : PhotoLayout
 ---
-<Layout content={entry.data}>
+<Layout post={entry.data}>
     <Content />
 </Layout>

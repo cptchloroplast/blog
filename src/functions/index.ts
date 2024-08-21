@@ -2,7 +2,7 @@ import type { ExecutionContext, ScheduledController } from "@cloudflare/workers-
 import type { Environment } from "@env"
 import type { Gear } from "@schemas/strava"
 import { GearService, PostService } from "@services"
-import matter from "gray-matter"
+import { parseMarkdown } from "@utils"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
 const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
@@ -37,9 +37,9 @@ export default {
             }
             const body = await env.BUCKET.get(key)
             const raw = await body!.text()
-            const parsed = matter(raw)
+            const post = parseMarkdown(raw, slug)
             const service = PostService(env.DB)
-            await service.upsert({ ...parsed.data, content: parsed.content } as any)
+            await service.upsert(post)
         }
     }
 }

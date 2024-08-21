@@ -1,7 +1,8 @@
-import EnvironmentPlugin from "vite-plugin-environment";
-import svelte from "@astrojs/svelte";
-import { defineConfig } from "astro/config";
+import EnvironmentPlugin from "vite-plugin-environment"
+import svelte from "@astrojs/svelte"
+import { defineConfig } from "astro/config"
 import cloudflare from "@astrojs/cloudflare"
+import markdown from "@astropub/md"
 
 export default defineConfig({
   output: "hybrid",
@@ -10,13 +11,15 @@ export default defineConfig({
     platformProxy: {
       enabled: true
     },
-
   }),
   site: "https://ben.okkema.org",
   server: {
     port: 5000
   },
-  integrations: [svelte()],
+  integrations: [
+    markdown(),
+    svelte(),
+  ],
   vite: {
     plugins: [EnvironmentPlugin(["CF_PAGES_COMMIT_SHA", "HCAPTCHA_SITEKEY"])]
   },
@@ -36,4 +39,4 @@ export default defineConfig({
       }
     }]]
   }
-});
+})
