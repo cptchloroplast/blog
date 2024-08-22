@@ -7,11 +7,7 @@ type Props = {
 
 const { post } = Astro.props as Props
 ---
-<PostLayout post={post}>
-  <div>
-    <slot />
-  </div>
-</PostLayout>
+<PostLayout post={post} />
 
 <style is:global>
   #markdown > div > p {

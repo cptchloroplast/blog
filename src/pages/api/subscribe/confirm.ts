@@ -3,8 +3,6 @@ import { R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
 
-export const prerender = false
-
 export async function GET(context: APIContext) {
     const { request, locals: { runtime: { env } } } = context
     const params = new URL(request.url).searchParams

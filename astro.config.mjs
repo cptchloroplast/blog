@@ -5,7 +5,7 @@ import cloudflare from "@astrojs/cloudflare"
 import markdown from "@astropub/md"
 
 export default defineConfig({
-  output: "hybrid",
+  output: "server",
   adapter: cloudflare({
     imageService: "passthrough",
     platformProxy: {

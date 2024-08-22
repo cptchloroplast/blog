@@ -11,3 +11,4 @@ public/bikes.json
 .astro
 .dev.vars
 build/
+posts/

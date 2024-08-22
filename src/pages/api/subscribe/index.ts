@@ -3,8 +3,6 @@ import { EmailService, R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
 
-export const prerender = false
-
 export async function POST(context: APIContext) {
     const { env } = context.locals.runtime
     const site = context.site?.hostname

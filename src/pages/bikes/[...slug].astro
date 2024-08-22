@@ -2,7 +2,7 @@
 import { Card, Subtitle, Title } from "@components/ui"
 import { BaseLayout } from "@layouts"
 import { GearService } from "@services"
-export const prerender = false
+
 const { slug } = Astro.params
 if (!slug) return Astro.redirect("/404")
 const bike = await GearService(Astro.locals.runtime.env.DB).getBySlug(slug)

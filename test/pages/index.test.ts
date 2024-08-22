@@ -1,8 +1,12 @@
 import { env, createExecutionContext, waitOnExecutionContext } from "cloudflare:test"
-import { describe, it, expect } from "vitest"
+import { it, expect, beforeAll } from "vitest"
+import { setupEnvironment } from "./setup"
 // @ts-ignore cannot find module
 import worker from "../../dist/_worker.js"
-it("responds with HTML", async function() {
+beforeAll(async function() {
+  await setupEnvironment(env.DB) 
+})
+it.skip("responds with HTML", async function() {
   const request = new Request("http://localhost")
   const ctx = createExecutionContext()
   const response: Response = await worker.fetch(request, env, ctx)

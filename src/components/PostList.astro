@@ -10,7 +10,7 @@ const { posts } = Astro.props
 <ol>
 {posts.map(post => (
   <li>
-    <a href={`/posts/${post.url}`}>
+    <a href={`/posts/${post.slug}`}>
       <span>{post.title}</span>
       <small>{post.updated ? `Updated: ${formatDate(post.updated)}` : formatDate(post.published)}</small>
     </a>

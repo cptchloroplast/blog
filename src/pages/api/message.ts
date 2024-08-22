@@ -1,8 +1,6 @@
 import type { APIContext } from "astro"
 import { json } from "@utils"
 
-export const prerender = false
-
 export async function POST(context: APIContext) {
   const data = await context.request.json<any>()
   if (!data["h-captcha-response"]) return json({

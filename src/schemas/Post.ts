@@ -2,10 +2,10 @@ import { relations } from "drizzle-orm"
 import { primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core"
 import { z } from "zod"
 export const PostSchema = z.object({
-    // content: z.string(),
+    content: z.string(),
     description: z.string().optional(),
     published: z.date(),
-    // slug: z.string(),
+    slug: z.string(),
     title: z.string(),
     tags: z.array(z.string()),
     type: z.enum(["post", "photo"]),

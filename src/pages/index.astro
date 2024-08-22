@@ -1,13 +1,10 @@
 ---
-import { getCollection } from "astro:content"
 import { PostLayout, PhotoLayout } from "@layouts"
-import { sortPosts } from "@utils"
+import { PostService } from "@services"
 
-const entry = (await getCollection("posts"))
-  .sort((a, b) => sortPosts(a.data, b.data))[0]
-const Layout = entry.data.type == "post" ? PostLayout : PhotoLayout
-const { Content } = await entry.render()
+const service = PostService(Astro.locals.runtime.env.DB)
+const post = await service.getLatest()
+if (!post) return Astro.redirect("/404")
+const Layout = post.type === "post" ? PostLayout : PhotoLayout
 ---
-<Layout post={entry.data}>
-  <Content />
-</Layout>
+<PostLayout post={post} />

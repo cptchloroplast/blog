@@ -5,11 +5,13 @@ import { Tags } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
 import { BaseLayout } from "@layouts"
 import { formatDate } from "@utils"
+import { markdown } from "@astropub/md"
 type Props = {
   post: Post
 }
 const { post } = Astro.props
-const { title, description, published, tags, updated } = post
+const { content, title, description, published, tags, type, updated } = post
+const body = await markdown(content)
 ---
 <BaseLayout title={title} description={description}>
   <Card>
@@ -21,7 +23,7 @@ const { title, description, published, tags, updated } = post
       </Subtitle>
       <hr>
       <div id="markdown">
-        <slot />
+        {type === "photo" ? <div>{body}</div> : body}
       </div>
       <hr>
       <Tags tags={tags} />

@@ -1,12 +1,10 @@
 import type { APIContext } from "astro"
 import metadata from "../../metadata"
-import { getCollection } from "astro:content"
-import { sortPosts } from "@utils"
-export const prerender = false
+import { PostService } from "@services"
+
 export async function GET(context: APIContext) {
-    const { published } = (await getCollection("posts"))
-        .map(x => ({ ...x.data, url: x.slug}))
-        .sort(sortPosts)[0]
+	const service = PostService(context.locals.runtime.env.DB)
+	const post = await service.getEarliest()
     const { author: { name, username }, description } = metadata
     const { locals: { runtime: { env } }, request: { url } } = context
 	const { origin } = new URL(url)
@@ -24,7 +22,7 @@ export async function GET(context: APIContext) {
 		"summary": description,
 		"url": origin,
 		"discoverable": true,
-		"published": published.toISOString(),
+		"published": post!.published.toISOString(),
 		"icon": {
             "type": "Image",
             "mediaType": "image/webp",

@@ -1,23 +1,10 @@
 ---
-import { getCollection } from "astro:content"
 import { PostLayout, PhotoLayout } from "@layouts"
-export async function getStaticPaths() {
-    const entries = await getCollection("posts")
-    return entries.map(function(entry) {
-        return { 
-            params: { 
-                slug: entry.slug 
-            }, 
-            props: { 
-                entry
-            },
-        }
-    })
-}
-const { entry } = Astro.props
-const { Content } = await entry.render()
-const Layout = entry.data.type == "post" ? PostLayout : PhotoLayout
+import { PostService } from "@services"
+
+const { slug } = Astro.params
+const service = PostService(Astro.locals.runtime.env.DB)
+const post = await service.getBySlug(slug!)
+if (!post) return Astro.redirect("/404")
 ---
-<Layout post={entry.data}>
-    <Content />
-</Layout>
+{post.type === "post" ? <PostLayout post={post}/> : <PhotoLayout post={post}/>}

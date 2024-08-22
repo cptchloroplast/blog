@@ -1,13 +1,11 @@
 ---
-import { getCollection } from "astro:content"
 import { PostList } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
 import { BaseLayout } from "@layouts"
-import { sortPosts } from "@utils"
+import { PostService } from "@services"
 
-const posts = (await getCollection("posts"))
-  .map(x => ({ ...x.data, url: x.slug }))
-  .sort(sortPosts)
+const service = PostService(Astro.locals.runtime.env.DB)
+const posts = await service.list()
 ---
 <BaseLayout title="Posts">
   <Card>

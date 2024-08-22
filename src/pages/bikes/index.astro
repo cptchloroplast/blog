@@ -2,8 +2,9 @@
 import { BaseLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
 import { GearService } from "@services"
-export const prerender = false
-const bikes = await GearService(Astro.locals.runtime.env.DB).list()
+
+const service = GearService(Astro.locals.runtime.env.DB)
+const bikes = await service.list()
 ---
 <BaseLayout title="The Bike Shed">
   <Card>
