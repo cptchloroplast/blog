@@ -84,7 +84,8 @@ module "worker" {
     { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE }
   ]
   buckets = [
-    { binding = "STRAVA", name = "strava" }
+    { binding = "STRAVA", name = "strava" },
+    { binding = "BUCKET", name = var.github_repository }
   ]
   databases = [
     { binding = "DB", id = module.database.id }
