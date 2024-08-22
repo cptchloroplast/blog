@@ -179,3 +179,40 @@ it("should list posts by tag", async function() {
     ]
   `)
 })
+it("should list tags", async function() {
+  const service = PostService(env.DB)
+  const result = await service.listTags()
+  expect(result).toMatchInlineSnapshot(`
+    [
+      {
+        "count": 2,
+        "name": "Tag2",
+      },
+      {
+        "count": 2,
+        "name": "Tag3",
+      },
+      {
+        "count": 1,
+        "name": "Tag1",
+      },
+    ]
+  `)
+})
+it("should get the earliest post", async function() {
+  const service = PostService(env.DB)
+  const result = await service.getEarliest()
+  expect(result).toMatchInlineSnapshot(`
+    {
+      "content": "Post1 content",
+      "published": 1970-01-01T00:00:00.000Z,
+      "slug": "post-one",
+      "tags": [
+        "Tag1",
+        "Tag2",
+      ],
+      "title": "Post1",
+      "type": "post",
+    }
+  `)
+})

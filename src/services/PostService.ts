@@ -1,14 +1,16 @@
 import type { D1Database } from "@cloudflare/workers-types"
 import { type Post, PostsTable, schema, TagsTable } from "@schemas"
 import { conflictUpdateAllExcept } from "@utils"
-import { desc, eq, inArray, type InferSelectModel } from "drizzle-orm"
+import { asc, count, desc, eq, inArray, type InferSelectModel } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/d1"
 
 type PostService = {
     getBySlug(slug: string): Promise<Post | undefined>
+    getEarliest(): Promise<Post | undefined>
     getLatest(): Promise<Post | undefined>
     list(): Promise<Post[]>
     listByTag(tag: string): Promise<Post[]>
+    listTags(): Promise<{ name: string, count: number }[]>
     upsert(value: Post): Promise<Post>
 }
 type PostRecord = InferSelectModel<typeof PostsTable> & { tags: InferSelectModel<typeof TagsTable>[] }
@@ -40,6 +42,9 @@ export function PostService(d1: D1Database): PostService {
         async getBySlug(slug) {
             return db.query.PostsTable.findFirst({ with: { tags }, where: eq(PostsTable.slug, slug) }).then(transformPost)
         },
+        async getEarliest() {
+            return db.query.PostsTable.findFirst({ with: { tags }, orderBy: [asc(PostsTable.published)] }).then(transformPost) 
+        },
         async getLatest() {
             return db.query.PostsTable.findFirst({ with: { tags }, orderBy }).then(transformPost)
         },
@@ -49,6 +54,9 @@ export function PostService(d1: D1Database): PostService {
         async listByTag(tag) {
             const query = db.select({ slug: TagsTable.post_slug }).from(TagsTable).where(eq(TagsTable.name, tag))
             return db.query.PostsTable.findMany({ with: { tags }, orderBy, where: inArray(PostsTable.slug, query) }).then(transformPosts)
+        },
+        async listTags() {
+            return db.select({ name: TagsTable.name, count: count(TagsTable.name)}).from(TagsTable).groupBy(TagsTable.name).orderBy(desc(count(TagsTable.name)), TagsTable.name)
         },
         async upsert(value) {
             const record = {
