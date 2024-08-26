@@ -11,8 +11,9 @@ type Props = {
 const { post } = Astro.props
 const { content, title, description, published, tags, type, updated } = post
 const markdown = await renderMarkdown(content)
+const code = !!markdown.match("<code")
 ---
-<BaseLayout title={title} description={description} code>
+<BaseLayout title={title} description={description} code={code}>
   <Card>
     <article>
       <Title>{title}</Title>
