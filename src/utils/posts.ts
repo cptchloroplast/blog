@@ -29,7 +29,7 @@ export async function renderMarkdown(markdown: string) {
   const matches = Array.from(html.matchAll(regex))
   if (matches.length) {
     for (const [link, href, _, content] of matches) {
-      if (href != "/") {
+      if (!href.startsWith("/")) {
         const external = link.replace(content, `${content}<span style="margin-left: 4px;"><i class="i-external"></i></span>`)
           .replace(href, `${href}" target="_blank`)
         html = html.replace(link, external)
