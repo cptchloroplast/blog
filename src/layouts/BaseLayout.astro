@@ -5,6 +5,7 @@ type Props = {
   title: string
   description?: string
   image?: string
+  code?: boolean
 }
 
 import metadata from "../metadata.ts"
@@ -13,7 +14,8 @@ const { author: { name, email }, profile: { bio, contact } } = metadata
 const {
   title,
   description = metadata.description, 
-  image = "/img/me.webp" 
+  image = "/img/me.webp",
+  code = false
 } = Astro.props
 const { origin, hostname } = Astro.site!
 ---
@@ -32,6 +34,11 @@ const { origin, hostname } = Astro.site!
     <meta property="og:url" content={origin} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${origin}${image}`} />
+    {code && 
+      <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark-dimmed.min.css">
+      <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+      <script lang="js">hljs.highlightAll();</script>
+    }
   </head>
   <body>
     <Header client:load />

@@ -4,16 +4,15 @@ import Giscus from "@giscus/svelte"
 import { Tags } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
 import { BaseLayout } from "@layouts"
-import { formatDate } from "@utils"
-import { markdown } from "@astropub/md"
+import { formatDate, renderMarkdown } from "@utils"
 type Props = {
   post: Post
 }
 const { post } = Astro.props
 const { content, title, description, published, tags, type, updated } = post
-const body = await markdown(content)
+const markdown = await renderMarkdown(content)
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} code>
   <Card>
     <article>
       <Title>{title}</Title>
@@ -22,9 +21,7 @@ const body = await markdown(content)
         <span>Published: {formatDate(published)}</span>
       </Subtitle>
       <hr>
-      <div id="markdown">
-        {type === "photo" ? <div>{body}</div> : body}
-      </div>
+      {type === "photo" ? <div id="markdown"><div set:html={markdown} /></div> : <div id="markdown" set:html={markdown} />}
       <hr>
       <Tags tags={tags} />
     </article>
