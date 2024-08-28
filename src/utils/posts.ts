@@ -1,26 +1,17 @@
-import { PostSchema, type Post } from "@schemas"
 import yaml from "js-yaml"
 import { marked } from "marked"
 
-export function sortPosts(a: Post, b: Post) {
-  const dateA = a.updated ?? a.published
-  const dateB = b.updated ?? b.published
-  return dateA < dateB ? 1 : -1
-}
 
 export function formatDate(date: string | Date) {
   return new Date(date).toISOString().split("T")[0]
 }
 
-export function parseMarkdown(markdown: string, slug: string): Post {
-  const start = "---\n"
-  const end = "\n---"
-  const content = markdown.substring(markdown.indexOf(end) + end.length).trim()
-  const frontmatter = markdown.substring(start.length, markdown.indexOf(end))
-  const data = yaml.load(frontmatter) as Post
-  const post = { ...data, content, slug }
-  PostSchema.parse(post)
-  return post
+export function parseMarkdown<T>(markdown: string): { content: string, frontmatter: T} {
+  const pieces = markdown.split("---")
+  if (pieces.length !== 3) throw new Error("Invalid formatting")
+  const frontmatter = yaml.load(pieces[1]) as T
+  const content = pieces[2].trim()
+  return { content, frontmatter }
 }
 
 export async function renderMarkdown(markdown: string) {

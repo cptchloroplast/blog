@@ -4,6 +4,7 @@ import type { Gear } from "@schemas/strava"
 import { GearService, PostService } from "@services"
 import { parseMarkdown } from "@utils"
 import * as Sentry from "@sentry/cloudflare"
+import { PostSchema, type Post } from "@schemas"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
 const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
@@ -19,7 +20,9 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
         }
         const body = await blog.get(key)
         const raw = await body!.text()
-        const post = parseMarkdown(raw, slug)
+        const { content, frontmatter } = parseMarkdown<Post>(raw)
+        const post = { ...frontmatter, content, slug }
+        PostSchema.parse(post)
         const service = PostService(db)
         await service.upsert(post)
     }
