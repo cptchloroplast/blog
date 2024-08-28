@@ -1,10 +1,11 @@
 <script lang="ts">
-  import metadata from "../metadata"
+  import type { Navigation } from "@schemas";
   import { Item } from "./navigation"
   import { Icon } from "./ui"
-  
+
+  export let navigation: Navigation[]
+
   let show = false
-  const { navigation } = metadata
 
   const toggle = () => show = !show
   const close = (event: any) => {

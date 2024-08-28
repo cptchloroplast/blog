@@ -1,18 +1,15 @@
 ---
-import metadata from "../metadata"
+import { PostService } from "@services"
+
+const metadata = Astro.locals.metadata
 const { author: { name, email }, repo } = metadata
 
 const build = process.env.CF_PAGES_COMMIT_SHA
 const href = `${repo}/commit/${build}`
 const current = new Date().getUTCFullYear()
-
-// https://github.com/withastro/rfcs/discussions/118
-const initial = 2018
-// const initial = Astro.fetchContent<Post>("../pages/posts/*.md")
-//   .reduce((result, post) => {
-//     const year = new Date(post.published).getUTCFullYear()
-//     return year < result ? year : result
-//   }, current)
+const service = PostService(Astro.locals.runtime.env.DB)
+const earliest = await service.getEarliest()
+const initial = earliest?.published.getUTCFullYear() ?? current
 ---
 <footer>
   <small>

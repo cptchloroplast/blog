@@ -8,8 +8,8 @@ type Props = {
   code?: boolean
 }
 
-import metadata from "../metadata.ts"
-const { author: { name, email }, profile: { bio, contact } } = metadata
+const metadata = Astro.locals.metadata
+const { author: { name, email }, profile: { bio, contact }, navigation } = metadata
 
 const {
   title,
@@ -42,7 +42,7 @@ const { origin, hostname } = Astro.site!
     }
   </head>
   <body>
-    <Header client:load />
+    <Header navigation={navigation} client:load />
     <div>
       <main>
         <slot />

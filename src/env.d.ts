@@ -18,8 +18,11 @@ export type Environment = {
 }
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>
+type Metadata = import("@schemas").Metadata
 declare global {
   namespace App {
-    interface Locals extends Runtime { }
+    interface Locals extends Runtime {
+      metadata: Metadata 
+    }
   }
 }

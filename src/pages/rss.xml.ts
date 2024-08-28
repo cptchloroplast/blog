@@ -1,17 +1,14 @@
 import rss from "@astrojs/rss"
-import metadata from "../metadata"
 import { PostService } from "@services"
 import type { APIContext } from "astro"
 
-const { description } = metadata
-
 export async function GET(context: APIContext) {
+  const metadata = context.locals.metadata
   const service = PostService(context.locals.runtime.env.DB)
   const posts = await service.list()
-  console.log(posts)
   return rss({
     title: context.site!.origin,
-    description: description,
+    description: metadata.description,
     site: context.site!,
     items: posts.map((post) => ({
         title: post.title,
