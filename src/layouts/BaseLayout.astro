@@ -29,6 +29,7 @@ const { origin, hostname } = Astro.site!
     <title>{title} - {hostname}</title>
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/icons.css">
+    <link rel="alternate" type="application/rss+xml" title={title} href="/rss.xml" />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={origin} />
