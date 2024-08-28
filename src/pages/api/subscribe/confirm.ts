@@ -12,7 +12,7 @@ export async function GET(context: APIContext) {
         ok: false,
         message: "Something doesn't look right here....",
     })
-    const subscribers = R2Repository<Subscriber>(env.BUCKET, "subscribers")
+    const subscribers = R2Repository<Subscriber>(env.BLOG, "subscribers")
     const subscriber = await subscribers.get(email)
     if (!subscriber || id !== subscriber.id) {
     return json({

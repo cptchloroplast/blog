@@ -6,7 +6,7 @@ import type { Subscriber } from "@schemas"
 export async function POST(context: APIContext) {
     const { env } = context.locals.runtime
     const site = context.site?.hostname
-    const subscribers = R2Repository<Subscriber>(env.BUCKET, "subscribers")
+    const subscribers = R2Repository<Subscriber>(env.BLOG, "subscribers")
     const data = await context.request.json<{ email: string }>()
     const { email } = data 
     const subscriber = await subscribers.get(email)

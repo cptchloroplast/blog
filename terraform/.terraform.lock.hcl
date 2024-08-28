@@ -46,6 +46,29 @@ provider "registry.terraform.io/integrations/github" {
   ]
 }
 
+provider "registry.terraform.io/jianyuan/sentry" {
+  version     = "0.13.1"
+  constraints = "~> 0.12"
+  hashes = [
+    "h1:tPFv6cLf04pWB9YVi9IYha4PjwXwgho06wjZ9tG7NZw=",
+    "zh:0dde99e7b343fa01f8eefc378171fb8621bedb20f59157d6cc8e3d46c738105f",
+    "zh:30ed398792e511f41555be5f3a3ae024858972b05a6e3c5ff31d9a745d6a8d08",
+    "zh:497ddbe21689fb08145b79f7a1a9d499997b24ec458f0b4f63e3dc4454830207",
+    "zh:50f8ad867e9367c2bb99c09003a85f1db7b0db381e7e34644468d67cf516958a",
+    "zh:54b24ae567d08a6d8af0688be22e0b8e74077f21101bdc936e8b0913f6847122",
+    "zh:65bdc167e23fc978336e934b481c984e4696eaeadf6753332cab39a2f969fdd2",
+    "zh:689cafb3b7033d84a2c951f1a76fe3f6b79a9313c9725162bf9b01c817b5d79e",
+    "zh:7b34307a54a1a390251a5429c799d4bc43d84ea29439f0a14d8f2b6c500ea897",
+    "zh:7ed669e745e7a40773a6d9f6559b42ac1b2b9b06ca757700c6c2d5f31a9f79bb",
+    "zh:8f808a6653bf998ee17ccc9d1f7b40036e2611c04371fa57830ad48053852dd6",
+    "zh:b376cd99f4b5b7e18754a859e13d911edeb1db57b7518974f40a221036d50ab6",
+    "zh:bcb86759ce8761fb88a3652772f8eceb9b83238a3ea249e65dffab9212790f36",
+    "zh:be4b848c74285c9b023e85b15df46b16076be1cf418efd2fc28d370d65c095e2",
+    "zh:d628d39faaacd5b7dc6cd34d7984b3ae7a0dd5d81803be6e72058954d3261303",
+    "zh:e7b48d7de5dd1133dc0f500320e2a626478fd88656b15aa13d4cd51582cb764a",
+  ]
+}
+
 provider "registry.terraform.io/killmeplz/sodium" {
   version     = "0.0.3"
   constraints = "~> 0.0.3"

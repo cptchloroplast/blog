@@ -7,12 +7,14 @@ export type Environment = {
   MAILJET_API_KEY: string
   MAILJET_SECRET_KEY: string
   ADMIN_EMAIL: string
-  BUCKET: R2Bucket
+  BLOG: R2Bucket
   RSA_PUBLIC_KEY: string
   RSA_PRIVATE_KEY: string
   CF_PAGES_COMMIT_SHA: string;
   STRAVA: R2Bucket
   DB: D1Database
+  SENTRY_DSN: string
+  WORKER_SCHEDULE: string
 }
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>

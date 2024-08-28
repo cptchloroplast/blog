@@ -2,7 +2,7 @@ import type { APIContext } from "astro"
 
 export async function GET(context: APIContext) {
     const slug = context.params.slug
-    const object = await context.locals.runtime.env.BUCKET.get(`img/${slug}`)
+    const object = await context.locals.runtime.env.BLOG.get(`img/${slug}`)
     if (!object) return new Response("Not Found", { status: 404 })
     const headers = new Headers()
     // https://github.com/cloudflare/workers-sdk/issues/6047

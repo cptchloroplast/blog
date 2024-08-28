@@ -23,6 +23,7 @@
     "@cloudflare/workers-types": "^4.20240620.0",
     "@giscus/svelte": "^3.0.0",
     "@okkema/worker": "^2.0.0",
+    "@sentry/cloudflare": "^8.26.0",
     "@types/js-yaml": "^4.0.9",
     "astro": "^4.11.3",
     "autoprefixer": "^10.4.19",

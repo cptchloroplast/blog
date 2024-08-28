@@ -50,7 +50,7 @@ module "page" {
   }
 
   production_buckets = {
-    BUCKET = var.github_repository
+    BLOG = var.github_repository
     STRAVA = "strava"
   }
 
@@ -83,13 +83,25 @@ module "worker" {
   env_vars = [
     { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE }
   ]
+  secrets = [
+    { name = "SENTRY_DSN", value = module.sentry.dsn }
+  ]
   buckets = [
-    { binding = "STRAVA", name = "strava" },
-    { binding = "BUCKET", name = var.github_repository }
+    { binding = "BLOG", name = var.github_repository },
+    { binding = "STRAVA", name = "strava" }
   ]
   databases = [
     { binding = "DB", id = module.database.id }
   ]
 
-  depends_on = [module.database]
+  depends_on = [module.database, module.sentry]
+}
+
+module "sentry" {
+  source  = "app.terraform.io/okkema/project/sentry"
+  version = "~> 0.3"
+
+  github_organization = var.github_owner
+  github_repository   = var.github_repository
+  default_user        = var.sentry_default_user
 }
