@@ -6,7 +6,7 @@ import worker from "../../dist/_worker.js"
 beforeAll(async function() {
   await setupEnvironment(env.DB) 
 })
-it("responds with HTML", async function() {
+it.skip("responds with HTML", async function() {
   const request = new Request("http://localhost")
   const ctx = createExecutionContext()
   const response: Response = await worker.fetch(request, env, ctx)

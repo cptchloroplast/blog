@@ -1,8 +1,8 @@
 import type { APIContext } from "astro"
-import metadata from "../../metadata"
 import { PostService } from "@services"
 
 export async function GET(context: APIContext) {
+	const metadata = context.locals.metadata
 	const service = PostService(context.locals.runtime.env.DB)
 	const post = await service.getEarliest()
     const { author: { name, username }, description } = metadata
