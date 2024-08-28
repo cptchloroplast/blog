@@ -8,7 +8,7 @@ const { description } = metadata
 export async function GET(context: APIContext) {
   const service = PostService(context.locals.runtime.env.DB)
   const posts = await service.list()
-  return rss({
+  return await rss({
     title: context.site!.origin,
     description: description,
     site: context.site!,
