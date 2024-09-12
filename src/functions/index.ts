@@ -3,8 +3,9 @@ import type { Environment } from "@env"
 import type { Gear } from "@schemas/strava"
 import { GearService, PostService } from "@services"
 import { parseMarkdown } from "@utils"
-import * as Sentry from "@sentry/cloudflare"
+import { instrumentD1WithSentry } from "@sentry/cloudflare"
 import { PostSchema, type Post } from "@schemas"
+import { Worker } from "@okkema/worker"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
 const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
@@ -46,13 +47,9 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
     }
 }
 
-export default Sentry.withSentry(function(env) {
-    return {
-        dsn: env.SENTRY_DSN
-    }
-}, {
+export default Worker<Environment>({
     async scheduled(controller: ScheduledController, env: Environment, ctx: ExecutionContext) {
-        const db = Sentry.instrumentD1WithSentry(env.DB)
-        ctx.waitUntil(processBuckets(env.BLOG, env.STRAVA, db))
+        const db = instrumentD1WithSentry(env.DB)
+        await processBuckets(env.BLOG, env.STRAVA, db)
     }
 })

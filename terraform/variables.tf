@@ -3,7 +3,6 @@ variable "cloudflare_zone_id" {}
 variable "github_owner" {}
 variable "github_repository" {}
 variable "pages_hostname" {}
-variable "sentry_default_user" {}
 
 # Environment Variables
 variable "HCAPTCHA_SITEKEY" {}
