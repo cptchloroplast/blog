@@ -6,6 +6,7 @@ import { parseMarkdown } from "@utils"
 import { instrumentD1WithSentry } from "@sentry/cloudflare"
 import { PostSchema, type Post } from "@schemas"
 import { Worker } from "@okkema/worker"
+import { Logger } from "@okkema/worker/utils"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
 const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
@@ -16,7 +17,7 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
         const key = object.key
         const slug = PostsRegex.exec(key)?.[1]
         if (!slug) {
-            console.log("Unable to extract slug from key", key)
+            Logger.error("Unable to extract slug from key", key)
             continue
         }
         const body = await blog.get(key)
@@ -33,15 +34,11 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
         const key = object.key
         const id = GearRegex.exec(key)?.[1]
         if (!id) {
-            console.log("Unable to extract id from key", key)
+            Logger.error("Unable to extract id from key", key)
             continue
         }
         const body = await strava.get(key)
-        if (!body) {
-            console.log("This should never happen...", key)
-            continue
-        }
-        const gear = await body.json<Gear>()
+        const gear = await body!.json<Gear>()
         const service = GearService(db)
         await service.upsert(gear)
     }

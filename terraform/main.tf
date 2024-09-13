@@ -104,3 +104,13 @@ module "sentry" {
   github_organization = var.github_owner
   github_repository   = var.github_repository
 }
+
+module "client" {
+  source  = "app.terraform.io/okkema/client/auth0"
+  version = "~> 0.1"
+
+  name = var.github_repository
+  grants = {
+    "https://email.okkema.org": ["email:send"]
+  }
+}
