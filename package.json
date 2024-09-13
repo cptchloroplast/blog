@@ -22,7 +22,7 @@
     "@cloudflare/vitest-pool-workers": "^0.4.11",
     "@cloudflare/workers-types": "^4.20240620.0",
     "@giscus/svelte": "^3.0.0",
-    "@okkema/worker": "^3.2.0",
+    "@okkema/worker": "^3.2.1",
     "@sentry/cloudflare": "^8.26.0",
     "@types/js-yaml": "^4.0.9",
     "astro": "^4.11.3",

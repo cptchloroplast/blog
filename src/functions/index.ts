@@ -5,8 +5,7 @@ import { GearService, PostService } from "@services"
 import { parseMarkdown } from "@utils"
 import { instrumentD1WithSentry } from "@sentry/cloudflare"
 import { PostSchema, type Post } from "@schemas"
-import { Worker } from "@okkema/worker"
-import { Logger } from "@okkema/worker/utils"
+import { Worker, Logger } from "@okkema/worker"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
 const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
