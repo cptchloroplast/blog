@@ -1,6 +1,6 @@
 import { z } from "zod"
 export const IconSchema = z.enum([
-  "keybase",
+  "key",
   "phone",
   "github",
   "twitter",

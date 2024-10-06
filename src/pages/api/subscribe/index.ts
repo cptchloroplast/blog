@@ -29,13 +29,9 @@ export async function POST(context: APIContext) {
         email,
         id,
     })
-    const emailer = EmailService({ 
-        account: env.MAILJET_API_KEY,
-        secret: env.MAILJET_SECRET_KEY,
-    })
-    const ok = await emailer.send({
-        from: env.ADMIN_EMAIL,
-        to: email,
+    const emailer = EmailService(context.locals.runtime.env)
+    const response = await emailer.send({
+        to: [{ email }],
         subject: `Confirm your subscription to ${site}!`,
         html: `
         <p>Hi!</p>
@@ -46,7 +42,9 @@ export async function POST(context: APIContext) {
         <p>Ben</p>
         `
     })
-    if (!ok) {
+    if (!response.ok) {
+        const body = await response.json()
+        console.log(body)
         return json({
             ok: false,
             message: "Something funky happened... Please try again later.",

@@ -10,7 +10,6 @@ variable "MAILJET_API_KEY" {}
 variable "MAILJET_SECRET_KEY" {
   sensitive = true
 }
-variable "ADMIN_EMAIL" {}
 variable "GOOGLE_CREDENTIALS" {
   sensitive = true
 }
@@ -24,6 +23,7 @@ variable "WORKER_SCHEDULE" {}
 variable "D1_CLOUDFLARE_API_TOKEN" {
   sensitive = true
 }
+variable "OAUTH_TENANT" {}
 
 # GitHub Actions Secrets
 variable "TF_API_TOKEN" {

@@ -5,7 +5,7 @@ import { GearService, PostService } from "@services"
 import { parseMarkdown } from "@utils"
 import { instrumentD1WithSentry } from "@sentry/cloudflare"
 import { PostSchema, type Post } from "@schemas"
-import { Worker, Logger } from "@okkema/worker"
+import { SentryWorker, SentryLogger } from "@okkema/worker/sentry"
 
 const GearRegex = /gear\/([b0-9]+).meta.json/
 const PostsRegex = /posts\/([A-Za-z0-9\-]+).md/
@@ -16,7 +16,7 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
         const key = object.key
         const slug = PostsRegex.exec(key)?.[1]
         if (!slug) {
-            Logger.error("Unable to extract slug from key", key)
+            SentryLogger.error("Unable to extract slug from key", key)
             continue
         }
         const body = await blog.get(key)
@@ -33,7 +33,7 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
         const key = object.key
         const id = GearRegex.exec(key)?.[1]
         if (!id) {
-            Logger.error("Unable to extract id from key", key)
+            SentryLogger.error("Unable to extract id from key", key)
             continue
         }
         const body = await strava.get(key)
@@ -43,7 +43,7 @@ async function processBuckets(blog: R2Bucket, strava: R2Bucket, db: D1Database) 
     }
 }
 
-export default Worker<Environment>({
+export default SentryWorker<Environment>({
     async scheduled(controller: ScheduledController, env: Environment, ctx: ExecutionContext) {
         const db = instrumentD1WithSentry(env.DB)
         await processBuckets(env.BLOG, env.STRAVA, db)

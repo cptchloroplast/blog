@@ -6,7 +6,6 @@ type D1Database = import("@cloudflare/workers-types").D1Database
 export type Environment = {
   MAILJET_API_KEY: string
   MAILJET_SECRET_KEY: string
-  ADMIN_EMAIL: string
   BLOG: R2Bucket
   RSA_PUBLIC_KEY: string
   RSA_PRIVATE_KEY: string
@@ -15,6 +14,11 @@ export type Environment = {
   DB: D1Database
   SENTRY_DSN: string
   WORKER_SCHEDULE: string
+  OAUTH_CLIENT_ID: string
+  OAUTH_CLIENT_SECRET: string
+  OAUTH_TENANT: string
+  EMAIL_OAUTH_AUDIENCE: string
+  EMAIL_OAUTH_SCOPE: string
 }
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>

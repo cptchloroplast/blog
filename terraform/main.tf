@@ -44,23 +44,27 @@ module "page" {
   pages_hostname = var.pages_hostname
 
   production_secrets = {
-    GOOGLE_CREDENTIALS = var.GOOGLE_CREDENTIALS
-    MAILJET_SECRET_KEY = var.MAILJET_SECRET_KEY
-    RSA_PRIVATE_KEY    = var.RSA_PRIVATE_KEY
+    GOOGLE_CREDENTIALS  = var.GOOGLE_CREDENTIALS
+    MAILJET_SECRET_KEY  = var.MAILJET_SECRET_KEY
+    RSA_PRIVATE_KEY     = var.RSA_PRIVATE_KEY
+    OAUTH_CLIENT_SECRET = module.client.client_secret
   }
 
   production_buckets = {
-    BLOG = var.github_repository
+    BLOG   = var.github_repository
     STRAVA = "strava"
   }
 
   production_env_vars = {
-    HCAPTCHA_SITEKEY    = var.HCAPTCHA_SITEKEY
-    MAILJET_API_KEY     = var.MAILJET_API_KEY
-    ADMIN_EMAIL         = var.ADMIN_EMAIL
-    GOOGLE_SHEETS_ID    = var.GOOGLE_SHEETS_ID
-    GOOGLE_SHEETS_RANGE = var.GOOGLE_SHEETS_RANGE
-    RSA_PUBLIC_KEY      = var.RSA_PUBLIC_KEY
+    HCAPTCHA_SITEKEY     = var.HCAPTCHA_SITEKEY
+    MAILJET_API_KEY      = var.MAILJET_API_KEY
+    GOOGLE_SHEETS_ID     = var.GOOGLE_SHEETS_ID
+    GOOGLE_SHEETS_RANGE  = var.GOOGLE_SHEETS_RANGE
+    RSA_PUBLIC_KEY       = var.RSA_PUBLIC_KEY
+    OAUTH_CLIENT_ID      = module.client.client_id
+    OAUTH_TENANT         = var.OAUTH_TENANT
+    EMAIL_OAUTH_AUDIENCE = "https://email.okkema.org"
+    EMAIL_OAUTH_SCOPE    = "email:send"
   }
 
   production_databases = {
@@ -81,10 +85,10 @@ module "worker" {
   compatibility_flags = toset(["nodejs_compat"])
   schedules           = [var.WORKER_SCHEDULE]
   env_vars = [
-    { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE }
+    { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE },
   ]
   secrets = [
-    { name = "SENTRY_DSN", value = module.sentry.dsn }
+    { name = "SENTRY_DSN", value = module.sentry.dsn },
   ]
   buckets = [
     { binding = "BLOG", name = var.github_repository },
@@ -94,7 +98,7 @@ module "worker" {
     { binding = "DB", id = module.database.id }
   ]
 
-  depends_on = [module.database, module.sentry]
+  depends_on = [module.database, module.sentry, module.bucket]
 }
 
 module "sentry" {
@@ -107,10 +111,10 @@ module "sentry" {
 
 module "client" {
   source  = "app.terraform.io/okkema/client/auth0"
-  version = "~> 0.1"
+  version = "~> 0.3"
 
   name = var.github_repository
   grants = {
-    "https://email.okkema.org": ["email:send"]
+    "https://email.okkema.org" : ["email:send"]
   }
 }
