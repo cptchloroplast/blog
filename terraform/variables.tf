@@ -6,6 +6,9 @@ variable "pages_hostname" {}
 
 # Environment Variables
 variable "HCAPTCHA_SITEKEY" {}
+variable "HCAPTCHA_SECRET" {
+  sensitive = true
+}
 variable "RSA_PUBLIC_KEY" {}
 variable "RSA_PRIVATE_KEY" {
   sensitive = true

@@ -19,6 +19,8 @@ export type Environment = {
   OAUTH_TENANT: string
   EMAIL_OAUTH_AUDIENCE: string
   EMAIL_OAUTH_SCOPE: string
+  HCAPTCHA_SECRET: string
+  HCAPTCHA_SITEKEY: string
 }
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>
