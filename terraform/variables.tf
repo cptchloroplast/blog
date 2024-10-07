@@ -6,15 +6,6 @@ variable "pages_hostname" {}
 
 # Environment Variables
 variable "HCAPTCHA_SITEKEY" {}
-variable "MAILJET_API_KEY" {}
-variable "MAILJET_SECRET_KEY" {
-  sensitive = true
-}
-variable "GOOGLE_CREDENTIALS" {
-  sensitive = true
-}
-variable "GOOGLE_SHEETS_ID" {}
-variable "GOOGLE_SHEETS_RANGE" {}
 variable "RSA_PUBLIC_KEY" {}
 variable "RSA_PRIVATE_KEY" {
   sensitive = true

@@ -44,8 +44,6 @@ module "page" {
   pages_hostname = var.pages_hostname
 
   production_secrets = {
-    GOOGLE_CREDENTIALS  = var.GOOGLE_CREDENTIALS
-    MAILJET_SECRET_KEY  = var.MAILJET_SECRET_KEY
     RSA_PRIVATE_KEY     = var.RSA_PRIVATE_KEY
     OAUTH_CLIENT_SECRET = module.client.client_secret
   }
@@ -57,9 +55,6 @@ module "page" {
 
   production_env_vars = {
     HCAPTCHA_SITEKEY     = var.HCAPTCHA_SITEKEY
-    MAILJET_API_KEY      = var.MAILJET_API_KEY
-    GOOGLE_SHEETS_ID     = var.GOOGLE_SHEETS_ID
-    GOOGLE_SHEETS_RANGE  = var.GOOGLE_SHEETS_RANGE
     RSA_PUBLIC_KEY       = var.RSA_PUBLIC_KEY
     OAUTH_CLIENT_ID      = module.client.client_id
     OAUTH_TENANT         = var.OAUTH_TENANT
