@@ -11,7 +11,7 @@
     }, {})
     const button: HTMLButtonElement = event.submitter
     button.setAttribute("disabled", "disabled")
-    const response = await fetch(`/api/${action}`, {
+    const response = await fetch(`/${action}`, {
       method,
       headers: {
         "Content-Type": "application/json",

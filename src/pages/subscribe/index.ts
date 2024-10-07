@@ -37,7 +37,7 @@ export async function POST(context: APIContext) {
         <p>Hi!</p>
         <p>Thanks for subscribing to the email list!</p>
         <p>We promise to never send you spam, unless you specifically request it!</p>
-        <a href="https://${site}/api/subscribe/confirm?${params.toString()}">Click here to confirm your subscription!</a>
+        <a href="https://${site}/subscribe/confirm?${params.toString()}">Click here to confirm your subscription!</a>
         <p>Stay tuned for all the latest updates!</p>
         <p>Ben</p>
         `
