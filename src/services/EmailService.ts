@@ -1,11 +1,12 @@
 import { Problem } from "@okkema/worker"
 
 export type Email = {
-  to: {
+  to?: {
     email: string
   }[]
   subject: string
-  html: string
+  html?: string
+  body?: string
 }
   
 type EmailService = {

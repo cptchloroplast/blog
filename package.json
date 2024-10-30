@@ -5,7 +5,7 @@
   "scripts": {
     "build": "npm-run-all build:blog test",
     "build:blog": "astro build",
-    "build:worker": "npx wrangler deploy src/functions/index.ts --dry-run --outdir build",
+    "build:worker": "wrangler deploy src/functions/index.ts --dry-run --outdir build",
     "migrate:local": "wrangler d1 migrations apply blog --local",
     "migrate:remote": "wrangler d1 migrations apply blog --remote",
     "start": "npm-run-all migrate:local start:blog",

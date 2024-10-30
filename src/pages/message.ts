@@ -35,7 +35,12 @@ export async function POST(context: APIContext) {
     message: "No robots allowed!"
   })
 
-  await context.locals.runtime.env.BLOG.put(`messages/${data.email}/${new Date().toISOString()}.txt`, data.message)
+  const key = `messages/${data.email}/${new Date().toISOString()}.txt`
+  await context.locals.runtime.env.BLOG.put(key, data.message)
+  await EmailService(context.locals.runtime.env).send({ 
+    subject: `New message from ${data.email}`,
+    body: `Key: ${key}\n\n---\n\n${data.message}`,
+  })
 
   return json({
     ok: true,
