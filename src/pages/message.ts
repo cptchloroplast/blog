@@ -1,6 +1,6 @@
 import type { APIContext } from "astro"
 import { json } from "@utils"
-import { EmailService } from "@services"
+import { EmailService } from "@okkema/email"
 
 export async function POST(context: APIContext) {
   const data = await context.request.json<{

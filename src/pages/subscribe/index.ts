@@ -1,7 +1,8 @@
 import { json } from "@utils"
-import { EmailService, R2Repository } from "@services"
+import { R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
+import { EmailService } from "@okkema/email"
 
 export async function POST(context: APIContext) {
     const { env } = context.locals.runtime
@@ -15,8 +16,8 @@ export async function POST(context: APIContext) {
         const { subscribed } = subscriber
         const seconds = (today.getTime() - new Date(subscribed).getTime()) / 1000
         return json({
-        ok: false,
-        message: `You already subscribed ${seconds} seconds ago!`
+            ok: false,
+            message: `You already subscribed ${seconds} seconds ago!`
         })
     }
     const id = crypto.randomUUID()
