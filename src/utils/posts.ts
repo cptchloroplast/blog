@@ -1,6 +1,6 @@
 import yaml from "js-yaml"
-import { marked } from "marked"
-
+import { Marked } from "marked"
+import markedFootnote from "marked-footnote"
 
 export function formatDate(date: string | Date) {
   return new Date(date).toISOString().split("T")[0]
@@ -15,12 +15,14 @@ export function parseMarkdown<T>(markdown: string): { content: string, frontmatt
 }
 
 export async function renderMarkdown(markdown: string) {
-  let html = await marked.parse(markdown)
+  let html = await new Marked()
+    .use(markedFootnote({ description: "" })) // render footnotes and skip labeling section
+    .parse(markdown)
   const regex = /<a\s+href=(?:"([^"]+)"|'([^']+)').*?>(.*?)<\/a>/g
   const matches = Array.from(html.matchAll(regex))
   if (matches.length) {
     for (const [link, href, _, content] of matches) {
-      if (!href.startsWith("/")) {
+      if (!href.startsWith("/") && !href.includes("#")) { // skip internal links and scrolls
         const external = link.replace(content, `${content}<span style="margin-left: 4px;"><i class="i-external"></i></span>`)
           .replace(href, `${href}" target="_blank`)
         html = html.replace(link, external)
