@@ -3,9 +3,11 @@
 
   export let action
   export let method = "POST"
+  export let clear = true
 
   const onSubmit = async (event: any) => {
-    const data = [...event.target.elements].reduce((result, element) => {
+    const form: HTMLFormElement = event.target
+    const data = [...form.elements].reduce((result, element) => {
       if (element.name && element.value) result[element.name] = element.value
       return result
     }, {})
@@ -30,6 +32,9 @@
       $toast = {
         text: json.message,
         type: "success",
+      }
+      if (clear) {
+        form.reset()
       }
 		} else {
 			$toast = {
