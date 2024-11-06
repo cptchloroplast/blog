@@ -1,7 +1,7 @@
 import type { D1Database } from "@cloudflare/workers-types"
 import { type Post, PostsTable, schema, TagsTable } from "@schemas"
 import { conflictUpdateAllExcept } from "@utils"
-import { asc, count, desc, eq, inArray, type InferSelectModel } from "drizzle-orm"
+import { asc, count, desc, eq, inArray, type InferSelectModel, and, isNotNull } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/d1"
 
 type PostService = {
@@ -16,12 +16,13 @@ type PostService = {
 type PostRecord = InferSelectModel<typeof PostsTable> & { tags: InferSelectModel<typeof TagsTable>[] }
 const tags = { orderBy: TagsTable.name }
 const orderBy = [desc(PostsTable.published)]
+const where = isNotNull(PostsTable.published)
 function transformPost(post?: PostRecord): Post | undefined {
     if (!post) return undefined
     return Object.entries({
         ...post, 
         description: post.description ? post.description : undefined,
-        published: new Date(post.published),
+        published: post.published ? new Date(post.published) : undefined,
         tags: post.tags.map(function(tag) { return tag.name }), 
         updated: post.updated ? new Date(post.updated) : undefined,
     }).reduce(function(prev, [key, value]) {
@@ -40,20 +41,20 @@ export function PostService(d1: D1Database): PostService {
     const db = drizzle(d1, { schema })
     return {
         async getBySlug(slug) {
-            return db.query.PostsTable.findFirst({ with: { tags }, where: eq(PostsTable.slug, slug) }).then(transformPost)
+            return db.query.PostsTable.findFirst({ with: { tags }, where: and(where, eq(PostsTable.slug, slug)) }).then(transformPost)
         },
         async getEarliest() {
-            return db.query.PostsTable.findFirst({ with: { tags }, orderBy: [asc(PostsTable.published)] }).then(transformPost) 
+            return db.query.PostsTable.findFirst({ with: { tags }, orderBy: [asc(PostsTable.published)], where }).then(transformPost) 
         },
         async getLatest() {
-            return db.query.PostsTable.findFirst({ with: { tags }, orderBy }).then(transformPost)
+            return db.query.PostsTable.findFirst({ with: { tags }, orderBy, where }).then(transformPost)
         },
         async list() {
-            return db.query.PostsTable.findMany({ with: { tags }, orderBy }).then(transformPosts)
+            return db.query.PostsTable.findMany({ with: { tags }, orderBy, where }).then(transformPosts)
         },
         async listByTag(tag) {
             const query = db.select({ slug: TagsTable.post_slug }).from(TagsTable).where(eq(TagsTable.name, tag))
-            return db.query.PostsTable.findMany({ with: { tags }, orderBy, where: inArray(PostsTable.slug, query) }).then(transformPosts)
+            return db.query.PostsTable.findMany({ with: { tags }, orderBy, where: and(where, inArray(PostsTable.slug, query)) }).then(transformPosts)
         },
         async listTags() {
             return db.select({ name: TagsTable.name, count: count(TagsTable.name)}).from(TagsTable).groupBy(TagsTable.name).orderBy(desc(count(TagsTable.name)), TagsTable.name)
@@ -61,7 +62,7 @@ export function PostService(d1: D1Database): PostService {
         async upsert(value) {
             const record = {
                 ...value,
-                published: value.published.toISOString(),
+                published: value.published?.toISOString(),
                 updated: value.updated?.toISOString(),
             }
             let [post] = await db.insert(PostsTable).values(record)

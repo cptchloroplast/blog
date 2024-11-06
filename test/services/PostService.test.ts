@@ -28,6 +28,12 @@ beforeEach(async function () {
       title: "Post3",
       type: "post",
     },
+    {
+      content: "Post4 content",
+      slug: "post-four",
+      title: "Post4",
+      type: "post",
+    },
   ])
   await db.insert(TagsTable).values([
     {

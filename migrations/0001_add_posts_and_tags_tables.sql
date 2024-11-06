@@ -1,7 +1,7 @@
 CREATE TABLE `posts` (
-	`content` text,
+	`content` text NOT NULL,
 	`description` text,
-	`published` text NOT NULL,
+	`published` text,
 	`slug` text PRIMARY KEY NOT NULL,
 	`title` text NOT NULL,
 	`type` text NOT NULL,

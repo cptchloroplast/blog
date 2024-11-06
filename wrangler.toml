@@ -15,4 +15,4 @@ bucket_name = "strava"
 [[d1_databases]]
 binding = "DB"
 database_name = "blog"
-database_id = "eb7f2bb4-2a43-4c8b-8f47-33e4a0205d12"
+database_id = "690af449-57fa-41ac-9adf-e4e7ababf788"

@@ -4,7 +4,7 @@ import { z } from "zod"
 export const PostSchema = z.object({
     content: z.string(),
     description: z.string().optional(),
-    published: z.date(),
+    published: z.date().nullable().optional(),
     slug: z.string(),
     title: z.string(),
     tags: z.array(z.string()),
@@ -15,7 +15,7 @@ export type Post = z.infer<typeof PostSchema>
 export const PostsTable = sqliteTable("posts", {
     content: text("content").notNull(),
     description: text("description"),
-    published: text("published").notNull(),
+    published: text("published"),
     slug: text("slug").primaryKey(),
     title: text("title").notNull(),
     type: text("type", { enum: ["post", "photo"] }).notNull(),

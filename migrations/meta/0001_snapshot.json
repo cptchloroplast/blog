@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "33e6eabe-c792-4d57-bd4d-906a2df54df2",
+  "id": "95b0d99d-96d7-4a70-8e3d-63de6dc09478",
   "prevId": "d0532e55-b97a-4c4f-b350-50a3301e31bb",
   "tables": {
     "components": {
@@ -164,7 +164,7 @@
           "name": "content",
           "type": "text",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
           "autoincrement": false
         },
         "description": {
@@ -178,7 +178,7 @@
           "name": "published",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "slug": {
