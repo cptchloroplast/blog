@@ -1,12 +1,18 @@
-import { MetadataSchema } from "@schemas"
-import { MetadataService } from "@services"
-import type { APIContext, MiddlewareNext } from "astro"
+import type { APIContext, MiddlewareNext, MiddlewareHandler } from "astro"
+import { sequence } from "astro:middleware"
+import micromatch from "micromatch"
+import { MetadataMiddleware } from "./MetadataMiddleware"
 
-export async function onRequest(context: APIContext, next: MiddlewareNext) {
-    const service = MetadataService(context.locals.runtime.env.BLOG)
-    const metadata = await service.get()
-    if (!metadata) throw new Error("Missing metadata")
-    MetadataSchema.parse(metadata)
-    context.locals.metadata = metadata
-    return next()
+function MiddlewareRouter(router: Record<string, MiddlewareHandler>) {
+  const entries = Object.entries(router)
+  return function(context: APIContext, next: MiddlewareNext) {
+    return sequence(
+      ...entries.filter(([path]) => micromatch.isMatch(context.url.pathname, path))
+        .map(([_, handler]) => handler)
+    )(context, next)
+  }
 }
+
+export const onRequest = MiddlewareRouter({
+    "*": MetadataMiddleware
+})
