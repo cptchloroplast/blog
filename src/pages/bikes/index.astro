@@ -14,7 +14,7 @@ const bikes = await service.list()
     <div>
       <ul>
         {bikes.map(({ name, slug }) => (<li>
-            <a href={slug}>{name}</a>
+            <a href={`/bikes/${slug}`}>{name}</a>
           </li>))}
       </ul>
       <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/8782282/activity-summary/96d77f0d34aa5f345ff4842d6e495f3a872d610b'></iframe>
