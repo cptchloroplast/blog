@@ -2,6 +2,7 @@
   export let name
   export let label = ""
   export let placeholder = ""
+  export let value = ""
   export let required = false
   export let rows = 5
 </script>
@@ -13,7 +14,8 @@
     placeholder={placeholder}
     required={required}
     rows={rows}
-  />
+  >{value}</textarea>
+
 </label>
 
 <style>
