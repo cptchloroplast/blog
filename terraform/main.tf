@@ -122,6 +122,5 @@ module "application" {
   zone_id      = var.cloudflare_zone_id
   name         = var.pages_hostname
   github_teams = [var.github_repository]
-  use_root     = true
   path         = "admin"
 }
