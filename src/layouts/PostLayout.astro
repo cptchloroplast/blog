@@ -3,7 +3,7 @@ import type { Post } from "@schemas"
 import Giscus from "@giscus/svelte"
 import { Tags } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 import { formatDate, renderMarkdown } from "@utils"
 type Props = {
   post: Post
@@ -13,38 +13,47 @@ const { content, title, description, published, tags, type, updated } = post
 const markdown = await renderMarkdown(content)
 const code = !!markdown.match("<code")
 ---
-<BaseLayout title={title} description={description} code={code}>
-  <Card>
-    <article>
-      <Title>{title}</Title>
-      <Subtitle>
-        {updated && <span>Updated: {formatDate(updated)}</span>}
-        <span>Published: {formatDate(published)}</span>
-      </Subtitle>
-      <hr>
-      {type === "photo" ? <div id="markdown"><div set:html={markdown} /></div> : <div id="markdown" set:html={markdown} />}
-      <hr>
-      <Tags tags={tags} />
-    </article>
-  </Card>
-  <Card>
-    <Giscus 
-      id="comments"
-      repo="cptchloroplast/blog"
-      repoId="MDEwOlJlcG9zaXRvcnkyNTM2MzYxNDk="
-      category="Announcements"
-      categoryId="DIC_kwDODx4uNc4COmZv"
-      mapping="og:title"
-      term={null}
-      reactionsEnabled="0"
-      emitMetadata="0"
-      inputPosition="bottom"
-      theme="light"
-      lang="en"
-      client:load
-    />
-  </Card>
-</BaseLayout>
+<PublicLayout title={title} description={description}>
+  <Fragment slot="header">
+    {code && 
+      <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark-dimmed.min.css">
+      <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+      <script lang="js">hljs.highlightAll();</script>
+    }
+  </Fragment>
+  <Fragment slot="default">
+    <Card>
+      <article>
+        <Title>{title}</Title>
+        <Subtitle>
+          {updated && <span>Updated: {formatDate(updated)}</span>}
+          {published && <span>Published: {formatDate(published)}</span>}
+        </Subtitle>
+        <hr>
+        {type === "photo" ? <div id="markdown"><div set:html={markdown} /></div> : <div id="markdown" set:html={markdown} />}
+        <hr>
+        <Tags tags={tags} />
+      </article>
+    </Card>
+    <Card>
+      <Giscus 
+        id="comments"
+        repo="cptchloroplast/blog"
+        repoId="MDEwOlJlcG9zaXRvcnkyNTM2MzYxNDk="
+        category="Announcements"
+        categoryId="DIC_kwDODx4uNc4COmZv"
+        mapping="og:title"
+        term={null}
+        reactionsEnabled="0"
+        emitMetadata="0"
+        inputPosition="bottom"
+        theme="light"
+        lang="en"
+        client:load
+      />
+    </Card>
+  </Fragment>
+</PublicLayout>
 
 <style is:global>
   #markdown {

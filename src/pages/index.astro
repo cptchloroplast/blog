@@ -7,4 +7,4 @@ const post = await service.getLatest()
 if (!post) return Astro.redirect("/404")
 const Layout = post.type === "post" ? PostLayout : PhotoLayout
 ---
-<PostLayout post={post} />
+<Layout post={post} />

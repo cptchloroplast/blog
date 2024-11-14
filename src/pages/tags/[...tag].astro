@@ -1,18 +1,18 @@
 ---
 import { PostList } from "@components"
 import { Card, Title, Subtitle } from "@components/ui"
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 import { PostService } from "@services"
 
 const { tag } = Astro.params
 const service = PostService(Astro.locals.runtime.env.DB)
 const posts = await service.listByTag(tag!)
 ---
-<BaseLayout title={`Tags - ${tag}`}>
+<PublicLayout title={`Tags - ${tag}`}>
   <Card>
     <Title>{tag}</Title>
     <Subtitle>Check out some related posts.</Subtitle>
     <hr>
     <PostList posts={posts} />
   </Card>
-</BaseLayout>
+</PublicLayout>

@@ -1,6 +1,6 @@
 ---
 import { Card, Subtitle, Title } from "@components/ui"
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 import { GearService } from "@services"
 
 const { slug } = Astro.params
@@ -9,7 +9,7 @@ const bike = await GearService(Astro.locals.runtime.env.DB).getBySlug(slug)
 if (!bike) return Astro.redirect("/404")
 const { components, frame_type, name } = bike
 ---
-<BaseLayout title={`Bike - ${name}`}>
+<PublicLayout title={`Bike - ${name}`}>
   <Card>
     <Title>{name}</Title>
     <Subtitle>{frame_type}</Subtitle>
@@ -25,7 +25,7 @@ const { components, frame_type, name } = bike
       })}
     </table>
   </Card>
-</BaseLayout>
+</PublicLayout>
 
 <style>
   table {

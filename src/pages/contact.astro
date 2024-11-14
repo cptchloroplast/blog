@@ -1,13 +1,13 @@
 ---
 import { ContactForm } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 ---
-<BaseLayout title="Contact">
+<PublicLayout title="Contact">
   <Card>
     <Title>Contact me</Title>
     <Subtitle>Leave a message after the beep.</Subtitle>
     <hr>
     <ContactForm client:load />
   </Card>
-</BaseLayout>
+</PublicLayout>

@@ -1,12 +1,12 @@
 ---
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 import { Card, Subtitle, Title } from "@components/ui"
 import { GearService } from "@services"
 
 const service = GearService(Astro.locals.runtime.env.DB)
 const bikes = await service.list()
 ---
-<BaseLayout title="The Bike Shed">
+<PublicLayout title="The Bike Shed">
   <Card>
     <Title>The Bike Shed</Title>
     <Subtitle>🎵 Welcome to the Jungle 🎵</Subtitle>
@@ -20,7 +20,7 @@ const bikes = await service.list()
       <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/8782282/activity-summary/96d77f0d34aa5f345ff4842d6e495f3a872d610b'></iframe>
     </div>
   </Card>
-</BaseLayout>
+</PublicLayout>
 
 <style>
   div {

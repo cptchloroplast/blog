@@ -1,17 +1,17 @@
 ---
 import { PostList } from "@components"
 import { Card, Subtitle, Title } from "@components/ui"
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 import { PostService } from "@services"
 
 const service = PostService(Astro.locals.runtime.env.DB)
 const posts = await service.list()
 ---
-<BaseLayout title="Posts">
+<PublicLayout title="Posts">
   <Card>
     <Title>Table of Contents</Title>
     <Subtitle>The following is not representative of the views of our corporate overlords.</Subtitle>
     <hr>
     <PostList posts={posts}/>
   </Card>
-</BaseLayout>
+</PublicLayout>

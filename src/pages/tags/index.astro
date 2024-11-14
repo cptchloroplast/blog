@@ -1,18 +1,17 @@
 ---
-import { getCollection } from "astro:content"
 import { Card, Title, Subtitle } from "@components/ui"
-import { BaseLayout } from "@layouts"
+import { PublicLayout } from "@layouts"
 import { Tags } from "@components"
 import { PostService } from "@services"
 
 const service = PostService(Astro.locals.runtime.env.DB)
 const tags = await service.listTags()
 ---
-<BaseLayout title="Tags">
+<PublicLayout title="Tags">
   <Card>
     <Title>Tags</Title>
     <Subtitle>Click a tag to see related posts.</Subtitle>
     <hr>
     <Tags tags={tags} />
   </Card>
-</BaseLayout>
+</PublicLayout>

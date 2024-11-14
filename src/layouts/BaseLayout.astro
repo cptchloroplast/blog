@@ -1,21 +1,21 @@
 ---
-import { Biography, ContactLinks, Footer, Header, SubscribeForm, Toast } from "@components"
-import { Card, Photo, Title } from "@components/ui"
+import { Footer, Header, Toast } from "@components"
+import { type Navigation } from "@schemas"
 type Props = {
   title: string
+  navigation: Navigation[]
   description?: string
   image?: string
-  code?: boolean
 }
 
 const metadata = Astro.locals.metadata
-const { author: { name, email }, profile: { bio, contact }, navigation } = metadata
+const { author: { name, email } } = metadata
 
 const {
   title,
+  navigation,
   description = metadata.description, 
   image = "/img/me.webp",
-  code = false
 } = Astro.props
 const { origin, hostname } = Astro.site!
 ---
@@ -35,32 +35,16 @@ const { origin, hostname } = Astro.site!
     <meta property="og:url" content={origin} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={`${origin}${image}`} />
-    {code && 
-      <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark-dimmed.min.css">
-      <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
-      <script lang="js">hljs.highlightAll();</script>
-    }
+    <slot name="header" />
   </head>
   <body>
     <Header navigation={navigation} client:load />
     <div>
       <main>
         <slot />
-        <span>
-          <Card>
-            <SubscribeForm client:load />
-          </Card>
-        </span>
       </main>
       <aside>   
-        <Card>
-          <Photo src="/img/me.small.webp" alt="My profile picture" />
-          <hr>
-          <Title>{name}</Title>
-          <Biography bio={bio} />
-          <hr>
-          <ContactLinks contact={contact} />
-        </Card>
+        <slot name="sidebar" />
       </aside>
     </div>
     <Footer />
@@ -120,12 +104,6 @@ const { origin, hostname } = Astro.site!
     margin: 8px;
     gap: 8px;
     flex-grow: 1;
-  }
-
-  span {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
   }
 
   /** mobile */
