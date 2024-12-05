@@ -22,5 +22,5 @@ function router(routes: Record<string, MiddlewareHandler>) {
 export const onRequest = router({
     "*": metadata,
     "/admin/*": sequence(admin, authenticate),
-    "/admin/metadata": authorize("metadata:write")
+    "/admin/metadata": authorize("write:metadata")
 })

@@ -73,7 +73,7 @@ module "page" {
     EMAIL_OAUTH_AUDIENCE = local.audience.email
     EMAIL_OAUTH_SCOPE    = "email:send"
     OAUTH_AUDIENCE       = local.audience.blog
-    OAUTH_SCOPE          = "metadata:write"
+    OAUTH_SCOPE          = "write:metadata"
   }
 
   production_databases = {
@@ -146,7 +146,7 @@ module "server" {
   name       = var.github_repository
   identifier = local.audience.blog
   scopes = {
-    "metadata:write" : "Update blog metadata"
+    "write:metadata" : "Update blog metadata"
   }
 }
 
