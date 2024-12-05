@@ -4,7 +4,7 @@
   import { Icon } from "./ui"
   export let metadata: Metadata
   const json = JSON.stringify(metadata, null, 2)
-  const rows = (json.match(/\n/g) || []).length
+  const rows = (json.match(/\n/g) || []).length + 1
 </script>
   <Form
     action="admin/metadata"
