@@ -18,6 +18,7 @@ export type Environment = {
   OAUTH_CLIENT_ID: string
   OAUTH_CLIENT_SECRET: string
   OAUTH_TENANT: string
+  OAUTH_SCOPE: string
   EMAIL_OAUTH_AUDIENCE: string
   EMAIL_OAUTH_SCOPE: string
   HCAPTCHA_SECRET: string
@@ -26,12 +27,12 @@ export type Environment = {
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>
 type Metadata = import("@schemas").Metadata
-type DecodedJsonWebToken = import("@okkema/worker/auth").DecodedJsonWebToken
+type JsonWebToken = import("@okkema/worker/auth").JsonWebToken
 declare global {
   namespace App {
     interface Locals extends Runtime {
       metadata: Metadata
-      jwt?: DecodedJsonWebToken
+      jwt?: JsonWebToken
     }
   }
 }

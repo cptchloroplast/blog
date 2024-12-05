@@ -7,6 +7,6 @@ export async function authenticate(context: APIContext, next: MiddlewareNext) {
     await JWT.validate(jwt, 
         context.locals.runtime.env.OAUTH_AUDIENCE, 
         context.locals.runtime.env.OAUTH_TENANT)
-    context.locals.jwt = jwt
+    context.locals.jwt = jwt.decoded
     return next()
 }

@@ -73,6 +73,7 @@ module "page" {
     EMAIL_OAUTH_AUDIENCE = local.audience.email
     EMAIL_OAUTH_SCOPE    = "email:send"
     OAUTH_AUDIENCE       = local.audience.blog
+    OAUTH_SCOPE          = "metadata:write"
   }
 
   production_databases = {
@@ -126,10 +127,6 @@ module "client" {
     {
       audience = local.audience.email
       scopes   = ["email:send"]
-    },
-    {
-      audience = local.audience.blog
-      scopes   = ["metadata:write"]
     }
   ]
   callbacks = [

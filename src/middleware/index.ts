@@ -3,6 +3,7 @@ import { sequence } from "astro:middleware"
 import { metadata } from "./metadata"
 import { authenticate } from "./authenticate"
 import { admin } from "./admin"
+import { authorize } from "./authorize"
 
 function router(routes: Record<string, MiddlewareHandler>) {
     const entries = Object.entries(routes)
@@ -21,4 +22,5 @@ function router(routes: Record<string, MiddlewareHandler>) {
 export const onRequest = router({
     "*": metadata,
     "/admin/*": sequence(admin, authenticate),
+    "/admin/metadata": authorize("metadata:write")
 })
