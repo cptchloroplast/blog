@@ -6,7 +6,12 @@ export async function admin(context: APIContext, next: MiddlewareNext) {
         const cookie = context.cookies.get("auth")
         if (!cookie) return context.redirect("/auth/login")
         const json: OAuthResponse = cookie.json()
-        context.request.headers.append("Authorization", `${json.token_type} ${json.access_token}`)
+        return next(new Request(context.request, {
+            headers: {
+                ...Object.fromEntries(context.request.headers),
+                "Authorization": `${json.token_type} ${json.access_token}`,
+            }
+        }))
     }
     return next()
 }
