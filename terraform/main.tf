@@ -1,8 +1,19 @@
 locals {
+  audience = {
+    email = "https://email.${module.zone.name}"
+    blog  = "https://${var.pages_hostname}.${module.zone.name}"
+  }
   secrets = {
     "TF_API_TOKEN" : var.TF_API_TOKEN,
     "CLOUDFLARE_API_TOKEN" : var.D1_CLOUDFLARE_API_TOKEN,
   }
+}
+
+module "zone" {
+  source  = "app.terraform.io/okkema/zone/cloudflare"
+  version = "~> 0.1"
+
+  zone_id = var.cloudflare_zone_id
 }
 
 module "secrets" {
@@ -59,8 +70,9 @@ module "page" {
     RSA_PUBLIC_KEY       = var.RSA_PUBLIC_KEY
     OAUTH_CLIENT_ID      = module.client.client_id
     OAUTH_TENANT         = var.OAUTH_TENANT
-    EMAIL_OAUTH_AUDIENCE = "https://email.okkema.org"
+    EMAIL_OAUTH_AUDIENCE = local.audience.email
     EMAIL_OAUTH_SCOPE    = "email:send"
+    OAUTH_AUDIENCE       = local.audience.blog
   }
 
   production_databases = {
@@ -107,11 +119,37 @@ module "sentry" {
 
 module "client" {
   source  = "app.terraform.io/okkema/client/auth0"
-  version = "~> 0.3"
+  version = "~> 1.0"
 
   name = var.github_repository
-  grants = {
-    "https://email.okkema.org" : ["email:send"]
+  grants = [
+    {
+      audience = local.audience.email
+      scopes   = ["email:send"]
+    },
+    {
+      audience = local.audience.blog
+      scopes   = ["metadata:write"]
+    }
+  ]
+  callbacks = [
+    "${local.audience.blog}/auth/login/callback",
+    "http://localhost:5000/auth/login/callback"
+  ]
+  logouts = [
+    "${local.audience.blog}/auth/logout/callback",
+    "http://localhost:5000/auth/logout/callback"
+  ]
+}
+
+module "server" {
+  source  = "app.terraform.io/okkema/server/auth0"
+  version = "~> 0.1"
+
+  name       = var.github_repository
+  identifier = local.audience.blog
+  scopes = {
+    "metadata:write" : "Update blog metadata"
   }
 }
 

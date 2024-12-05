@@ -1,9 +1,11 @@
 import type { APIContext, MiddlewareNext, MiddlewareHandler } from "astro"
 import { sequence } from "astro:middleware"
-import { MetadataMiddleware } from "./MetadataMiddleware"
+import { metadata } from "./metadata"
+import { authenticate } from "./authenticate"
+import { admin } from "./admin"
 
-function MiddlewareRouter(router: Record<string, MiddlewareHandler>) {
-    const entries = Object.entries(router)
+function router(routes: Record<string, MiddlewareHandler>) {
+    const entries = Object.entries(routes)
     return function (context: APIContext, next: MiddlewareNext) {
         return sequence(
             ...entries.filter(function ([path]) {
@@ -16,6 +18,7 @@ function MiddlewareRouter(router: Record<string, MiddlewareHandler>) {
     }
 }
 
-export const onRequest = MiddlewareRouter({
-    "*": MetadataMiddleware,
+export const onRequest = router({
+    "*": metadata,
+    "/admin/*": sequence(admin, authenticate),
 })

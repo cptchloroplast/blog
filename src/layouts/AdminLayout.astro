@@ -1,21 +1,22 @@
 ---
-import { Biography, ContactLinks, SubscribeForm, Tags } from "@components";
-import { Card, Photo, Title } from "@components/ui";
-import { BaseLayout } from "@layouts";
-import type { Navigation } from "@schemas";
+import { BaseLayout } from "@layouts"
+import type { Navigation } from "@schemas"
 type Props = {
   title: string
   description?: string
-};
-const { title, description } = Astro.props;
+}
+const { title, description } = Astro.props
 const navigation: Navigation[] = [
     {
         text: "Metadata",
-        href: "/admin"
+        href: "/admin",
+    },
+    {
+      text: "Logout",
+      href: "/auth/logout",
     }
 ]
 ---
-
 <BaseLayout title=`Admin - ${title}` description={description} navigation={navigation}>
   <slot name="header" slot="header" />
   <slot name="default" slot="default" />

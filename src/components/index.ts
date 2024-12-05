@@ -7,4 +7,5 @@ import PostList from "./PostList.astro"
 import SubscribeForm from "./SubscribeForm.svelte"
 import Tags from "./Tags.astro"
 import Toast from "./Toast.svelte"
-export { Biography, ContactForm, ContactLinks, Footer, Header, PostList, SubscribeForm, Tags, Toast }
+import MetadataForm from "./MetadataForm.svelte"
+export { Biography, ContactForm, ContactLinks, Footer, Header, PostList, SubscribeForm, Tags, Toast, MetadataForm }

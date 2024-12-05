@@ -1,7 +1,7 @@
 <script lang="ts">
   import { toast } from "../../stores/toast"
 
-  export let action
+  export let action: string
   export let method = "POST"
   export let clear = true
 
@@ -13,11 +13,12 @@
     }, {})
     const button: HTMLButtonElement = event.submitter
     button.setAttribute("disabled", "disabled")
-    const response = await fetch(`/${action}`, {
+    const url = action.startsWith("/") ? action : `/${action}`
+    const response = await fetch(url, {
       method,
       headers: {
-        "Content-Type": "application/json",
-      },
+      "Content-Type": "application/json",
+    },
       body: JSON.stringify(data),
     })
     const json = await response.json<any>()

@@ -1,18 +1,16 @@
 ---
 import { Card, Subtitle, Title } from "@components/ui"
+import { MetadataForm } from "@components"
 import { AdminLayout } from "@layouts"
-import { TextArea } from "src/components/forms"
 const metadata = Astro.locals.metadata
-const json = JSON.stringify(metadata, null, 2)
-const rows = (json.match(/\n/g) || []).length
 ---
 <AdminLayout title="Metadata">
     <Fragment slot="default">
         <Card>
             <Title>Metadata</Title>
-            <!-- <Subtitle>Update metadata used throughout the site.</Subtitle> -->
+            <Subtitle>Update metadata used throughout the site.</Subtitle>
             <hr />
-            <TextArea name="metadata" value={JSON.stringify(metadata, null, 2)} rows={rows} />
+            <MetadataForm metadata={metadata} client:only />
         </Card>
     </Fragment>
 </AdminLayout>

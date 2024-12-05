@@ -14,6 +14,7 @@ export type Environment = {
   DB: D1Database
   SENTRY_DSN: string
   WORKER_SCHEDULE: string
+  OAUTH_AUDIENCE: string
   OAUTH_CLIENT_ID: string
   OAUTH_CLIENT_SECRET: string
   OAUTH_TENANT: string
@@ -25,10 +26,12 @@ export type Environment = {
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>
 type Metadata = import("@schemas").Metadata
+type DecodedJsonWebToken = import("@okkema/worker/auth").DecodedJsonWebToken
 declare global {
   namespace App {
     interface Locals extends Runtime {
-      metadata: Metadata 
+      metadata: Metadata
+      jwt?: DecodedJsonWebToken
     }
   }
 }
