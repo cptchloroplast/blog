@@ -1,6 +1,8 @@
-<script lang="ts"></script>
+<script lang="ts">
+  export let color = "black"
+</script>
 
-<h4>
+<h4 style="--color:{color}">
   <slot />
 </h4>
 
@@ -9,5 +11,6 @@
     margin: 0;
     display: flex;
     justify-content: space-between;
+    color: var(--color);
   }
 </style>

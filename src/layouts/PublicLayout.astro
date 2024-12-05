@@ -1,6 +1,6 @@
 ---
 import { Biography, ContactLinks, SubscribeForm, Tags } from "@components";
-import { Card, Photo, Title } from "@components/ui";
+import { Card, Photo, Subtitle, Title } from "@components/ui";
 import { BaseLayout } from "@layouts";
 type Props = {
   title: string
@@ -8,7 +8,7 @@ type Props = {
 };
 const metadata = Astro.locals.metadata;
 const {
-  author: { name },
+  author: { name, username },
   profile: { bio, contact },
   navigation,
 } = metadata;
@@ -19,17 +19,20 @@ const { title, description } = Astro.props;
   <slot name="header" slot="header" />
   <Fragment slot="default">
     <slot />
-    <span>
+    <div id="subscribe">
       <Card>
         <SubscribeForm client:load />
       </Card>
-    </span>
+    </div>
   </Fragment>
   <Fragment slot="sidebar">
     <Card>
       <Photo src="/img/me.small.webp" alt="My profile picture" />
       <hr />
-      <Title>{name}</Title>
+      <div id="name">
+        <Title>{name}</Title>
+        <Subtitle color="gray">{username}</Subtitle>
+      </div>
       <Biography bio={bio} />
       <hr />
       <ContactLinks contact={contact} />
@@ -38,9 +41,15 @@ const { title, description } = Astro.props;
 </BaseLayout>
 
 <style>
-  span {
+  div#subscribe {
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+  div#name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
   }
 </style>
