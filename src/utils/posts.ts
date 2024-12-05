@@ -14,6 +14,10 @@ export function parseMarkdown<T>(markdown: string): { content: string, frontmatt
   return { content, frontmatter }
 }
 
+export function renderFrontmatter(frontmatter: object): string {
+  return "---\n" + yaml.dump(frontmatter) + "\n---"
+}
+
 export async function renderMarkdown(markdown: string) {
   let html = await new Marked()
     .use(markedFootnote({ description: "" })) // render footnotes and skip labeling section
