@@ -1,5 +1,5 @@
 import type { D1Database } from "@cloudflare/workers-types"
-import { type Post, PostsTable, schema, TagsTable } from "@schemas"
+import { type Post, PostsTable, schema, type Tag, TagsTable } from "@schemas"
 import { conflictUpdateAllExcept } from "@utils"
 import { asc, count, desc, eq, inArray, type InferSelectModel, and, isNotNull } from "drizzle-orm"
 import { drizzle } from "drizzle-orm/d1"
@@ -10,7 +10,7 @@ type PostService = {
     getLatest(): Promise<Post | undefined>
     list(): Promise<Post[]>
     listByTag(tag: string): Promise<Post[]>
-    listTags(): Promise<{ name: string, count: number }[]>
+    listTags(): Promise<{ name: Tag, count: number }[]>
     upsert(value: Post): Promise<Post>
 }
 type PostRecord = InferSelectModel<typeof PostsTable> & { tags: InferSelectModel<typeof TagsTable>[] }
