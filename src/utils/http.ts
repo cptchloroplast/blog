@@ -5,3 +5,11 @@ export function json(obj: object){
         }
     })
 }
+
+export function xml(body: string) {
+    return new Response(body, {
+        headers: {
+            "Content-Type": "application/xml",
+        }
+    })
+}
