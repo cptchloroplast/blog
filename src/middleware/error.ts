@@ -1,22 +1,27 @@
 import type { APIContext, MiddlewareNext } from "astro"
-import * as Sentry from "@sentry/browser"
 import { ZodError } from "zod"
-import { Problem } from "@okkema/worker"
+import { wrapRequestHandler } from "@sentry/cloudflare"
 
 export async function error(context: APIContext, next: MiddlewareNext) {
-    try {
-        Sentry.init({
+    return wrapRequestHandler({ 
+        options: {
             dsn: context.locals.runtime.env.SENTRY_DSN,
-        })
-        const response = await next()
-        return response
-    } catch (error) {
-        if (error instanceof ZodError) {
-            const formatted = error.format()
-            console.error(formatted)
-        } else {
-            console.error(error)
+        },
+        context: context.locals.runtime.ctx,
+        // @ts-expect-error
+        request: context.request,
+    }, async function() {
+        try {
+            const response = await next()
+            return response
+        } catch (error) {
+            if (error instanceof ZodError) {
+                const formatted = error.format()
+                console.error(formatted)
+            } else {
+                console.error(error)
+            }
+            throw error
         }
-        throw error
-    }
+    })
 }
