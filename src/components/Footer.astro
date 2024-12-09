@@ -1,20 +1,18 @@
 ---
 import { PostService } from "@services"
+import { copyright } from "@utils"
 
 const metadata = Astro.locals.metadata
 const { name, email, repo } = metadata
 
 const build = process.env.CF_PAGES_COMMIT_SHA
 const href = `${repo}/commit/${build}`
-const current = new Date().getUTCFullYear()
 const service = PostService(Astro.locals.runtime.env.DB)
 const earliest = await service.getEarliest()
-const initial = earliest?.published?.getUTCFullYear() ?? current
 ---
 <footer>
   <small>
-    {initial < current && <span>&copy; {initial}-{current}</span>}
-    {initial === current && <span>&copy; {current}</span>}
+    <span>{copyright(earliest?.published!)}</span>
     <span>{name}</span>
     <a href={`mailto:${email}`} title={email}>&lt;{email}&gt;</a>
   </small>
