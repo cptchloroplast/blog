@@ -8,8 +8,10 @@ type Props = {
 };
 const metadata = Astro.locals.metadata;
 const {
-  author: { name, username },
-  profile: { bio, contact },
+  name, 
+  username,
+  bio,
+  contact,
   navigation,
 } = metadata;
 const { title, description } = Astro.props;

@@ -5,7 +5,7 @@ export async function GET(context: APIContext) {
 	const metadata = context.locals.metadata
 	const service = PostService(context.locals.runtime.env.DB)
 	const post = await service.getEarliest()
-    const { author: { name, username }, description } = metadata
+    const { name, username, description } = metadata
     const { locals: { runtime: { env } }, request: { url } } = context
 	const { origin } = new URL(url)
  	return new Response(JSON.stringify({
@@ -22,7 +22,7 @@ export async function GET(context: APIContext) {
 		"summary": description,
 		"url": origin,
 		"discoverable": true,
-		"published": post!.published.toISOString(),
+		"published": post!.published!.toISOString(),
 		"icon": {
             "type": "Image",
             "mediaType": "image/webp",

@@ -4,6 +4,7 @@ import { metadata } from "./metadata"
 import { authenticate } from "./authenticate"
 import { admin } from "./admin"
 import { authorize } from "./authorize"
+import { error } from "./error"
 
 function router(routes: Record<string, MiddlewareHandler>) {
     const entries = Object.entries(routes)
@@ -20,7 +21,7 @@ function router(routes: Record<string, MiddlewareHandler>) {
 }
 
 export const onRequest = router({
-    "*": metadata,
+    "*": sequence(error, metadata),
     "/admin/*": sequence(admin, authenticate),
     "/admin/metadata": authorize("write:metadata")
 })
