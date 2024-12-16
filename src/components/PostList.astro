@@ -12,7 +12,7 @@ const { posts } = Astro.props
   <li>
     <a href={`/posts/${post.slug}`}>
       <span>{post.title}</span>
-      <small>{post.updated ? `Updated: ${formatDate(post.updated)}` : formatDate(post.published)}</small>
+      <small>{post.updated ? `Updated: ${formatDate(post.updated)}` : formatDate(post.published!)}</small>
     </a>
   </li>
 ))}

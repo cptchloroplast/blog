@@ -1,7 +1,7 @@
 <script>
   export let text
 
-  import { Icon } from "../ui"
+  import { Icon } from "."
 
   let show = false
 

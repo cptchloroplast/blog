@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Button, Form, Input } from "./forms"
-  import { Icon } from "./ui"
+  import { Icon, Button, Form, Input } from "@components/ui"
 </script>
 
 <Form

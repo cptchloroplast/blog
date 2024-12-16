@@ -2,8 +2,7 @@
   import type { Navigation } from "@schemas"
   export let item: Navigation
   
-  import { Dropdown } from "."
-  import { Icon } from "../ui"
+  import { Dropdown, Icon } from "."
   
   const {text, href, external, children, icon} = item
 </script>

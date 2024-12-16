@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Metadata } from "@schemas"
-  import { Button, Form, TextArea } from "./forms"
-  import { Icon } from "./ui"
+  import { Icon, Button, Form, TextArea } from "@components/ui"
   export let metadata: Metadata
   const json = JSON.stringify(metadata, null, 2)
   const rows = (json.match(/\n/g) || []).length + 1

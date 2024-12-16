@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { Button, Captcha, Form, Input, TextArea } from "./forms"
-  import { Icon } from "./ui"
-  
+  import { Button, Captcha, Form, Input, TextArea, Icon } from "@components/ui"
   const sitekey = process.env.HCAPTCHA_SITEKEY
 </script>
 

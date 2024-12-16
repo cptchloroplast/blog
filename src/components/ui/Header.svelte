@@ -1,7 +1,6 @@
 <script lang="ts">
-  import type { Navigation } from "@schemas";
-  import { Item } from "./navigation"
-  import { Icon } from "./ui"
+  import type { Navigation } from "@schemas"
+  import { Icon, Item } from "."
 
   export let navigation: Navigation[]
 

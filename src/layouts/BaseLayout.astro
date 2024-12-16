@@ -1,6 +1,8 @@
 ---
-import { Footer, Header, Toast } from "@components"
 import { type Navigation } from "@schemas"
+import { PostService } from "@services"
+import { copyright } from "@utils"
+import { Header, Footer, Toast } from "@components/ui"
 type Props = {
   title: string
   navigation: Navigation[]
@@ -9,7 +11,11 @@ type Props = {
 }
 
 const metadata = Astro.locals.metadata
-const { name, email } = metadata
+const { name, email, repo } = metadata
+const service = PostService(Astro.locals.runtime.env.DB)
+const earliest = await service.getEarliest()
+const build = Astro.locals.runtime.env.CF_PAGES_COMMIT_SHA ?? "develop"
+const href = `${repo}/commit/${build}`
 
 const {
   title,
@@ -47,7 +53,17 @@ const { origin, hostname } = Astro.site!
         <slot name="sidebar" />
       </aside>
     </div>
-    <Footer />
+    <Footer>
+      <Fragment>
+        <span>{copyright(earliest?.published!)}</span>
+        <span>{name}</span>
+        <a href={`mailto:${email}`} title={email}>&lt;{email}&gt;</a>
+      </Fragment>
+      <Fragment slot="right">
+        <span>Build: </span>
+        <a href={href} title={build} target="_blank" rel="noreferrer">{build.slice(0,7)}</a>
+      </Fragment>
+    </Footer>
     <Toast client:load />
 	</body>
 </html>
