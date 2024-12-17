@@ -5,7 +5,8 @@ export async function GET(context: APIContext) {
 	const metadata = context.locals.metadata
 	const service = PostService(context.locals.runtime.env.DB)
 	const post = await service.getEarliest()
-    const { name, username, description } = metadata
+    const { name, description } = metadata
+	const username = context.locals.runtime.env.GITHUB_OWNER
     const { locals: { runtime: { env } }, request: { url } } = context
 	const { origin } = new URL(url)
  	return new Response(JSON.stringify({
@@ -17,7 +18,7 @@ export async function GET(context: APIContext) {
 		"type": "Person",
 		"inbox": `${origin}/activity/inbox`,
 		"outbox": `${origin}/activity/outbox`,
-		"preferredUsername": username,
+		"preferredUsername": `@${username}`,
 		"name": name,
 		"summary": description,
 		"url": origin,

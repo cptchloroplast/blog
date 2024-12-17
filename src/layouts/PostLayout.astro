@@ -12,6 +12,8 @@ const { post } = Astro.props
 const { content, title, description, published, tags, type, updated } = post
 const markdown = await renderMarkdown(content)
 const code = !!markdown.match("<code")
+const { GITHUB_OWNER, GITHUB_REPOSITORY } = Astro.locals.runtime.env
+const repo = `${GITHUB_OWNER}/${GITHUB_REPOSITORY}` 
 ---
 <PublicLayout title={title} description={description}>
   <Fragment slot="header">
@@ -38,7 +40,7 @@ const code = !!markdown.match("<code")
     <Card>
       <Giscus 
         id="comments"
-        repo="cptchloroplast/blog"
+        repo={repo}
         repoId="MDEwOlJlcG9zaXRvcnkyNTM2MzYxNDk="
         category="Announcements"
         categoryId="DIC_kwDODx4uNc4COmZv"

@@ -9,11 +9,11 @@ type Props = {
 const metadata = Astro.locals.metadata;
 const {
   name, 
-  username,
   bio,
   contact,
   navigation,
 } = metadata;
+const username = Astro.locals.runtime.env.GITHUB_OWNER
 const { title, description } = Astro.props;
 ---
 
@@ -33,7 +33,7 @@ const { title, description } = Astro.props;
       <hr />
       <div id="name">
         <Title>{name}</Title>
-        <Subtitle color="gray">{username}</Subtitle>
+        <Subtitle color="gray">@{username}</Subtitle>
       </div>
       <Biography bio={bio} />
       <hr />

@@ -6,7 +6,7 @@ export async function GET(context: APIContext) {
     if (!object) return new Response("Not Found", { status: 404 })
     const headers = new Headers()
     // https://github.com/cloudflare/workers-sdk/issues/6047
-    if (context.locals.runtime.env.CF_PAGES_COMMIT_SHA !== "develop") {
+    if (context.locals.runtime.env.CF_PAGES_COMMIT_SHA) {
         //@ts-ignore incompatible types
         object.writeHttpMetadata(headers)
     }

@@ -5,10 +5,8 @@ import { ContactSchema } from "./Contact"
 export const MetadataSchema = z.object({
     name: z.string(),
     email: z.string().email(),
-    username: z.string(),
     title: z.string(),
     description: z.string(),
-    repo: z.string(),
     navigation: z.array(NavigationSchema),
     bio: z.array(BioSchema),
     contact: z.array(ContactSchema),

@@ -14,12 +14,6 @@
       type="email"
       required
     />
-    <Input
-      label="Username"
-      name="username"
-      value={metadata.username}
-      required
-    />
     <Input label="Title" name="title" value={metadata.title} required />
     <Input
       label="Description"
@@ -27,7 +21,6 @@
       value={metadata.description}
       required
     />
-    <Input label="Repo" name="repo" value={metadata.repo} required />
     <Button title="Save">
       <Icon icon="success" color="white" size="large" />
     </Button>

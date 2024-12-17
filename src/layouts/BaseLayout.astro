@@ -11,11 +11,12 @@ type Props = {
 }
 
 const metadata = Astro.locals.metadata
-const { name, email, repo } = metadata
+const { name, email } = metadata
 const service = PostService(Astro.locals.runtime.env.DB)
 const earliest = await service.getEarliest()
-const build = Astro.locals.runtime.env.CF_PAGES_COMMIT_SHA ?? "develop"
-const href = `${repo}/commit/${build}`
+const { CF_PAGES_COMMIT_SHA, GITHUB_OWNER, GITHUB_REPOSITORY } = Astro.locals.runtime.env
+const commit = CF_PAGES_COMMIT_SHA ?? "develop"
+const href = CF_PAGES_COMMIT_SHA ? `https://github.com/${GITHUB_OWNER}/${GITHUB_REPOSITORY}/commit/${commit}` : "#"
 
 const {
   title,
@@ -61,7 +62,7 @@ const { origin, hostname } = Astro.site!
       </Fragment>
       <Fragment slot="right">
         <span>Build: </span>
-        <a href={href} title={build} target="_blank" rel="noreferrer">{build.slice(0,7)}</a>
+        <a href={href} title={commit} target="_blank" rel="noreferrer">{commit.slice(0,7)}</a>
       </Fragment>
     </Footer>
     <Toast client:load />

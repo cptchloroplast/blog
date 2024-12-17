@@ -9,7 +9,7 @@ export type Environment = {
   BLOG: R2Bucket
   RSA_PUBLIC_KEY: string
   RSA_PRIVATE_KEY: string
-  CF_PAGES_COMMIT_SHA: string;
+  CF_PAGES_COMMIT_SHA?: string;
   STRAVA: R2Bucket
   DB: D1Database
   SENTRY_DSN: string
@@ -23,6 +23,8 @@ export type Environment = {
   EMAIL_OAUTH_SCOPE: string
   HCAPTCHA_SECRET: string
   HCAPTCHA_SITEKEY: string
+  GITHUB_OWNER: string
+  GITHUB_REPOSITORY: string
 }
 
 type Runtime = import("@astrojs/cloudflare").Runtime<Environment>
