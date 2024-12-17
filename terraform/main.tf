@@ -74,6 +74,8 @@ module "page" {
     EMAIL_OAUTH_SCOPE    = "email:send"
     OAUTH_AUDIENCE       = local.audience.blog
     OAUTH_SCOPE          = "write:metadata"
+    GITHUB_OWNER         = var.github_owner
+    GITHUB_REPOSITORY    = var.github_repository
   }
 
   production_databases = {
@@ -91,7 +93,7 @@ module "worker" {
   zone_id             = var.cloudflare_zone_id
   name                = "${var.github_repository}-worker"
   content             = file(abspath("${path.module}/../build/index.js"))
-  compatibility_flags = toset(["nodejs_compat"])
+  compatibility_flags = toset(["nodejs_compat_v2"])
   schedules           = [var.WORKER_SCHEDULE]
   env_vars = [
     { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE },
