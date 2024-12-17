@@ -14,4 +14,5 @@ import Form from "./Form.svelte"
 import Input from "./Input.svelte"
 import TextArea from "./TextArea.svelte"
 import Toast from "./Toast.svelte"
-export { Toast, Card, Chip, Dropdown, Footer, Header, Icon, Item, Photo, Title, Subtitle, Button, Captcha, Form, Input, TextArea }
+import Column from "./Column.svelte"
+export { Column, Toast, Card, Chip, Dropdown, Footer, Header, Icon, Item, Photo, Title, Subtitle, Button, Captcha, Form, Input, TextArea }

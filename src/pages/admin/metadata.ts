@@ -1,12 +1,16 @@
-import { MetadataSchema } from "@schemas"
+import { MetadataSchema, type Metadata } from "@schemas"
 import { MetadataService } from "@services"
 import { json } from "@utils"
 import type { APIContext } from "astro"
 
-export async function POST(context: APIContext) {
-    const { metadata: raw } = await context.request.json<{ metadata: string }>()
+type Nullable<T> = {
+    [K in keyof T]: Nullable<T[K]> | null | undefined;
+}
+
+export async function PATCH(context: APIContext) {    
     try {
-        const metadata = MetadataSchema.parse(JSON.parse(raw))
+        const patch = await context.request.json<Nullable<Metadata>>()
+        const metadata = MetadataSchema.parse({ ...context.locals.metadata, ...patch })
         await MetadataService(context.locals.runtime.env.BLOG).update(metadata)
     } catch (error: any) {
         console.error(error.message)

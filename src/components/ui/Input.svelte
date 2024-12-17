@@ -4,6 +4,7 @@
   export let placeholder = ""
   export let required = false
   export let type: "text" | "email" = "text"
+  export let value = ""
 </script>
 
 <label>
@@ -13,6 +14,7 @@
     placeholder={placeholder}
     required={required}
     type={type}
+    value={value}
   />
 </label>
 
