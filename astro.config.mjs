@@ -21,7 +21,8 @@ export default defineConfig({
   vite: {
     plugins: [EnvironmentPlugin(["CF_PAGES_COMMIT_SHA", "HCAPTCHA_SITEKEY"])],
     ssr: {
-      noExternal: ["@okkema/worker"]
+      noExternal: ["@okkema/worker"],
+      external: ["node:async_hooks"]
     }
   },
 })
