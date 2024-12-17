@@ -5,12 +5,12 @@ type Toast = {
   type: "success" | "error" | "reject"
 }
 
-const { subscribe, set } = writable<Toast>()
+const { subscribe, set } = writable<Toast | undefined>()
 
 export const toast = {
   subscribe,
   set: (toast: Toast) => {
     set(toast)
-    setTimeout(() => set(null), 3000)
+    setTimeout(() => set(undefined), 3000)
   },
 }

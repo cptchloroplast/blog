@@ -1,5 +1,5 @@
 <script>
-  import { toast } from "../../stores/toast"
+  import { toast } from "./toast"
   import { Icon } from "."
 </script>
 

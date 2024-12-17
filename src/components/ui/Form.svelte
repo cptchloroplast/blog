@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { toast } from "../../stores/toast"
+  import { toast } from "./toast"
 
   export let action: string
   export let method = "POST"
