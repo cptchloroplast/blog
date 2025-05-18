@@ -2,6 +2,8 @@ import EnvironmentPlugin from "vite-plugin-environment"
 import svelte from "@astrojs/svelte"
 import { defineConfig } from "astro/config"
 import cloudflare from "@astrojs/cloudflare"
+import sentry from "@sentry/astro"
+
 
 export default defineConfig({
   output: "server",
@@ -15,9 +17,7 @@ export default defineConfig({
   server: {
     port: 5000
   },
-  integrations: [
-    svelte(),
-  ],
+  integrations: [svelte(), sentry()],
   vite: {
     plugins: [EnvironmentPlugin(["HCAPTCHA_SITEKEY"])],
     ssr: {
