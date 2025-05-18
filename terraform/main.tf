@@ -58,6 +58,7 @@ module "page" {
     RSA_PRIVATE_KEY     = var.RSA_PRIVATE_KEY
     OAUTH_CLIENT_SECRET = module.client.client_secret
     HCAPTCHA_SECRET     = var.HCAPTCHA_SECRET
+    SENTRY_DSN          = module.sentry.dsn
   }
 
   production_buckets = {

@@ -1,12 +1,19 @@
 import path from "node:path"
 import { buildPagesASSETSBinding, defineWorkersConfig, readD1Migrations } from "@cloudflare/vitest-pool-workers/config"
-import tsconfigPaths from "vite-tsconfig-paths"
+// import tsconfigPaths from "vite-tsconfig-paths"
 const assetsPath = path.join(__dirname, "dist")
 const migrationsPath = path.join(__dirname, "migrations")
 export default defineWorkersConfig(async function () {
   const migrations = await readD1Migrations(migrationsPath)
   return {
-    plugins: [tsconfigPaths()],
+    resolve: {
+      alias: {
+        "@functions": path.resolve(__dirname, "src/functions"),
+        "@schemas": path.resolve(__dirname, "src/schemas"),
+        "@services": path.resolve(__dirname, "src/services"),
+        "@utils": path.resolve(__dirname, "src/utils"),
+      }
+    },
     test: {
       setupFiles: ["./test/setup.ts"],
       poolOptions: {

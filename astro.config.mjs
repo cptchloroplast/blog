@@ -17,12 +17,32 @@ export default defineConfig({
   server: {
     port: 5000
   },
-  integrations: [svelte(), sentry()],
+  integrations: [svelte(), sentry({ 
+    sourceMapsUploadOptions: { 
+      enabled: false 
+    }
+  })],
   vite: {
     plugins: [EnvironmentPlugin(["HCAPTCHA_SITEKEY"])],
     ssr: {
       noExternal: ["@okkema/worker"],
-      external: ["node:async_hooks"]
+      external: [
+        "node:async_hooks",
+        "node:fs",
+        "node:path",
+        "node:readline",
+        "node:child_process",
+        "node:os",
+        "node:util",
+        "node:diagnostics_channel",
+        "node:http",
+        "node:util",
+        "node:worker_threads",
+        "util",
+        "async_hooks",
+        "events",
+        "diagnostics_channel",
+      ]
     }
   },
 })
