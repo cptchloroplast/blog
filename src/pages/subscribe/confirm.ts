@@ -8,22 +8,21 @@ export async function GET(context: APIContext) {
     const params = new URL(request.url).searchParams
     const email = params.get("email")
     const id = params.get("id")
-    if (!email || !id) return json({
-        ok: false,
-        message: "Something doesn't look right here....",
-    })
+    if (!email || !id)
+        return json({
+            ok: false,
+            message: "Something doesn't look right here....",
+        })
     const subscribers = R2Repository<Subscriber>(env.BLOG, "subscribers")
     const subscriber = await subscribers.get(email)
-    if (!subscriber || id !== subscriber.id) {
-    return json({
-        ok: false,
-        message: "Something doesn't look right here....",
-    })
-    }
-    await subscribers.put(email, {
-        ...subscriber,
-        confirmed: new Date(),
-    })
+    if (!subscriber || id !== subscriber.id) 
+        return json({
+            ok: false,
+            message: "Something doesn't look right here....",
+        })
+    subscriber.confirmed = new Date()
+    await subscribers.put(email, subscriber)
+    console.info("Confirmed subscriber", subscriber)
     return json({
         ok: true,
         message: "Thanks for confirming your email!",

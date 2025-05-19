@@ -20,12 +20,12 @@ export default defineConfig({
   integrations: [svelte(), sentry({ 
     sourceMapsUploadOptions: { 
       enabled: false 
-    }
+    },
   })],
   vite: {
     plugins: [EnvironmentPlugin(["HCAPTCHA_SITEKEY"])],
     ssr: {
-      noExternal: ["@okkema/worker"],
+      noExternal: ["@okkema/worker", "@okkema/email"],
       external: [
         "node:async_hooks",
         "node:fs",

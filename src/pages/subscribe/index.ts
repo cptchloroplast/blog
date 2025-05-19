@@ -3,6 +3,7 @@ import { R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
 import { EmailService } from "@okkema/email"
+import * as Sentry from "@sentry/cloudflare"
 
 export async function POST(context: APIContext) {
     const { env } = context.locals.runtime
@@ -10,9 +11,10 @@ export async function POST(context: APIContext) {
     const subscribers = R2Repository<Subscriber>(env.BLOG, "subscribers")
     const data = await context.request.json<{ email: string }>()
     const { email } = data 
-    const subscriber = await subscribers.get(email)
+    let subscriber = await subscribers.get(email)
     const today = new Date()
     if (subscriber) {
+        console.warn("Duplicate subscriber", subscriber)
         const { subscribed } = subscriber
         const seconds = (today.getTime() - new Date(subscribed).getTime()) / 1000
         return json({
@@ -21,11 +23,17 @@ export async function POST(context: APIContext) {
         })
     }
     const id = crypto.randomUUID()
+    subscriber = {
+        email,
+        subscribed: today,
+        id,
+    }
     await subscribers.put(email, {
         email,
         subscribed: today,
         id,
     })
+    console.info("Pending subscriber", subscriber)
     const params = new URLSearchParams({
         email,
         id,
@@ -45,7 +53,7 @@ export async function POST(context: APIContext) {
     })
     if (!response.ok) {
         const body = await response.json()
-        console.log(body)
+        console.error("Failed to send email", body)
         return json({
             ok: false,
             message: "Something funky happened... Please try again later.",
