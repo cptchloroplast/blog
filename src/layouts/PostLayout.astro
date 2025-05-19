@@ -17,6 +17,7 @@ const repo = `${GITHUB_OWNER}/${GITHUB_REPOSITORY}`
 ---
 <PublicLayout title={title} description={description}>
   <Fragment slot="header">
+    <meta name="keywords" content={tags.join(",")} />
     {code && 
       <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/styles/github-dark-dimmed.min.css">
       <script is:inline src="https://unpkg.com/@highlightjs/cdn-assets@11.11.1/highlight.min.js"></script>
