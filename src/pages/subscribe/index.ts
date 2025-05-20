@@ -3,7 +3,6 @@ import { R2Repository } from "@services"
 import type { APIContext } from "astro"
 import type { Subscriber } from "@schemas"
 import { EmailService } from "@okkema/email"
-import * as Sentry from "@sentry/cloudflare"
 
 export async function POST(context: APIContext) {
     const { env } = context.locals.runtime
