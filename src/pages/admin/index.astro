@@ -1,11 +1,17 @@
 ---
 import { Card, Subtitle, Title } from "@components/ui"
-import { MetadataForm } from "@components"
+import { MetadataForm, BucketForm } from "@components"
 import { AdminLayout } from "@layouts"
 const metadata = Astro.locals.metadata
 ---
-<AdminLayout title="Metadata">
+<AdminLayout title="Settings">
     <Fragment slot="default">
+        <Card>
+            <Title>Buckets</Title>
+            <Subtitle>Sync data from bucket to database</Subtitle>
+            <hr />
+            <BucketForm client:only />
+        </Card>
         <Card>
             <Title>Metadata</Title>
             <Subtitle>Update metadata used throughout the site.</Subtitle>

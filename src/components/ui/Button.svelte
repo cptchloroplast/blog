@@ -16,6 +16,8 @@
 <style>
   button {
     background-color: black;
+    color: white;
+    font-size: 1rem;
     border: none;
     padding: 8px 24px;
     cursor: pointer; 

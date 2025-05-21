@@ -16,5 +16,5 @@ export async function PATCH(context: APIContext) {
         console.error(error.message)
         return json({ ok: false, message: error.message })
     }
-    return json({ ok: true, message: "Ok!" })
+    return json({ ok: true, message: "Updated site metadata" })
 }

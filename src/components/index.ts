@@ -5,4 +5,5 @@ import PostList from "./PostList.astro"
 import SubscribeForm from "./SubscribeForm.svelte"
 import Tags from "./Tags.astro"
 import MetadataForm from "./MetadataForm.svelte"
-export { Biography, ContactForm, ContactLinks, PostList, SubscribeForm, Tags, MetadataForm }
+import BucketForm from "./BucketForm.svelte"
+export { Biography, ContactForm, ContactLinks, PostList, SubscribeForm, Tags, MetadataForm, BucketForm }
