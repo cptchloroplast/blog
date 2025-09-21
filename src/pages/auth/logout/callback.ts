@@ -1,6 +1,3 @@
-import type { APIContext } from "astro"
+import { logoutCallback } from "@okkema/worker/web"
 
-export async function GET(context: APIContext) {
-    context.cookies.delete("auth", { path: "/" })
-    return context.redirect(context.url.origin)
-}
+export const GET = logoutCallback

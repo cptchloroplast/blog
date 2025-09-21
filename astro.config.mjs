@@ -41,7 +41,7 @@ export default defineConfig({
   vite: {
     plugins: [EnvironmentPlugin(["HCAPTCHA_SITEKEY"])],
     ssr: {
-      noExternal: ["@okkema/worker", "@okkema/email"],
+      noExternal: ["@okkema/worker", "@okkema/worker/web", "@okkema/email"],
       external: [...builtins, ...builtins.map(module => `node:${module}`)]
     }
   },
