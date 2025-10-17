@@ -1,7 +1,12 @@
 locals {
+  role = "Blog Admin"
   audience = {
     email = "https://email.${module.zone.name}"
     blog  = "https://${var.pages_hostname}.${module.zone.name}"
+  }
+  scopes = {
+    email = "send:email"
+    blog  = "write:metadata"
   }
   secrets = {
     "TF_API_TOKEN" : var.TF_API_TOKEN,
@@ -11,7 +16,7 @@ locals {
 
 module "zone" {
   source  = "app.terraform.io/okkema/zone/cloudflare"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   zone_id = var.cloudflare_zone_id
 }
@@ -29,7 +34,7 @@ module "secrets" {
 
 module "bucket" {
   source  = "app.terraform.io/okkema/bucket/cloudflare"
-  version = "~> 1.0"
+  version = "~> 2.0"
 
   account_id = var.cloudflare_account_id
   name       = var.github_repository
@@ -37,7 +42,7 @@ module "bucket" {
 
 module "database" {
   source  = "app.terraform.io/okkema/database/cloudflare"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   account_id = var.cloudflare_account_id
   name       = var.github_repository
@@ -45,69 +50,67 @@ module "database" {
 
 module "page" {
   source  = "app.terraform.io/okkema/page/cloudflare"
-  version = "~> 0.4"
+  version = "~> 1.0"
 
-  account_id     = var.cloudflare_account_id
-  zone_id        = var.cloudflare_zone_id
-  name           = var.github_repository
-  owner          = var.github_owner
-  repo_name      = var.github_repository
-  pages_hostname = var.pages_hostname
-
-  production_secrets = {
-    RSA_PRIVATE_KEY     = var.RSA_PRIVATE_KEY
-    OAUTH_CLIENT_SECRET = module.client.client_secret
-    HCAPTCHA_SECRET     = var.HCAPTCHA_SECRET
-    SENTRY_DSN          = module.sentry.dsn
-  }
-
-  production_buckets = {
-    BLOG   = var.github_repository
-    STRAVA = "strava"
-  }
-
-  production_env_vars = {
-    HCAPTCHA_SITEKEY     = var.HCAPTCHA_SITEKEY
-    RSA_PUBLIC_KEY       = var.RSA_PUBLIC_KEY
-    OAUTH_CLIENT_ID      = module.client.client_id
-    OAUTH_TENANT         = var.OAUTH_TENANT
-    EMAIL_OAUTH_AUDIENCE = local.audience.email
-    EMAIL_OAUTH_SCOPE    = "email:send"
-    OAUTH_AUDIENCE       = local.audience.blog
-    OAUTH_SCOPE          = "write:metadata"
-    GITHUB_OWNER         = var.github_owner
-    GITHUB_REPOSITORY    = var.github_repository
-  }
-
-  production_databases = {
-    DB = module.database.id
-  }
+  account_id = var.cloudflare_account_id
+  zone_id    = var.cloudflare_zone_id
+  name       = var.github_repository
+  owner      = var.github_owner
+  repo_name  = var.github_repository
+  hostnames  = [var.pages_hostname]
+  env_vars = [
+    { name = "HCAPTCHA_SITEKEY", text = var.HCAPTCHA_SITEKEY },
+    { name = "RSA_PUBLIC_KEY", text = var.RSA_PUBLIC_KEY },
+    { name = "OAUTH_CLIENT_ID", text = module.client.client_id },
+    { name = "OAUTH_TENANT", text = var.OAUTH_TENANT },
+    { name = "EMAIL_OAUTH_AUDIENCE", text = local.audience.email },
+    { name = "EMAIL_OAUTH_SCOPE", text = local.scopes.email },
+    { name = "OAUTH_AUDIENCE", text = local.audience.blog },
+    { name = "OAUTH_SCOPE", text = local.scopes.blog },
+    { name = "GITHUB_OWNER", text = var.github_owner },
+    { name = "GITHUB_REPOSITORY", text = var.github_repository },
+  ]
+  secrets = [
+    { name = "RSA_PRIVATE_KEY", text = var.RSA_PRIVATE_KEY },
+    { name = "OAUTH_CLIENT_SECRET", text = module.client.client_secret },
+    { name = "HCAPTCHA_SECRET", text = var.HCAPTCHA_SECRET },
+    { name = "SENTRY_DSN", text = module.sentry.dsn },
+  ]
+  buckets = [
+    { name = "BLOG", bucket_name = var.github_repository },
+    { name = "STRAVA", bucket_name = "strava" }
+  ]
+  databases = [
+    { name = "DB", id = module.database.id }
+  ]
 
   depends_on = [module.bucket, module.database]
 }
 
 module "worker" {
   source  = "app.terraform.io/okkema/worker/cloudflare"
-  version = "~> 0.12"
+  version = "~> 1.0"
 
   account_id          = var.cloudflare_account_id
   zone_id             = var.cloudflare_zone_id
   name                = "${var.github_repository}-worker"
-  content             = file(abspath("${path.module}/../build/index.js"))
-  compatibility_flags = toset(["nodejs_compat_v2"])
-  schedules           = [var.WORKER_SCHEDULE]
+  content_file        = abspath("${path.module}/../build/index.js")
+  compatibility_flags = ["nodejs_compat_v2"]
+  schedules           = [
+    { cron = var.WORKER_SCHEDULE }
+  ]
   env_vars = [
-    { name = "WORKER_SCHEDULE", value = var.WORKER_SCHEDULE },
+    { name = "WORKER_SCHEDULE", text = var.WORKER_SCHEDULE },
   ]
   secrets = [
-    { name = "SENTRY_DSN", value = module.sentry.dsn },
+    { name = "SENTRY_DSN", text = module.sentry.dsn },
   ]
   buckets = [
-    { binding = "BLOG", name = var.github_repository },
-    { binding = "STRAVA", name = "strava" }
+    { name = "BLOG", bucket_name = var.github_repository },
+    { name = "STRAVA", bucket_name = "strava" }
   ]
   databases = [
-    { binding = "DB", id = module.database.id }
+    { name = "DB", id = module.database.id }
   ]
 
   depends_on = [module.database, module.sentry, module.bucket]
@@ -129,7 +132,7 @@ module "client" {
   grants = [
     {
       audience = local.audience.email
-      scopes   = ["email:send"]
+      scopes   = [local.scopes.email]
     }
   ]
   callbacks = [
@@ -144,21 +147,22 @@ module "client" {
 
 module "server" {
   source  = "app.terraform.io/okkema/server/auth0"
-  version = "~> 0.1"
+  version = "~> 1.0"
 
   name       = var.github_repository
   identifier = local.audience.blog
-  scopes = {
-    "write:metadata" : "Update blog metadata"
-  }
+  scopes = [
+    { name = local.scopes.blog, description = "Update blog metadata" }
+  ]
 }
 
-module "application" {
-  source  = "app.terraform.io/okkema/application/cloudflare"
-  version = "~> 0.5"
+module "role" {
+  source  = "app.terraform.io/okkema/role/auth0"
+  version = "~> 0.2"
 
-  zone_id      = var.cloudflare_zone_id
-  name         = var.pages_hostname
-  github_teams = [var.github_repository]
-  path         = "admin"
+  name = local.role
+  scopes = [
+    { name = local.scopes.blog, audience = local.audience.blog }
+  ]
 }
+
